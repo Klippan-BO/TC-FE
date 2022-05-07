@@ -28,6 +28,36 @@ module.exports = {
         body: 'This trail sucks!!!',
         timestamp: Date.now(),
       },
+      {
+        username: 'Jerremy',
+        body: 'This trail is alright, too many trees',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Kyle',
+        body: 'This trail is alright, too many trees fillertext fillertextfillertextfillertextfillertextfillertextvfiller textfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextllertextfillertextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextllertextfillertextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertext',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Shan',
+        body: 'I hate this trail',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Lawrence',
+        body: 'This trail is too green',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Pascal',
+        body: 'This trail has too many bugs',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Matt',
+        body: 'This trail is so dangerous!',
+        timestamp: Date.now(),
+      },
     ],
   },
 
