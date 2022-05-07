@@ -26,20 +26,6 @@
 
 .nav li:hover {
   text-decoration: underline;
-
-}
-
-.animation{
-  position: absolute;
-  height: 100%;
-  top: 0;
-  z-index: 0;
-  background: #1abc9c;
-  width: 100px;
-}
-
-.logo {
-  margin-right: 30px;
 }
 
 
