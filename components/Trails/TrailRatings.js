@@ -19,7 +19,7 @@ function TrailRatings({ ratings }) {
       {/* Ratings */}
       <Rating
         defaultValue={ratings.average}
-        precision={0.1}
+        precision={0.25}
         readOnly
         sx={{
           color: 'gray',
@@ -45,7 +45,7 @@ function TrailRatings({ ratings }) {
         </Typography>
         <Rating
           defaultValue={ratings.beauty}
-          precision={0.1}
+          precision={0.25}
           readOnly
           sx={{
             color: 'gray',
@@ -71,7 +71,7 @@ function TrailRatings({ ratings }) {
         </Typography>
         <Rating
           defaultValue={ratings.nature}
-          precision={0.1}
+          precision={0.25}
           readOnly
           sx={{
             color: 'gray',
@@ -98,7 +98,7 @@ function TrailRatings({ ratings }) {
         <Rating
           defaultValue={ratings.difficulty}
           size="small"
-          precision={0.1}
+          precision={0.25}
           readOnly
           sx={{
             color: 'gray',
@@ -112,7 +112,7 @@ function TrailRatings({ ratings }) {
 }
 
 TrailRatings.propTypes = {
-  ratings: PropTypes.number.isRequired,
+  ratings: PropTypes.objectOf(PropTypes.number),
 };
 
 export default TrailRatings;

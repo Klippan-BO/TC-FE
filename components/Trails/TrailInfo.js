@@ -42,7 +42,7 @@ function TrailInfo({ trail }) {
           borderColor: 'primary.main',
         }}
       >
-        <TrailRatings ratings={trail.ratings}/>
+        <TrailRatings ratings={trail.ratings} />
         <TrailAddRatings />
       </Stack>
     </Stack>
@@ -50,7 +50,7 @@ function TrailInfo({ trail }) {
 }
 
 TrailInfo.propTypes = {
-  trail: PropTypes.string.isRequired,
+  trail: PropTypes.objectOf(PropTypes.string),
 };
 
 export default TrailInfo;

@@ -13,9 +13,9 @@ module.exports = {
     description: 'This trail is one of the most popular trails in the area. It has plenty of shade, as well as sun. If you like the ocean, this trail is for you! Be sure to check out the view at the top. It also great for beginners so this is a great place for family and friends!',
     ratings: {
       average: 4.5,
-      difficulty: 3.2,
-      nature: 2.9,
-      beauty: 1,
+      beauty: 4,
+      nature: 4.5,
+      difficulty: 1.2,
     },
     comments: [
       {
