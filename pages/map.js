@@ -11,7 +11,6 @@ function map() {
         <title>TC - Map</title>
       </Head>
       <Wrapper apiKey={nextConfig.env.key}>
-        <MapComponent />
       </Wrapper>
       <h1>
         map
