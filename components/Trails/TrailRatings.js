@@ -1,14 +1,12 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
-const sampleData = require('./sampleData');
-
-function TrailRatings() {
+function TrailRatings({ ratings }) {
   return (
     <Stack
       direction="column"
@@ -20,7 +18,7 @@ function TrailRatings() {
     >
       {/* Ratings */}
       <Rating
-        defaultValue={sampleData.trail1.ratings.average}
+        defaultValue={ratings.average}
         precision={0.1}
         readOnly
         sx={{
@@ -43,10 +41,10 @@ function TrailRatings() {
             fontSize: 24,
           }}
         >
-          Difficulty
+          Beauty
         </Typography>
         <Rating
-          defaultValue={sampleData.trail1.ratings.difficulty}
+          defaultValue={ratings.beauty}
           precision={0.1}
           readOnly
           sx={{
@@ -72,7 +70,7 @@ function TrailRatings() {
           Nature
         </Typography>
         <Rating
-          defaultValue={sampleData.trail1.ratings.nature}
+          defaultValue={ratings.nature}
           precision={0.1}
           readOnly
           sx={{
@@ -95,10 +93,10 @@ function TrailRatings() {
             fontSize: 24,
           }}
         >
-          Beauty
+          Difficulty
         </Typography>
         <Rating
-          defaultValue={sampleData.trail1.ratings.beauty}
+          defaultValue={ratings.difficulty}
           size="small"
           precision={0.1}
           readOnly
@@ -112,5 +110,9 @@ function TrailRatings() {
     </Stack>
   );
 }
+
+TrailRatings.propTypes = {
+  ratings: PropTypes.number.isRequired,
+};
 
 export default TrailRatings;

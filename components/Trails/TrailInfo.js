@@ -2,6 +2,7 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
 import TrailRatings from './TrailRatings';
 import TrailAddRatings from './TrailAddRatings';
 
@@ -41,11 +42,15 @@ function TrailInfo({ trail }) {
           borderColor: 'primary.main',
         }}
       >
-        <TrailRatings />
+        <TrailRatings ratings={trail.ratings}/>
         <TrailAddRatings />
       </Stack>
     </Stack>
   );
 }
+
+TrailInfo.propTypes = {
+  trail: PropTypes.string.isRequired,
+};
 
 export default TrailInfo;

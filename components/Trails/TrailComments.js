@@ -3,6 +3,7 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
 
 function TrailComments({ trail }) {
   return (
@@ -36,5 +37,9 @@ function TrailComments({ trail }) {
     </Stack>
   );
 }
+
+TrailComments.propTypes = {
+  trail: PropTypes.string.isRequired,
+};
 
 export default TrailComments;

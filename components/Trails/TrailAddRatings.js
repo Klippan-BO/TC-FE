@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types'
-
+import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Modal from '@mui/material/Modal';
@@ -10,22 +9,18 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 function AddTrailRatings() {
-  const [opened, setOpened] = useState(false);
+  const [modal, setModal] = useState(false);
 
-  const handleOpen = () => {
-    setOpened(true);
-  }
-
-  const handleClose = () => {
-    setOpened(false);
-  }
+  const handleClick = (boolean) => {
+    setModal(boolean);
+  };
 
   return (
     <>
-      <Button onClick={handleOpen}>Rate this trail</Button>
+      <Button onClick={() => handleClick(true)}>Rate this trail</Button>
       <Modal
-        open={opened}
-        onClose={handleClose}
+        open={modal}
+        onClose={() => handleClick(false)}
       >
         <Box
           sx={{
@@ -33,7 +28,8 @@ function AddTrailRatings() {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 280,
+            width: 500,
+            height: 500,
             bgcolor: 'background.paper',
             border: '2px solid #000',
             boxShadow: 24,
@@ -48,13 +44,20 @@ function AddTrailRatings() {
               'primary.main',
             }}
           >
-            {/* Ratings */}
+            {/* Overall Rating */}
+            <Typography
+              sx={{
+                fontSize: 28,
+              }}
+            >
+              How did you feel about this trail?
+            </Typography>
             <Rating
               defaultValue={0}
               precision={1}
               sx={{
                 color: 'gray',
-                fontSize: 40,
+                fontSize: 80,
               }}
             />
 
@@ -62,19 +65,24 @@ function AddTrailRatings() {
             <Stack
               direction="row"
               justifyContent="space-between"
-              width="196px"
+              width="420"
               sx={{
                 gap: 1,
               }}
             >
-              Difficulty
-
+              <Typography
+                sx={{
+                  fontSize: 36,
+                }}
+              >
+                Beauty
+              </Typography>
               <Rating
                 defaultValue={0}
                 precision={1}
                 sx={{
                   color: 'gray',
-                  fontSize: 24,
+                  fontSize: 48,
                 }}
               />
             </Stack>
@@ -82,18 +90,24 @@ function AddTrailRatings() {
             <Stack
               direction="row"
               justifyContent="space-between"
-              width="196px"
+              width="420"
               sx={{
                 gap: 1,
               }}
             >
-              Nature
+              <Typography
+                sx={{
+                  fontSize: 36,
+                }}
+              >
+                Nature
+              </Typography>
               <Rating
                 defaultValue={0}
                 precision={1}
                 sx={{
                   color: 'gray',
-                  fontSize: 24,
+                  fontSize: 48,
                 }}
               />
             </Stack>
@@ -101,19 +115,25 @@ function AddTrailRatings() {
             <Stack
               direction="row"
               justifyContent="space-between"
-              width="196px"
+              width="420"
               sx={{
                 gap: 1,
               }}
             >
-              Beauty
+              <Typography
+                sx={{
+                  fontSize: 36,
+                }}
+              >
+                Difficulty
+              </Typography>
               <Rating
                 defaultValue={0}
                 size="small"
                 precision={1}
                 sx={{
                   color: 'gray',
-                  fontSize: 24,
+                  fontSize: 48,
                 }}
               />
             </Stack>
@@ -121,13 +141,13 @@ function AddTrailRatings() {
             <input
               type="button"
               value="Submit"
-              onClick={handleClose}
+              onClick={() => handleClick(false)}
             />
           </Stack>
         </Box>
       </Modal>
     </>
-  )
+  );
 }
 
 export default AddTrailRatings;
