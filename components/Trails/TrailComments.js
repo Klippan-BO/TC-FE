@@ -3,6 +3,7 @@
 import React from 'react';
 
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 const sample_Data = require('./sampleData');
 
@@ -10,16 +11,32 @@ function TrailComments() {
   return (
     <Stack
       direction="column"
-      sx={{ border: 4, borderColor: 'primary.main' }}
+      sx={{
+        border: 4,
+        borderColor: 'primary.main',
+        gap: 1,
+      }}
     >
-      {sample_Data.trail1.comments.map((comment) =>
-        (
-          <div key={sample_Data.trail1.comments.indexOf(comment)}>
-            <div>{comment.username}</div>
-            <div>{comment.timestamp}</div>
-            <div>{comment.body }</div>
-          </div>
-        ))}
+      {sample_Data.trail1.comments.map((comment) => (
+        <Stack
+          direction="column"
+          sx={{
+            border: 4,
+            borderColor: 'primary.main',
+          }}
+          key={sample_Data.trail1.comments.indexOf(comment)}
+        >
+          <Typography
+            sx={{
+              fontSize: 20,
+            }}
+          >
+            {comment.body }
+          </Typography>
+          <div>{comment.username}</div>
+          {/* <div>{comment.timestamp}</div> */}
+        </Stack>
+      ))}
     </Stack>
   );
 }

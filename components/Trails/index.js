@@ -22,7 +22,7 @@ function TrailPage() {
             borderColor: 'red',
             padding: 5,
             height: '100vh',
-            width: '80vw',
+            width: '8vw',
             minWidth: '1000px',
           }}
         >

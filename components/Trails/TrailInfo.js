@@ -3,12 +3,42 @@ import React from 'react';
 // import PropTypes from 'prop-types'
 
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+
+import TrailRatings from './TrailRatings';
+import TrailAddRatings from './TrailAddRatings';
 
 const sampleData = require('./sampleData');
 
 function TrailInfo() {
   return (
-    <>
+    <Stack
+      direction="row"
+      sx={{
+        border: 4,
+        borderColor: 'primary.main',
+      }}
+    >
+      <Stack
+        direction="column"
+        sx={{
+          width: '700px',
+          border: 4,
+          borderColor: 'primary.main',
+        }}
+      >
+        {/* Name of Trail */}
+        <Typography
+          sx={{
+            fontSize: 48,
+          }}
+        >
+          {sampleData.trail1.name}
+        </Typography>
+
+        {/* Description */}
+        <div>{sampleData.trail1.description}</div>
+      </Stack>
       <Stack
         direction="column"
         sx={{
@@ -16,45 +46,11 @@ function TrailInfo() {
           borderColor: 'primary.main',
         }}
       >
-        {/* Name of Trail */}
-        <div>{sampleData.trail1.name}</div>
-
-        {/* Description */}
-        <div>{sampleData.trail1.description}</div>
+        <TrailRatings />
+        <TrailAddRatings />
       </Stack>
-
-      <Stack
-        direction="column"
-        sx={{
-          border: 4,
-          borderColor:
-          'primary.main',
-        }}
-      >
-        {/* Ratings */}
-        <div>
-          Average Rating:
-          {sampleData.trail1.ratings.average}
-        </div>
-
-        {/* Meta */}
-        <div>
-          Difficulty:
-          {sampleData.trail1.ratings.difficulty}
-        </div>
-        <div>
-          Nature:
-          {sampleData.trail1.ratings.nature}
-        </div>
-        <div>
-          Beauty:
-          {sampleData.trail1.ratings.beauty}
-        </div>
-      </Stack>
-    </>
+    </Stack>
   );
 }
-
-TrailInfo.propTypes = {};
 
 export default TrailInfo;
