@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import { Stack, ListItem, TextField } from '@mui/material';
+import { Stack, ListItem, TextField, Item, Box } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import SendIcon from '@mui/icons-material/Send';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
@@ -43,7 +43,7 @@ function TrailComments() {
             </ListItem>
           ))}
       </Stack>
-      <ListItem style={{ justifyContent: 'center' }}>
+      <ListItem key={1} style={{ justifyContent: 'center' }}>
         <TextField
           sx={{
             backgroundColor: '#EEE2DC', variant: 'filled', margin: 'none', width: '90%', size: 'small',
