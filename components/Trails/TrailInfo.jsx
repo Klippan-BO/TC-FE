@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -13,6 +12,7 @@ function TrailInfo({ trail }) {
       sx={{
         border: 4,
         borderColor: 'primary.main',
+        width: 960,
       }}
     >
       <Stack

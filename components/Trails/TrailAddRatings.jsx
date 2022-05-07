@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Modal from '@mui/material/Modal';

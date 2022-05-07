@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';

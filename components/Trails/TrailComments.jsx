@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -10,6 +8,7 @@ function TrailComments({ trail }) {
     <Stack
       direction="column"
       sx={{
+        width: 960,
         border: 4,
         borderColor: 'primary.main',
         gap: 1,
