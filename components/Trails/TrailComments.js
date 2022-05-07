@@ -13,7 +13,7 @@ function TrailComments() {
   return (
     <Stack
       sx={{
-        maxHeight: '100%', overflow: 'auto', mt: '10px', backgroundColor: '#EEE2DC',
+        maxHeight: '100%', overflow: 'auto', mt: '10px', backgroundColor: '#BAB2B5',
       }}
     >
       <Stack
@@ -43,7 +43,15 @@ function TrailComments() {
             </ListItem>
           ))}
       </Stack>
-      <TextField sx={{ backgroundColor: '#EEE2DC', variant: 'filled', margin: 'none' }} InputProps={{ endAdornment: <SendIcon /> }} label="Leave a comment" />
+      <ListItem style={{ justifyContent: 'center' }}>
+        <TextField
+          sx={{
+            backgroundColor: '#EEE2DC', variant: 'filled', margin: 'none', width: '90%', size: 'small',
+          }}
+          InputProps={{ endAdornment: <SendIcon /> }}
+          label="Leave a comment"
+        />
+      </ListItem>
     </Stack>
   );
 }
