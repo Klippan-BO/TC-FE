@@ -20,7 +20,10 @@ export function useAuth() {
 
 // provider that renders out children and provides user details and login function
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({
+    displayName: null,
+    email: null,
+  });
 
   function signInUser(auth, provider) {
     return signInWithPopup(auth, provider);
@@ -32,11 +35,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      const { displayName, email } = user;
-      setCurrentUser({
-        displayName,
-        email,
-      });
+      setCurrentUser(user);
     });
 
     return unsubscribe;

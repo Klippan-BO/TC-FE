@@ -22,7 +22,7 @@ export default function RouteGuard({children}) {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentUser]);
 
   function authCheck(url) {
     const publicPaths = ['/login'];

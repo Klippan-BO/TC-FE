@@ -13,24 +13,6 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { useRouter } from 'next/router';
 
-// function handleSignIn() {
-//   signInWithPopup(auth, provider)
-//   .then((result) => {
-//     const credential = GoogleAuthProvider.credentialFromResult(result);
-//     GoogleAuthProvider.sign
-//     const token = credential.accessToken;
-//     const user = result.user;
-//     console.log(user);
-//     console.log(`User ${user} has signed in with token ${token}.`);
-//     console.log('Redirect to maps page next');
-//     //post required
-//   })
-//   .catch((err) => {
-//     const { code, message } = err;
-//     console.log(`Error signing in occurred with code: ${code} and message: ${message}`);
-//   });
-// }
-
 
 export default function UserLogin() {
   const [signedIn, setSignedIn] = useState(false);
@@ -39,12 +21,13 @@ export default function UserLogin() {
 
   function handleLogin() {
     signInUser(auth, provider)
-    .then((user) => {
-      setCurrentUser({
-        displayName: user.user.displayName,
-        email: user.user.email,
-      });
+    .then((result) => {
+      const user = result.user;
       console.log('current user is: ', currentUser);
+      setCurrentUser({
+        displayName: user.displayName,
+        email: user.email,
+      });
       const returnUrl = router.query.returnUrl || '/map';
       router.push(returnUrl);
     })
@@ -56,16 +39,6 @@ export default function UserLogin() {
     signOutUser(auth);
   }
 
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     console.log(user, ' is signed in.');
-  //     setSignedIn(true);
-  //     console.log(signedIn);
-  //   } else {
-  //     setSignedIn(false);
-  //     console.log('Not signed in.');
-  //   }
-  // })
 
   return (
     <div className={styles.loginCard}>
