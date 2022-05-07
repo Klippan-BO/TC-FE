@@ -3,10 +3,11 @@ import React from 'react';
 import Head from 'next/head';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-
 import TrailCarousel from './TrailCarousel';
 import TrailInfo from './TrailInfo';
 import TrailComments from './TrailComments';
+
+const sampleData = require('./sampleData');
 
 function TrailPage() {
   return (
@@ -27,8 +28,8 @@ function TrailPage() {
           }}
         >
           <TrailCarousel />
-          <TrailInfo />
-          <TrailComments />
+          <TrailInfo trail={sampleData.trail1} />
+          <TrailComments trail={sampleData.trail1} />
         </Stack>
       </Container>
     </div>

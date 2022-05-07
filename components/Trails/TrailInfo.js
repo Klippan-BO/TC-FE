@@ -1,16 +1,11 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-// import PropTypes from 'prop-types'
-
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
 import TrailRatings from './TrailRatings';
 import TrailAddRatings from './TrailAddRatings';
 
-const sampleData = require('./sampleData');
-
-function TrailInfo() {
+function TrailInfo({ trail }) {
   return (
     <Stack
       direction="row"
@@ -33,11 +28,11 @@ function TrailInfo() {
             fontSize: 48,
           }}
         >
-          {sampleData.trail1.name}
+          {trail.name}
         </Typography>
 
         {/* Description */}
-        <div>{sampleData.trail1.description}</div>
+        <div>{trail.description}</div>
       </Stack>
       <Stack
         direction="column"
