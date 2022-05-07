@@ -7,6 +7,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from '../firebase';
+import Link from 'next/link';
 
 // create context
 const AuthContext = React.createContext();
@@ -19,7 +20,7 @@ export function useAuth() {
 
 // provider that renders out children and provides user details and login function
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
 
   function signInUser(auth, provider) {
     return signInWithPopup(auth, provider);
@@ -31,7 +32,11 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+      const { displayName, email } = user;
+      setCurrentUser({
+        displayName,
+        email,
+      });
     });
 
     return unsubscribe;
@@ -41,6 +46,7 @@ export function AuthProvider({ children }) {
     currentUser,
     signInUser,
     signOutUser,
+    setCurrentUser,
   };
 
   return (

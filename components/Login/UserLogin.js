@@ -11,6 +11,7 @@ import {
   onAuthStateChanged,
 } from '../../firebase';
 import { useAuth } from '../../context/AuthContext';
+import { useRouter } from 'next/router';
 
 // function handleSignIn() {
 //   signInWithPopup(auth, provider)
@@ -33,13 +34,24 @@ import { useAuth } from '../../context/AuthContext';
 
 export default function UserLogin() {
   const [signedIn, setSignedIn] = useState(false);
-
-  const { signInUser, signOutUser, currentUser } = useAuth();
+  const router = useRouter();
+  const { signInUser, signOutUser, currentUser, setCurrentUser } = useAuth();
 
   function handleLogin() {
-    signInUser(auth, provider);
+    signInUser(auth, provider)
+    .then((user) => {
+      setCurrentUser({
+        displayName: user.user.displayName,
+        email: user.user.email,
+      });
+      console.log('current user is: ', currentUser);
+      const returnUrl = router.query.returnUrl || '/map';
+      router.push(returnUrl);
+    })
+    .catch((err) => console.log('error signing in: ', err));
   }
 
+  // just for development purposes
   function handleSignOut() {
     signOutUser(auth);
   }
@@ -77,6 +89,7 @@ export default function UserLogin() {
       >
         Login
       </Button>
+      {/* just for development purposes */}
       <Button
         variant="contained"
         sx={{
