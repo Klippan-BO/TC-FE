@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -10,8 +11,8 @@ import Difficulty from '../Chips/Difficulty';
 
 export default function Marker({ trail }) {
   const {
-    name, photos, description, length, elevation, ratings: {
-      average, beauty, nature, difficulty,
+    name, description, length, elevation, ratings: {
+      average, difficulty,
     },
   } = trail;
 
@@ -74,3 +75,15 @@ export default function Marker({ trail }) {
     </>
   );
 }
+
+Marker.propTypes = {
+  trail: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    length: PropTypes.number.isRequired,
+    ratings: PropTypes.shape({
+      average: PropTypes.number.isRequired,
+      difficulty: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
