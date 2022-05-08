@@ -1,20 +1,14 @@
-import React from 'react'
-import Head from 'next/head'
+import React from 'react';
+import sampleData from '../components/User/sampleData.js';
 
+// eslint-disable-next-line import/extensions
+import UserPage from '../components/User/index.js';
 
-
-function user() {
+function User() {
   return (
     <div>
-      <Head>
-        <title>TC - User</title>
-      </Head>
-
-      <h1>
-        User
-      </h1>
+      <UserPage userData={sampleData}/>
     </div>
-  )
+  );
 }
-
-export default user
+export default User;
