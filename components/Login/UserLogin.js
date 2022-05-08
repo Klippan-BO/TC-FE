@@ -23,7 +23,6 @@ export default function UserLogin() {
     signInUser(auth, provider)
     .then((result) => {
       const user = result.user;
-      console.log('current user is: ', currentUser);
       setCurrentUser({
         displayName: user.displayName,
         email: user.email,

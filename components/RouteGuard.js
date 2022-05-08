@@ -1,6 +1,7 @@
 import React ,{ useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
+import { onAuthStateChanged, auth } from '../firebase';
 
 
 export default function RouteGuard({children}) {
@@ -28,16 +29,18 @@ export default function RouteGuard({children}) {
     const publicPaths = ['/login'];
     const path = url.split('?')[0];
 
-    if (!currentUser?.email && !publicPaths.includes(path)) {
-      console.log('redirecting due to unauthorized user', currentUser);
-      setAuthorized(false);
-      router.push({
+    onAuthStateChanged(auth, (user) => {
+      if (!user && !publicPaths.includes(path)) {
+        console.log('redirecting due to unauthorized user', currentUser);
+        setAuthorized(false);
+        router.push({
         pathname: '/login',
         query: { returnUrl: router.asPath }
       });
-    } else {
-      setAuthorized(true);
-    }
+      } else {
+        setAuthorized(true);
+      }
+    });
   }
 
 
