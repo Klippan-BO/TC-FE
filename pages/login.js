@@ -1,17 +1,14 @@
-import React from 'react'
-import Head from 'next/head'
+import React from 'react';
+import Head from 'next/head';
+import LoginPage from '../components/Login';
+
 
 function login() {
   return (
     <div>
-      <Head>
-        <title>TC - Login</title>
-      </Head>
-      <h1>
-        Login
-      </h1>
+      <LoginPage />
     </div>
   )
 }
 
-export default login
+export default login;

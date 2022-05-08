@@ -22,10 +22,8 @@ function TrailCarousel() {
   const [photos] = useState(sample_data.trail1.photos);
   const [index, setIndex] = useState(0);
   const handleSelect = (selectedIndex, e) => {
-    e.preventDefault();
     setIndex(selectedIndex);
   };
-
   return (
     <Box
       sx={{
@@ -50,7 +48,7 @@ function TrailCarousel() {
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}
-        interval={null}
+        interval={10000}
         style={{
           position: 'relative',
           height: '60vh',
@@ -87,21 +85,3 @@ function TrailCarousel() {
 // TrailCarousel.propTypes = {};
 
 export default TrailCarousel;
-
-/* <Modal
-  open={open}
-  onClose={handleClose}
-  aria-labelledby="modal-modal-title"
-  aria-describedby="modal-modal-description"
->
-  <Box
-    onClick={handleClose}
-    sx={backgroundStyle}
-  >
-    <Image
-      src={photos[index]}
-      layout="fill"
-      objectFit="contain"
-    />
-  </Box>
-</Modal> */

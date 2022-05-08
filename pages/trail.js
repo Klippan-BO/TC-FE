@@ -1,15 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
+import TrailPage from '../components/Trails/index.js'
 
 function trail() {
   return (
     <div>
-      <Head>
-        <title>TC - Trail</title>
-      </Head>
-      <h1>
-        trail
-      </h1>
+      <TrailPage />
     </div>
   )
 }

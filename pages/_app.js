@@ -1,19 +1,21 @@
-import '../styles/globals.css'
-import Layout from '../components/Layout'
-import Styles from '../styles/Home.module.css'
-
+import React, { useState } from 'react';
+import { AuthProvider } from '../context/AuthContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/globals.css';
+import Layout from '../components/Layout';
+import RouteGuard from '../components/RouteGuard';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
-    <div className={Styles.bodyContainer}>
-    <Layout>
-      <div className={Styles.contentContainer}>
-        <Component {...pageProps} />
-      </div>
-    </Layout>
-    </div>
-    </>
+    <AuthProvider>
+        <RouteGuard>
+        <div className='page_container'>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </div>
+      </RouteGuard>
+    </AuthProvider>
   )
 }
 
