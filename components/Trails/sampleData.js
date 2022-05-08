@@ -1,7 +1,7 @@
 module.exports = {
 
   trail1: {
-    name: 'Sunny trail',
+    name: 'Sunny Trail',
     photos: [
       'http://www.trailstompers.com/uploads/2/6/8/6/2686411/9693769.jpg',
       'http://www.trailstompers.com/uploads/2/6/8/6/2686411/5328225.jpg?327',
@@ -10,7 +10,7 @@ module.exports = {
       'http://www.trailstompers.com/uploads/2/6/8/6/2686411/4025080_orig.jpg',
       'http://www.trailstompers.com/uploads/2/6/8/6/2686411/6829184_orig.jpg',
     ],
-    description: 'This trail is one of the most popular trails in the area. It has plenty of shade, as well as sun. If you like the ocean, this trail is for you! Be sure to check out the view at the top. It also great for beginners so this is a great place for family and friends!',
+    description: 'This trail is one of the most popular trails in the area. It has plenty of shade, as well as sun. If you like the ocean, this trail is for you! Be sure to check out the view at the top. It is also great for beginners so this is a great place for family and friends!',
     ratings: {
       average: 4.5,
       beauty: 4,
@@ -26,6 +26,36 @@ module.exports = {
       {
         username: 'Patrick',
         body: 'This trail is amazing!!! I went on this trail with my 10 year old son and it was easy enough that he did not complain once! There was also a nice ocean view. We saw bees, trees, whales, and snails!',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Jerremy',
+        body: 'This trail is alright, too many trees',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Kyle',
+        body: 'This trail is alright, too many trees fillertext fillertextfillertextfillertextfillertextfillertextvfiller textfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextllertextfillertextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextllertextfillertextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertextextfillertextfillertext',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Shan',
+        body: 'I hate this trail',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Lawrence',
+        body: 'This trail is too green',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Pascal',
+        body: 'This trail has too many bugs',
+        timestamp: Date.now(),
+      },
+      {
+        username: 'Matt',
+        body: 'This trail is so dangerous!',
         timestamp: Date.now(),
       },
     ],
