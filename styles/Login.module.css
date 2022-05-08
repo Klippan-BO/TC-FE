@@ -1,0 +1,38 @@
+.loginContainer {
+  background-color: #123C69;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginCard {
+  height: 250px;
+  width: 380px;
+  background-color: #EDC7B7;
+  border-radius: 20px;
+  box-shadow: 2px 4px 4px rgba(0,0,0, .25);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1.25em;
+  justify-content: space-between;
+}
+
+.loginCard div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.loginCard h1 {
+  color: #123C69;
+  margin: 0;
+}
+
+.loginCard p {
+  margin-top: -5px;
+  color: #123C69;
+}
