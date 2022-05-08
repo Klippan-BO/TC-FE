@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TrailAddRatings from './TrailAddRatings';
 
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
@@ -10,9 +11,11 @@ function TrailRatings({ ratings }) {
     <Stack
       direction="column"
       sx={{
-        border: 4,
-        borderColor:
-        'primary.main',
+        border: 1,
+        borderColor: 'black',
+        borderRadius: 1,
+        margin: 1,
+        padding: 1,
       }}
     >
       {/* Ratings */}
@@ -23,6 +26,8 @@ function TrailRatings({ ratings }) {
         sx={{
           color: 'gray',
           fontSize: 48,
+          margin: 1,
+          justifyContent: 'center',
         }}
       />
 
@@ -33,6 +38,7 @@ function TrailRatings({ ratings }) {
         width="315"
         sx={{
           gap: 1,
+          marginLeft: 1,
         }}
       >
         <Typography
@@ -49,6 +55,7 @@ function TrailRatings({ ratings }) {
           sx={{
             color: 'gray',
             fontSize: 30,
+            marginRight: 1,
           }}
         />
       </Stack>
@@ -59,6 +66,7 @@ function TrailRatings({ ratings }) {
         width="315"
         sx={{
           gap: 1,
+          marginLeft: 1,
         }}
       >
         <Typography
@@ -75,6 +83,7 @@ function TrailRatings({ ratings }) {
           sx={{
             color: 'gray',
             fontSize: 30,
+            marginRight: 1,
           }}
         />
       </Stack>
@@ -85,6 +94,7 @@ function TrailRatings({ ratings }) {
         width="315"
         sx={{
           gap: 1,
+          marginLeft: 1,
         }}
       >
         <Typography
@@ -102,10 +112,12 @@ function TrailRatings({ ratings }) {
           sx={{
             color: 'gray',
             fontSize: 30,
+            marginRight: 1,
+            marginBottom: 2,
           }}
         />
       </Stack>
-
+      <TrailAddRatings />
     </Stack>
   );
 }
