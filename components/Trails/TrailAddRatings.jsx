@@ -16,7 +16,15 @@ function AddTrailRatings() {
 
   return (
     <>
-      <Button onClick={() => handleClick(true)}>Rate this trail</Button>
+      <Button
+        variant="contained"
+        sx={{
+          color: 'white',
+        }}
+        onClick={() => handleClick(true)}
+      >
+        Rate this trail
+      </Button>
       <Modal
         open={modal}
         onClose={() => handleClick(false)}
@@ -27,26 +35,22 @@ function AddTrailRatings() {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 500,
-            height: 500,
+            width: 440,
+            height: 380,
             bgcolor: 'background.paper',
-            border: '2px solid #000',
+            border: '0px solid #000',
+            borderRadius: 2,
             boxShadow: 24,
             p: 4,
           }}
         >
           <Stack
             direction="column"
-            sx={{
-              border: 4,
-              borderColor:
-              'primary.main',
-            }}
           >
             {/* Overall Rating */}
             <Typography
               sx={{
-                fontSize: 28,
+                fontSize: 25,
               }}
             >
               How did you feel about this trail?
@@ -55,8 +59,10 @@ function AddTrailRatings() {
               defaultValue={0}
               precision={1}
               sx={{
+                justifyContent: 'center',
                 color: 'gray',
-                fontSize: 80,
+                fontSize: 64,
+                marginBottom: 1,
               }}
             />
 
@@ -71,7 +77,8 @@ function AddTrailRatings() {
             >
               <Typography
                 sx={{
-                  fontSize: 36,
+                  fontSize: 16,
+                  margin: 2,
                 }}
               >
                 Beauty
@@ -96,7 +103,8 @@ function AddTrailRatings() {
             >
               <Typography
                 sx={{
-                  fontSize: 36,
+                  fontSize: 16,
+                  margin: 2,
                 }}
               >
                 Nature
@@ -117,11 +125,13 @@ function AddTrailRatings() {
               width="420"
               sx={{
                 gap: 1,
+                marginBottom: 1,
               }}
             >
               <Typography
                 sx={{
-                  fontSize: 36,
+                  fontSize: 16,
+                  margin: 2,
                 }}
               >
                 Difficulty
@@ -137,11 +147,12 @@ function AddTrailRatings() {
               />
             </Stack>
 
-            <input
-              type="button"
-              value="Submit"
+            <Button
+              variant="contained"
               onClick={() => handleClick(false)}
-            />
+            >
+              Submit
+            </Button>
           </Stack>
         </Box>
       </Modal>
