@@ -13,7 +13,6 @@ function TrailInfo({ trail }) {
         border: 1,
         borderColor: 'black',
         borderRadius: 1,
-        width: 960,
         marginTop: 1,
         marginBottom: 1,
       }}
@@ -21,7 +20,6 @@ function TrailInfo({ trail }) {
       <Stack
         direction="row"
         sx={{
-          width: '960px',
           border: 0,
           borderColor: 'black',
           justifyContent: 'space-evenly',

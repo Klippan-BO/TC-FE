@@ -15,15 +15,16 @@ function TrailPage() {
       <Head>
         <title>TC - Trail</title>
       </Head>
-      <Container>
+      <Container
+        sx={{
+          minWidth: '83vw',
+        }}
+      >
         <Stack
           direction="column"
           sx={{
             border: 0,
             borderColor: 'red',
-            padding: 5,
-            maxWidth: '1000px',
-            minWidth: '830px',
           }}
         >
           <TrailCarousel />

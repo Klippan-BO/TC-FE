@@ -15,7 +15,6 @@ function TrailDescription({ name, description }) {
         sx={{
           fontSize: 30,
           margin: 1,
-          width: 600,
         }}
       >
         {name}
@@ -25,7 +24,6 @@ function TrailDescription({ name, description }) {
         sx={{
           fontSize: 16,
           margin: 1,
-          width: 600,
         }}
       >
         {description}
