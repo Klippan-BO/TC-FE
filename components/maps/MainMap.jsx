@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
-import { MAPSAPIKEY } from '../../config';
+import MAPSAPIKEY from '../../config';
 import Search from './Search';
 import mapQuadrants from './mapLogic';
 

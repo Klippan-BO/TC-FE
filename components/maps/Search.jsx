@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import MAPSAPIKEY from '../../config';
+
 export default function Search() {
   const [zipCode, setzipCode] = useState('');
   const getGeo = (e) => {
@@ -9,7 +11,7 @@ export default function Search() {
       axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
         params: {
           address: location,
-          key: 'AIzaSyCEblyOtkFC7QgjoP3bZa7FFz-a3-NCsJA',
+          key: MAPSAPIKEY,
         },
       })
         .then((res) => {
