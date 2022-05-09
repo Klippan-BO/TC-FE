@@ -13,9 +13,13 @@ export default function MyNotification({
   const closePopUp = () => {
     closeNotif();
   };
-  const handleAccept = () => {};
+  const handleAccept = () => {
 
-  const handleReject = () => {};
+  };
+
+  const handleReject = () => {
+      
+  };
 
   return (
     <Dialog

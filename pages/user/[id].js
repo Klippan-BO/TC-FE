@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Container from "@mui/material/Container";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
-import MyNotification from "./MyNotification";
-import MyTrails from "./MyTrails";
-import MyConnections from "./myConnections";
+import MyNotification from "../../components/User/MyNotification";
+import MyTrails from "../../components/User/MyTrails";
+import MyConnections from "../../components/User/myConnections";
 import style from "../../styles/user.module.css";
 import Badge from "@mui/material/Badge";
-import sampleData from "./sampleData";
+import sampleData from "../../components/User/sampleData";
 
 function UserPage({ userData }) {
   const [openNotif, setOpenNotif] = useState(false);

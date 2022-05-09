@@ -9,8 +9,11 @@ console.log("🚀 ~ file: MyTrails.js ~ line 6 ~ MyTrails ~ my_trails ", my_trai
     const closePopUp = () => {
         closeTrails();
       };
+      const openTrail=()=>{
+          alert()
+      }
   return(
-
+   
 <Dialog open={openTrails}      
 PaperProps={{
         sx: {
@@ -23,7 +26,7 @@ PaperProps={{
           backgroundColor: "#eee2dc",
         },
       }}>
- 
+
     <DialogTitle>
     <div className={style.popUpBtnWrapper}>
     <CancelIcon className={style.close} onClick={closePopUp} />
@@ -34,13 +37,14 @@ PaperProps={{
     <div className={style.popUpInnerCont}>
      
         {my_trails && my_trails.map((trail) => (
-          <div className={trail.rowCont} key={trail.trail_name}>
-            <img src={trail.photos[0]} className={style.popUpImg} />
-            <span className={style.darkName}>{trail.trail_name} <br/>{trail.description}</span>
-            <StarRatings ratings={trail.ratings} />
+          <div className={style.popUpRowCont} key={trail.trail_name} onClick={openTrail}>
+          <div>  <img src={trail.photos[0]} className={style.popUpImg} /> </div>
+          <div className={style.rowMidBox}>  <span className={style.darkName}><strong>{trail.trail_name}</strong> <br/><br/>{trail.description}</span> </div>
+          <div>  <StarRatings ratings={trail.ratings} /> </div>
           </div>
         ))}
       </div>
     </Dialog>
+
   )
 }

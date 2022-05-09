@@ -34,6 +34,7 @@ function StarRatings({ ratings }) {
           <Typography
             sx={{
               fontSize: 15,
+              color:"#123c69"
             }}
           >
             Beauty
@@ -60,6 +61,7 @@ function StarRatings({ ratings }) {
           <Typography
             sx={{
               fontSize: 15,
+              color:"#123c69"
             }}
           >
             Nature
@@ -86,6 +88,7 @@ function StarRatings({ ratings }) {
           <Typography
             sx={{
               fontSize: 15,
+              color:"#123c69"
             }}
           >
             Difficulty

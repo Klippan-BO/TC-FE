@@ -203,7 +203,9 @@
 .popUpImg {
   margin: 10px;
   width: 100px;
+  min-width: 100px;
   height: 100px;
+  min-height: 100px;
   border-radius: 50%;
   border: 2px solid #123c69;
 }
@@ -230,6 +232,12 @@
   color: #123c69;
   font-size: 12px;
   font-weight: 700;
+  max-height: 100px;
+  overflow: scroll;
+}
+.rowMidBox{
+    width: 150px;
+    overflow: scroll;
 }
 .popUpInnerCont {
     height: 400px;
@@ -245,4 +253,21 @@
       width: 180px;
       border: 1px solid gray;
   }
- 
+ .popUpImg:hover {
+     transform: scale(1.1);
+ }
+ .myTrailImg:hover {
+    transform: scale(1.1);
+}
+.moreTrailBtn:hover {
+    transform: scale(1.1);
+}
+.friendImg:hover {
+    transform: scale(1.1);
+}
+.moreFriendsBtn:hover {
+    transform: scale(1.1);
+}
+.popUpRowCont strong{
+    font-weight: 900;
+}

@@ -35,10 +35,10 @@ export default function MyConnections({
       <div className={style.popUpInnerCont}>
         {myFriends &&
           myFriends.map((friend) => (
-            <div className={style.rowCont} key={friend.username}>
+            <div className={style.popUpRowCont} key={friend.username}>
               <img src={friend.photo} className={style.popUpImg} />
               <span className={style.darkName}>
-                {friend.username} <br />
+                <strong>{friend.username} </strong><br /> <br/>
                 {friend.description}
               </span>
             </div>
