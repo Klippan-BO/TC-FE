@@ -114,7 +114,6 @@ export default function Marker({ trail }) {
           />
           <Difficulty difficulty={difficulty} />
           <Typography sx={{ p: 1 }}>{description}</Typography>
-          {quadrant}
         </Stack>
       </Popover>
     </>
