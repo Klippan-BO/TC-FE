@@ -28,7 +28,7 @@ export default function MyNotification({
           m: 0,
           width: 500,
           height: 500,
-          backgroundColor:"#eee2dc"
+          backgroundColor: "#eee2dc",
         },
       }}
     >
@@ -40,10 +40,10 @@ export default function MyNotification({
       </DialogTitle>
       <div className={style.popUpCont}>
         {requests.map((person) => (
-          <div className={style.popUpRowCont} key={person.name}>
+          <div className={style.popUpRowCont} key={person.username}>
             <img src={person.photo} className={style.popUpImg} />
             <h3>
-              <span>{person.name}</span>
+              <span>{person.username}</span>
               <br />
               {person.city}
             </h3>
@@ -62,14 +62,13 @@ export default function MyNotification({
         <div className={style.popUpTitle}>My Requests to Other Hikers</div>
       </DialogTitle>
       <div className={style.imgRow}>
-      {requesting.map(person=>(
-          <div className={style.darkImgBox}>
-          <img src={person.photo} className={style.popUpImg}/>
-          <span className={style.darkName}>{person.name}</span>
-         </div>
-      ))}
+        {requesting.map((person) => (
+          <div className={style.darkImgBox} key={person.username}>
+            <img src={person.photo} className={style.popUpImg} />
+            <span className={style.darkName}>{person.username}</span>
+          </div>
+        ))}
       </div>
-
     </Dialog>
   );
 }

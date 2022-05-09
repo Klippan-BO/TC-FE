@@ -17,8 +17,6 @@ const center = {
 // PASS "lat" + "lng" PROPS TO MARKER
 
 export default function MainMap(props) {
-  console.log(MAPSAPIKEY)
-  
   return (
     <div style={containerStyle}>
       <GoogleMapReact
