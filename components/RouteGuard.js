@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
 import { onAuthStateChanged, auth } from '../firebase';
+import RedirectPage from './Login/RedirectPage';
 
 export default function RouteGuard({children}) {
   const router = useRouter();
@@ -14,12 +15,13 @@ export default function RouteGuard({children}) {
 
     onAuthStateChanged(auth, (user) => {
       if (!user && !publicPaths.includes(path)) {
-        console.log('redirecting due to unauthorized user', currentUser);
         setAuthorized(false);
-        router.push({
-          pathname: '/login',
-          query: { returnUrl: router.asPath },
-        });
+        setTimeout(() => {
+          router.push({
+            pathname: '/login',
+            query: { returnUrl: router.asPath },
+          });
+        }, 500);
       } else if (user && publicPaths.includes(path)) {
         setAuthorized(true);
         router.push({
@@ -45,5 +47,8 @@ export default function RouteGuard({children}) {
     };
   }, [currentUser]);
 
-  return (authorized && children);
+  return (
+    authorized
+      ? children
+      : <RedirectPage />);
 }
