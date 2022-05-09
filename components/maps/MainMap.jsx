@@ -4,14 +4,17 @@ import GoogleMapReact from 'google-map-react';
 import { Search, GpsFixed } from '@material-ui/icons';
 import Marker from './Marker';
 import MAPSAPIKEY from '../../config';
-import dummyTrails from './dummyData';
+import mapQuadrants from './mapLogic';
+
+// REPLACE WITH REAL FETCH DATA
+import trails from './dummyData';
 
 const containerStyle = {
   width: '90vw',
   height: '85vh',
 };
 
-const center = {
+const defaultCenter = {
   lat: 37.79,
   lng: -122.41,
 };
@@ -30,6 +33,11 @@ function loadAsyncScript(src) {
   });
 }
 // PASS "lat" + "lng" PROPS TO MARKER
+// CURRENT:
+// fx to obtain current map bounds
+
+// NEXT:
+// determine quadrant location rel to map bounds
 
 const getGeo = () => {
   const location = '2361 Glenview St Alameda CA';
@@ -64,7 +72,7 @@ export default function MainMap() {
   const initAutocomplete = () => {
     if (!searchInput.current) return;
 
-    const autocomplete = new window.google.maps.places.Autocomplete(searchInput.current);
+    const autocomplete = new window.google.maps.places.Autocomplete(input, options);
     autocomplete.setFields(['address_component', 'geometry']);
     autocomplete.addListener('place_changed', () => onChangeAddress(autocomplete));
   };
@@ -84,11 +92,12 @@ export default function MainMap() {
       </div>
       <GoogleMapReact
         bootstrapURLKeys={{ key: MAPSAPIKEY.MAPSAPIKEY }}
-        defaultCenter={center}
+        defaultCenter={defaultCenter}
         defaultZoom={10}
         yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => mapQuadrants(map, maps, trails)}
       >
-        {dummyTrails.map((trail) => {
+        {trails.map((trail) => {
           const { lat, lng } = trail;
           return (
             <Marker
