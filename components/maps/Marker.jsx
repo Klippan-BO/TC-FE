@@ -11,12 +11,13 @@ import Difficulty from '../Chips/Difficulty';
 
 export default function Marker({ trail }) {
   const {
-    name, description, length, elevation, ratings: {
+    name, description, length, elevation, quadrant, ratings: {
       average, difficulty,
     },
   } = trail;
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const [quad, setQuad] = useState(quadrant);
 
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -70,6 +71,7 @@ export default function Marker({ trail }) {
           />
           <Difficulty difficulty={difficulty} />
           <Typography sx={{ p: 1 }}>{description}</Typography>
+          {quadrant}
         </Stack>
       </Popover>
     </>
@@ -80,10 +82,11 @@ Marker.propTypes = {
   trail: PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    length: PropTypes.number.isRequired,
+    length: PropTypes.string.isRequired,
     ratings: PropTypes.shape({
       average: PropTypes.number.isRequired,
       difficulty: PropTypes.number.isRequired,
     }).isRequired,
+    quadrant: PropTypes.number,
   }).isRequired,
 };
