@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { GEOKEY } from '../../config';
 
 export default function Search() {
   const [zipCode, setzipCode] = useState('');
@@ -9,7 +10,7 @@ export default function Search() {
       axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
         params: {
           address: location,
-          key: 'AIzaSyCEblyOtkFC7QgjoP3bZa7FFz-a3-NCsJA',
+          key: GEOKEY,
         },
       })
         .then((res) => {
@@ -25,11 +26,10 @@ export default function Search() {
     <div>
       <input
         type="text"
-        placeholder="Enter zipcode"
+        placeholder="Enter Address..."
         onChange={(e) => setzipCode(e.target.value)}
         onKeyDown={getGeo}
       />
-      <button onClick={getGeo}> Find </button>
     </div>
   );
 }
