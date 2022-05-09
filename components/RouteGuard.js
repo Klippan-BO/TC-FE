@@ -1,13 +1,35 @@
-import React ,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
 import { onAuthStateChanged, auth } from '../firebase';
-
 
 export default function RouteGuard({children}) {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
   const { currentUser } = useAuth();
+
+  function authCheck(url) {
+    const publicPaths = ['/login'];
+    const path = url.split('?')[0];
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user && !publicPaths.includes(path)) {
+        console.log('redirecting due to unauthorized user', currentUser);
+        setAuthorized(false);
+        router.push({
+          pathname: '/login',
+          query: { returnUrl: router.asPath },
+        });
+      } else if (user && publicPaths.includes(path)) {
+        setAuthorized(true);
+        router.push({
+          pathname: '/map',
+        });
+      } else {
+        setAuthorized(true);
+      }
+    });
+  }
 
   useEffect(() => {
     authCheck(router.asPath);
@@ -20,33 +42,8 @@ export default function RouteGuard({children}) {
     return () => {
       router.events.off('routeChangeStart', hideContent);
       router.events.off('routeChangeComplete', authCheck);
-    }
-
+    };
   }, [currentUser]);
-
-  function authCheck(url) {
-    const publicPaths = ['/login'];
-    const path = url.split('?')[0];
-
-    onAuthStateChanged(auth, (user) => {
-      if (!user && !publicPaths.includes(path)) {
-        console.log('redirecting due to unauthorized user', currentUser);
-        setAuthorized(false);
-        router.push({
-        pathname: '/login',
-        query: { returnUrl: router.asPath }
-      });
-      } else if (user && publicPath.includes(path)) {
-        setAuthorized(true);
-        router.push({
-          pathname: '/map',
-        })
-      } else {
-        setAuthorized(true);
-      }
-    });
-  }
-
 
   return (authorized && children);
 }
