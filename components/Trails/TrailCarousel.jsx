@@ -4,6 +4,12 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import PauseIcon from '@mui/icons-material/Pause';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import Stack from '@mui/material/Stack';
+import StarRateIcon from '@mui/icons-material/StarRate';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import BorderAllIcon from '@mui/icons-material/BorderAll';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
@@ -17,13 +23,29 @@ const backgroundStyle = {
   top: 0,
   right: 0,
 };
+const iconStyles = {
+  fontSize: '48px',
+  color: 'primary.light',
+};
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+};
 
 function TrailCarousel() {
   const [photos] = useState(sample_data.trail1.photos);
   const [index, setIndex] = useState(0);
+  const [interval, setInterval] = useState(false);
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+  const handleInterval = () => {
+    setInterval((prev) => !prev);
+  };
+
   return (
     <Box
       sx={{
@@ -33,51 +55,102 @@ function TrailCarousel() {
         position: 'relative',
       }}
     >
-      <Button
-        style={{
+      <Stack
+        direction="row"
+        sx={{
+          columnGap: '1px',
           color: 'white',
           position: 'absolute',
-          right: 10,
+          right: 40,
           bottom: 0,
+          zIndex: 2,
+          fontSize: '60px',
+        }}
+      >
+        <Button>
+          <BorderAllIcon
+            sx={iconStyles}
+          />
+        </Button>
+        <Button>
+          <AddAPhotoIcon
+            sx={iconStyles}
+          />
+        </Button>
+        <Button>
+          <ThumbUpIcon
+            sx={iconStyles}
+          />
+        </Button>
+        <Button
+          onClick={handleInterval}
+        >
+          {interval
+            ? (
+              <PauseIcon
+                sx={iconStyles}
+              />
+            )
+            : (
+              <PlayArrowIcon
+                sx={iconStyles}
+              />
+            )}
+        </Button>
+      </Stack>
+      <Button
+        style={{
+          position: 'absolute',
+          right: 10,
+          top: 0,
           zIndex: 2,
         }}
       >
-        <ThumbUpIcon />
+        <StarRateIcon
+          sx={{
+            fontSize: '60px',
+            color: 'yellow',
+          }}
+        />
       </Button>
-
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}
-        interval={10000}
+        interval={interval ? 5000 : null}
         style={{
           position: 'relative',
           height: '60vh',
         }}
       >
-        {photos.map((photo) => (
-          <Carousel.Item>
-            <img
-              src={photo}
-              alt={photo}
-              style={{
-                position: 'relative',
-                width: '100%',
-                height: '60vh',
-                objectFit: 'cover',
-                backgroundColor: 'yellow',
-                filter: 'blur(8px)',
-              }}
-            />
-            <img
-              alt={photo}
-              src={photo}
-              role="presentation"
-              // onClick={handleOpen}
-              style={backgroundStyle}
-            />
-          </Carousel.Item>
-        ))}
+        {photos.map((photo, i) => {
+          if (i < 5) {
+            return (
+              <Carousel.Item>
+                <img
+                  src={photo}
+                  alt={photo}
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '60vh',
+                    objectFit: 'cover',
+                    backgroundColor: 'yellow',
+                    filter: 'blur(8px)',
+                  }}
+                />
+                <img
+                  alt={photo}
+                  src={photo}
+                  role="presentation"
+                  // onClick={handleOpen}
+                  style={backgroundStyle}
+                />
+              </Carousel.Item>
+            );
+          } return null;
+        })}
       </Carousel>
+
     </Box>
   );
 }

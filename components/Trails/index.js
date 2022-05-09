@@ -18,11 +18,13 @@ function TrailPage() {
       <Container
         sx={{
           minWidth: '83vw',
+          backgroundColor: '#123C69',
         }}
       >
         <Stack
           direction="column"
           sx={{
+            rowGap: '10px',
             border: 0,
             borderColor: 'red',
           }}
