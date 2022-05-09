@@ -22,7 +22,6 @@ export default function RouteGuard({children}) {
       router.events.off('routeChangeComplete', authCheck);
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   function authCheck(url) {
@@ -37,6 +36,11 @@ export default function RouteGuard({children}) {
         pathname: '/login',
         query: { returnUrl: router.asPath }
       });
+      } else if (user && publicPath.includes(path)) {
+        setAuthorized(true);
+        router.push({
+          pathname: '/map',
+        })
       } else {
         setAuthorized(true);
       }
