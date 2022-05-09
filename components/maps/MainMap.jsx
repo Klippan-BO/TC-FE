@@ -3,7 +3,7 @@ import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import { Search, GpsFixed } from '@material-ui/icons';
 import Marker from './Marker';
-import MAPSAPIKEY from '../../config';
+import { MAPSAPIKEY, MAPSAUTOKEY } from '../../config';
 import mapQuadrants from './mapLogic';
 
 // REPLACE WITH REAL FETCH DATA
