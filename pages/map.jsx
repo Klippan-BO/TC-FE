@@ -9,9 +9,7 @@ function map() {
       <Head>
         <title>TC - Map</title>
       </Head>
-      <h1>
-        <MainMap />
-      </h1>
+      <MainMap />
     </div>
   );
 }
