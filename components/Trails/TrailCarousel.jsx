@@ -12,6 +12,7 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import BorderAllIcon from '@mui/icons-material/BorderAll';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
 
 const sample_data = require('./sampleData');
 
@@ -27,18 +28,30 @@ const iconStyles = {
   fontSize: '48px',
   color: 'primary.light',
 };
-
-const style = {
+const modalStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
+  opacity: 1,
+  border: 'none',
+};
+
+const modalPictureStyle = {
+  width: '80vw',
+  height: '80vh',
+  objectFit: 'contain',
+
 };
 
 function TrailCarousel() {
   const [photos] = useState(sample_data.trail1.photos);
   const [index, setIndex] = useState(0);
   const [interval, setInterval] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
@@ -127,6 +140,7 @@ function TrailCarousel() {
             return (
               <Carousel.Item>
                 <img
+                  role="presentation"
                   src={photo}
                   alt={photo}
                   style={{
@@ -139,12 +153,31 @@ function TrailCarousel() {
                   }}
                 />
                 <img
+                  onClick={handleOpen}
                   alt={photo}
                   src={photo}
                   role="presentation"
                   // onClick={handleOpen}
                   style={backgroundStyle}
                 />
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  sx={{
+                  }}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={modalStyle}>
+                    <img
+                      onClick={handleClose}
+                      alt={photo}
+                      role="presentation"
+                      src={photos[index]}
+                      style={modalPictureStyle}
+                    />
+                  </Box>
+                </Modal>
               </Carousel.Item>
             );
           } return null;
