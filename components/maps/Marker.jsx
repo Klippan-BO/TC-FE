@@ -11,7 +11,7 @@ import Difficulty from '../Chips/Difficulty';
 
 export default function Marker({ trail }) {
   const {
-    name, description, length, elevation, ratings: {
+    name, description, length, elevation, quadrant, ratings: {
       average, difficulty,
     },
   } = trail;
@@ -32,6 +32,56 @@ export default function Marker({ trail }) {
     p: 4,
   };
 
+  const anchorOrigin = () => {
+    switch (quadrant) {
+      case 1:
+        return ({
+          vertical: 'bottom',
+          horizontal: 'right',
+        });
+      case 2:
+        return ({
+          vertical: 'bottom',
+          horizontal: 'left',
+        });
+      case 3:
+        return ({
+          vertical: 'top',
+          horizontal: 'left',
+        });
+      default:
+        return ({
+          vertical: 'top',
+          horizontal: 'right',
+        });
+    }
+  };
+
+  const transOrigin = () => {
+    switch (quadrant) {
+      case 1:
+        return ({
+          vertical: 'top',
+          horizontal: 'left',
+        });
+      case 2:
+        return ({
+          vertical: 'top',
+          horizontal: 'right',
+        });
+      case 3:
+        return ({
+          vertical: 'bottom',
+          horizontal: 'right',
+        });
+      default:
+        return ({
+          vertical: 'bottom',
+          horizontal: 'left',
+        });
+    }
+  };
+
   return (
     <>
       <SvgIcon
@@ -46,14 +96,8 @@ export default function Marker({ trail }) {
         }}
         open={open}
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
+        anchorOrigin={anchorOrigin()}
+        transformOrigin={transOrigin()}
         onClose={handleClose}
         disableRestoreFocus
       >
@@ -80,10 +124,11 @@ Marker.propTypes = {
   trail: PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    length: PropTypes.number.isRequired,
+    length: PropTypes.string.isRequired,
     ratings: PropTypes.shape({
       average: PropTypes.number.isRequired,
       difficulty: PropTypes.number.isRequired,
     }).isRequired,
+    quadrant: PropTypes.number,
   }).isRequired,
 };
