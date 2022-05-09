@@ -4,6 +4,8 @@ import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
 import MAPSAPIKEY from '../../config';
 
+import dummyTrails from './dummyData';
+
 const containerStyle = {
   width: '90vw',
   height: '85vh',
@@ -16,9 +18,7 @@ const center = {
 
 // PASS "lat" + "lng" PROPS TO MARKER
 
-export default function MainMap(props) {
-  console.log(MAPSAPIKEY)
-  
+export default function MainMap() {
   return (
     <div style={containerStyle}>
       <GoogleMapReact
@@ -27,10 +27,16 @@ export default function MainMap(props) {
         defaultZoom={10}
         yesIWantToUseGoogleMapApiInternals
       >
-        <Marker
-          lat={37.813}
-          lng={-122.373}
-        />
+        {dummyTrails.map((trail) => {
+          const { lat, lng } = trail;
+          return (
+            <Marker
+              lat={lat}
+              lng={lng}
+              trail={trail}
+            />
+          );
+        })}
       </GoogleMapReact>
     </div>
   );
