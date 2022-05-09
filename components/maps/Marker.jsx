@@ -17,7 +17,6 @@ export default function Marker({ trail }) {
   } = trail;
 
   const [anchorEl, setAnchorEl] = useState(null);
-  const [quad, setQuad] = useState(quadrant);
 
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -31,6 +30,56 @@ export default function Marker({ trail }) {
     borderRadius: '5px',
     boxShadow: 24,
     p: 4,
+  };
+
+  const anchorOrigin = () => {
+    switch (quadrant) {
+      case 1:
+        return ({
+          vertical: 'bottom',
+          horizontal: 'right',
+        });
+      case 2:
+        return ({
+          vertical: 'bottom',
+          horizontal: 'left',
+        });
+      case 3:
+        return ({
+          vertical: 'top',
+          horizontal: 'left',
+        });
+      default:
+        return ({
+          vertical: 'top',
+          horizontal: 'right',
+        });
+    }
+  };
+
+  const transOrigin = () => {
+    switch (quadrant) {
+      case 1:
+        return ({
+          vertical: 'top',
+          horizontal: 'left',
+        });
+      case 2:
+        return ({
+          vertical: 'top',
+          horizontal: 'right',
+        });
+      case 3:
+        return ({
+          vertical: 'bottom',
+          horizontal: 'right',
+        });
+      default:
+        return ({
+          vertical: 'bottom',
+          horizontal: 'left',
+        });
+    }
   };
 
   return (
@@ -47,14 +96,8 @@ export default function Marker({ trail }) {
         }}
         open={open}
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
+        anchorOrigin={anchorOrigin()}
+        transformOrigin={transOrigin()}
         onClose={handleClose}
         disableRestoreFocus
       >
