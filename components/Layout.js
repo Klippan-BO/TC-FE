@@ -1,9 +1,9 @@
-import Nav from './Nav.js'
-import styles from '../styles/Home.module.css'
+import Nav from './Nav';
+import styles from '../styles/Home.module.css';
 
 function Layout({ children }) {
   console.log(children)
-  
+
   return (
     <>
       <Nav />
