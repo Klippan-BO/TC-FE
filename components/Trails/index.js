@@ -19,7 +19,7 @@ function TrailPage() {
         <Stack
           direction="column"
           sx={{
-            border: 4,
+            border: 0,
             borderColor: 'red',
             padding: 5,
             height: '100vh',
