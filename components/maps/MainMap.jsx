@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useRef } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
-import { MAPSAPIKEY } from '../../config';
+import MAPSAPIKEY from '../../config';
 import Search from './Search';
-import mapQuadrants from './mapLogic';
+import apiLoaded from './mapLogic';
 
 // REPLACE WITH REAL FETCH DATA
 import trails from './dummyData';
@@ -20,11 +19,32 @@ const defaultCenter = {
   lng: -122.41,
 };
 
-// CURRENT:
-// fx to obtain current map bounds
-
-// NEXT:
-// determine quadrant location rel to map bounds
+const list = [
+  {
+    lat: 37.87,
+    lng: -122.53,
+  },
+  {
+    lat: 37.86,
+    lng: -122.43,
+  },
+  {
+    lat: 37.69,
+    lng: -122.44,
+  },
+  {
+    lat: 37.88,
+    lng: -122.23,
+  },
+  {
+    lat: 37.63,
+    lng: -121.97,
+  },
+  {
+    lat: 37.87,
+    lng: -121.90,
+  },
+];
 
 /* {AUTOCOMPLETE FEATURE}
 const mapAutoApi = 'https://maps.googleapis.com/maps/api/js';
@@ -74,24 +94,32 @@ export default function MainMap() {
 
   initAutocomplete(); */
   // getGeo();
+  const [center, setCenter] = useState(defaultCenter);
+
+  const handleSearch = (latLng) => {
+    setCenter(latLng);
+    const event = new Event('locSearch');
+    document.dispatchEvent(event);
+  };
 
   return (
     <div style={containerStyle}>
       <div className="search">
         {/* <input ref={searchInput} type="text" placeholder="Search location..." /> */}
-        <Search />
+        <Search handleSearch={handleSearch} />
       </div>
       <GoogleMapReact
         bootstrapURLKeys={{ key: MAPSAPIKEY }}
-        defaultCenter={defaultCenter}
-        defaultZoom={10}
+        center={center}
+        zoom={11}
         yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => mapQuadrants(map, maps, trails)}
+        onGoogleApiLoaded={({ map, maps }) => apiLoaded(map, maps, list)}
       >
         {trails.map((trail) => {
-          const { lat, lng } = trail;
+          const { id, lat, lng } = trail;
           return (
             <Marker
+              key={id}
               lat={lat}
               lng={lng}
               trail={trail}

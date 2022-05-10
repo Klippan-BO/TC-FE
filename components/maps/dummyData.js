@@ -1,5 +1,6 @@
 const dummyTrails = [
   {
+    id: 1,
     name: 'Crystal Springs and Dean Trail',
     description: 'Pulvinar etiam non quam lacus suspendisse. Nulla posuere sollicitudin aliquam ultrices sagittis. At risus viverra adipiscing at in tellus. Non nisi est sit amet facilisis magna etiam tempor orci.',
     length: '5',

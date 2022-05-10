@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function Search() {
+import MAPSAPIKEY from '../../config';
+
+export default function Search({ handleSearch }) {
   const [zipCode, setzipCode] = useState('');
   const getGeo = (e) => {
     if (e.key === 'Enter') {
@@ -9,11 +11,11 @@ export default function Search() {
       axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
         params: {
           address: location,
-          key: 'AIzaSyCEblyOtkFC7QgjoP3bZa7FFz-a3-NCsJA',
+          key: MAPSAPIKEY,
         },
       })
         .then((res) => {
-          console.log(res.data.results[0].geometry.location);
+          handleSearch(res.data.results[0].geometry.location);
         })
         .catch((err) => {
           console.log(err);
@@ -27,9 +29,9 @@ export default function Search() {
         type="text"
         placeholder="Enter zipcode"
         onChange={(e) => setzipCode(e.target.value)}
-        onKeyDown={getGeo}
+        onKeyDown={(e) => getGeo(e)}
       />
-      <button onClick={getGeo}> Find </button>
+      <button onClick={(e) => getGeo(e)}> Find </button>
     </div>
   );
 }
