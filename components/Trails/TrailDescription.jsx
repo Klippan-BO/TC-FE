@@ -20,7 +20,6 @@ function TrailDescription({ name, description }) {
       >
         {name}
       </Typography>
-
       <Typography
         sx={{
           fontSize: 16,
@@ -30,7 +29,7 @@ function TrailDescription({ name, description }) {
       >
         {description}
       </Typography>
-      </Stack>
+    </Stack>
   );
 }
 
