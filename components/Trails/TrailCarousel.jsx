@@ -63,7 +63,7 @@ function TrailCarousel() {
   const [interval, setInterval] = useState(false);
   const [open, setOpen] = useState(false);
   const [photoModal, setPhotoModal] = useState(false);
-  const [imageSelected, setImageSelected] = useState("");
+  const [imageSelected, setImageSelected] = useState('');
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -86,7 +86,8 @@ function TrailCarousel() {
     //cazizno0
     axios.post('https://api.cloudinary.com/v1_1/dwjit4s8l/image/upload', formData)
       .then((result) => {
-        console.log(JSON.parse(result.request.response).url); // <-- cloudinary link to post to database
+        // console.log(JSON.parse(result.request.response).url);
+        // <-- cloudinary link to post to database
       })
       .catch((err) => {
         console.log(err);
