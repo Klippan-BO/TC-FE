@@ -36,13 +36,9 @@ export default function RouteGuard({children}) {
   useEffect(() => {
     authCheck(router.asPath);
 
-    const hideContent = () => setAuthorized(false);
-    router.events.on('routeChangeStart', hideContent);
-
     router.events.on('routeChangeComplete', authCheck);
 
     return () => {
-      router.events.off('routeChangeStart', hideContent);
       router.events.off('routeChangeComplete', authCheck);
     };
   }, [currentUser]);
