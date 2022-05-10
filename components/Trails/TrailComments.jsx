@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import { Stack, ListItem, TextField, Item, Box } from '@mui/material';
+import { Stack, ListItem, TextField } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import SendIcon from '@mui/icons-material/Send';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
@@ -9,7 +8,7 @@ import moment from 'moment';
 
 const sample_Data = require('./sampleData');
 
-function TrailComments() {
+function TrailComments({ trail }) {
   return (
     <Stack
       sx={{
@@ -24,7 +23,7 @@ function TrailComments() {
           overflow: 'auto', backgroundColor: '#EEE2DC', borderRadius: '2px',
         }}
       >
-        {sample_Data.trail1.comments.map((comment) =>
+        {trail.comments.map((comment) =>
           (
             <ListItem sx={{
               wordWrap: 'break-word', backgroundColor: '#123C69', color: '#EEE2DC', m: 'auto', padding: '15px', borderRadius: '8px',

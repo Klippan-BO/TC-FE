@@ -1,13 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {
+  useContext, useState, useEffect, useMemo,
+} from 'react';
 import {
   auth,
   provider,
-  GoogleAuthProvider,
   signInWithPopup,
   signOut,
   onAuthStateChanged,
 } from '../firebase';
-import Link from 'next/link';
 
 // create context
 const AuthContext = React.createContext();
@@ -25,11 +25,11 @@ export function AuthProvider({ children }) {
     email: null,
   });
 
-  function signInUser(auth, provider) {
+  function signInUser() {
     return signInWithPopup(auth, provider);
   }
 
-  function signOutUser(auth) {
+  function signOutUser() {
     return signOut(auth);
   }
 
@@ -39,18 +39,18 @@ export function AuthProvider({ children }) {
     });
 
     return unsubscribe;
-  }, [])
+  }, []);
 
-  const value = {
+  const value = useMemo(() => ({
     currentUser,
     signInUser,
     signOutUser,
     setCurrentUser,
-  };
+  }), [currentUser]);
 
   return (
     <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
