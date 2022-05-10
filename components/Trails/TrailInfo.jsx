@@ -9,19 +9,14 @@ function TrailInfo({ name, description, ratings }) {
     <Stack
       direction="row"
       sx={{
-        border: 1,
-        borderColor: 'black',
-        borderRadius: 1,
-        width: 960,
-        marginTop: 1,
-        marginBottom: 1,
+        backgroundColor: '#EEE2DC',
+        padding: 2,
+        borderRadius: '10px',
       }}
     >
       <Stack
         direction="row"
         sx={{
-          width: '960px',
-          border: 0,
           borderColor: 'black',
           justifyContent: 'space-evenly',
         }}

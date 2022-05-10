@@ -7,7 +7,7 @@ function trail() {
     <div>
 
     </div>
-  )
+  );
 }
 
-export default trail
+export default trail;

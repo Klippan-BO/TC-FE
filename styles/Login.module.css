@@ -1,6 +1,6 @@
 .loginContainer {
   background-color: #123C69;
-  height: 100vh;
+  height: calc(100vh - 70px);
   width: 100vw;
   overflow: hidden;
   display: flex;

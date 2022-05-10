@@ -10,11 +10,11 @@ function TrailRatings({ ratings }) {
     <Stack
       direction="column"
       sx={{
-        border: 1,
-        borderColor: 'black',
-        borderRadius: 1,
-        margin: 1,
-        padding: 1,
+        borderLeft: 2,
+        borderColor: '#EEE2DC',
+        backgroundColor: '#123C69',
+        color: '#EEE2DC',
+        padding: 3,
       }}
     >
       {/* Ratings */}
@@ -23,7 +23,7 @@ function TrailRatings({ ratings }) {
         precision={0.25}
         readOnly
         sx={{
-          color: 'gray',
+          color: '#EEE2DC',
           fontSize: 48,
           margin: 1,
           justifyContent: 'center',
@@ -52,7 +52,7 @@ function TrailRatings({ ratings }) {
           precision={0.25}
           readOnly
           sx={{
-            color: 'gray',
+            color: '#EEE2DC',
             fontSize: 30,
             marginRight: 1,
           }}
@@ -80,7 +80,7 @@ function TrailRatings({ ratings }) {
           precision={0.25}
           readOnly
           sx={{
-            color: 'gray',
+            color: '#EEE2DC',
             fontSize: 30,
             marginRight: 1,
           }}
@@ -109,7 +109,7 @@ function TrailRatings({ ratings }) {
           precision={0.25}
           readOnly
           sx={{
-            color: 'gray',
+            color: '#EEE2DC',
             fontSize: 30,
             marginRight: 1,
             marginBottom: 2,
