@@ -13,9 +13,23 @@ import BorderAllIcon from '@mui/icons-material/BorderAll';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import axios from 'axios';
+import { Image } from 'cloudinary-react';
+import Typography from '@mui/material/Typography';
 
 const sample_data = require('./sampleData');
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 const backgroundStyle = {
   width: '100%',
   height: '60vh',
@@ -48,7 +62,9 @@ function TrailCarousel() {
   const [photos] = useState(sample_data.trail1.photos);
   const [index, setIndex] = useState(0);
   const [interval, setInterval] = useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [photoModal, setPhotoModal] = useState(false);
+  const [imageSelected, setImageSelected] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -58,6 +74,26 @@ function TrailCarousel() {
   const handleInterval = () => {
     setInterval((prev) => !prev);
   };
+
+  const addPhoto = () => {
+    setPhotoModal(true);
+  };
+
+  const uploadImage = (files) => {
+    console.log(files[0])
+    const formData = new FormData();
+    formData.append('file', imageSelected);
+    formData.append('upload_preset', "cazizno0");
+    //cazizno0
+
+    axios.post("https://api.cloudinary.com/v1_1/dwjit4s8l/image/upload", formData)
+      .then((result) => {
+        console.log(JSON.parse(result.request.response).url); // <-- cloudinary link to post to database
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <Box
@@ -85,8 +121,11 @@ function TrailCarousel() {
             sx={iconStyles}
           />
         </Button>
-        <Button>
+        <Button
+          onClick={addPhoto}
+        >
           <AddAPhotoIcon
+            onClick={addPhoto}
             sx={iconStyles}
           />
         </Button>
@@ -183,7 +222,24 @@ function TrailCarousel() {
           } return null;
         })}
       </Carousel>
-
+      <Modal
+        open={photoModal}
+        onClose={() => { setPhotoModal(false); }}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <input
+            type="file"
+            onChange={((e) => { setImageSelected(e.target.files[0]); })}
+          />
+          <Button
+            onClick={uploadImage}
+          >
+            submit photo
+          </Button>
+        </Box>
+      </Modal>
     </Box>
   );
 }

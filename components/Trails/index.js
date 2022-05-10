@@ -17,7 +17,7 @@ function TrailPage() {
     <div>
       <Head>
         <title>TC - Trail</title>
-        <script src="https://apis.google.com/js/api.js" type="text/javascript"/>
+        {/* <script src="https://apis.google.com/js/api.js" type="text/javascript"/> */}
         {/* <script
           async
           defer
