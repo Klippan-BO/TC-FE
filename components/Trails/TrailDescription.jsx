@@ -13,6 +13,7 @@ function TrailDescription({ name, description }) {
       }}
     >
       <Typography
+        onClick={()=>console.log('yo')}
         sx={{
           fontSize: 30,
           margin: 1,
