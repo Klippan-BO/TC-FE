@@ -7,13 +7,28 @@ import TrailInfo from './TrailInfo';
 import TrailComments from './TrailComments';
 import TrailCarousel from './TrailCarousel';
 
+// const { gisLoaded, gapiLoaded } = require('./createEvent');
+
 const sampleData = require('./sampleData');
 
 function TrailPage() {
+  // console.log(gisLoaded);
   return (
     <div>
       <Head>
         <title>TC - Trail</title>
+        <script src="https://apis.google.com/js/api.js" type="text/javascript"/>
+        {/* <script
+          async
+          defer
+          src="https://apis.google.com/js/api.js"
+          onLoad={gapiLoaded}
+        />
+        <script
+          async
+          defer
+          src="https://accounts.google.com/gsi/client"
+          onLoad={gisLoaded} */}
       </Head>
       <Container
         sx={{

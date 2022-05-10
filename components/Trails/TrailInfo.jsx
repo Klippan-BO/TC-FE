@@ -19,7 +19,7 @@ function TrailInfo({ trail }) {
         direction="row"
         sx={{
           borderColor: 'black',
-          justifyContent: 'space-evenly',
+          justifyContent: 'space-between',
         }}
       >
         <TrailDescription name={trail.name} description={trail.description} />
@@ -31,10 +31,10 @@ function TrailInfo({ trail }) {
 
 TrailInfo.propTypes = {
   trail: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.array,
-  ]),
+    PropTypes.string.isRequired,
+    PropTypes.object.isRequired,
+    PropTypes.array.isRequired,
+  ]).isRequired,
 };
 
 export default TrailInfo;

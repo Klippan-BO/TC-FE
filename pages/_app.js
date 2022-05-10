@@ -10,11 +10,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
       <RouteGuard>
-      <div className='page_container'>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </div>
+        <div className='page_container'>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </div>
       </RouteGuard>
     </AuthProvider>
   );

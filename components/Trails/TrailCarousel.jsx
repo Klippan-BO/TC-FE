@@ -138,7 +138,7 @@ function TrailCarousel() {
         {photos.map((photo, i) => {
           if (i < 5) {
             return (
-              <Carousel.Item>
+              <Carousel.Item key={photo}>
                 <img
                   role="presentation"
                   src={photo}
