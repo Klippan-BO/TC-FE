@@ -1,39 +1,64 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import TrailCarousel from './TrailCarousel';
+import PropTypes from 'prop-types';
 import TrailInfo from './TrailInfo';
 import TrailComments from './TrailComments';
+import TrailCarousel from './TrailCarousel';
 
-const sampleData = require('./sampleData');
+function TrailPage({ id }) {
+  const [trail, setTrail] = useState(null)
+  const [isLoading, setLoading] = useState(false)
 
-function TrailPage() {
+  useEffect(() => {
+    setLoading(true)
+    fetch(`http://localhost:3000/api/trails?id=${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setTrail(data)
+        setLoading(false)
+      })
+  }, [])
+
+  if (isLoading) return <p>Loading...</p>
+  if (!trail) return <p>No profile data</p>
   return (
     <div>
       <Head>
         <title>TC - Trail</title>
       </Head>
-      <Container>
+      <Container
+        sx={{
+          minWidth: '83vw',
+          backgroundColor: '#123C69',
+        }}
+      >
         <Stack
           direction="column"
           sx={{
+            rowGap: '10px',
             border: 0,
             borderColor: 'red',
-            padding: 5,
-            height: '100vh',
-            width: '80vw',
-            minWidth: '1000px',
           }}
         >
-          <TrailCarousel />
-          <TrailInfo trail={sampleData.trail1} />
-          <TrailComments trail={sampleData.trail1} />
+          <TrailCarousel photos={trail.photos} />
+          <TrailInfo
+            name={trail.name}
+            description={trail.description}
+            ratings={trail.ratings}
+          />
+          <TrailComments comments={trail.comments} />
         </Stack>
       </Container>
     </div>
   );
 }
+
+TrailPage.propTypes = {
+  id: PropTypes.number.isRequired,
+};
 
 export default TrailPage;

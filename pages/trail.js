@@ -1,13 +1,13 @@
-import React from 'react'
-import Head from 'next/head'
-import TrailPage from '../components/Trails/index.js'
+import React from 'react';
+import Head from 'next/head';
+import TrailPage from '../components/Trails';
 
 function trail() {
   return (
     <div>
-      <TrailPage />
+
     </div>
-  )
+  );
 }
 
-export default trail
+export default trail;

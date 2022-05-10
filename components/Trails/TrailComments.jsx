@@ -5,8 +5,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import PropTypes from 'prop-types';
 
-function TrailComments({ trail }) {
-  const [comments, setComments] = useState(trail.comments);
+function TrailComments({ comments }) {
+  const [trailComments, setComments] = useState(comments);
   const [newComment, setNewComment] = useState('');
 
   const handleKeyDown = (e) => {
@@ -24,7 +24,7 @@ function TrailComments({ trail }) {
         gap: 1,
       }}
     >
-      {comments.map((comment) => (
+      {trailComments.map((comment) => (
         <Stack
           direction="column"
           sx={{
@@ -33,7 +33,7 @@ function TrailComments({ trail }) {
             borderRadius: 1,
             padding: 1,
           }}
-          key={comments.indexOf(comment)}
+          key={trailComments.indexOf(comment)}
         >
           <Typography
             sx={{
@@ -66,7 +66,7 @@ function TrailComments({ trail }) {
 }
 
 TrailComments.propTypes = {
-  trail: PropTypes.object.isRequired,
+  comments: PropTypes.object.isRequired,
 };
 
 export default TrailComments;

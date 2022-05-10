@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TrailAddRatings from './TrailAddRatings';
-
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import TrailAddRatings from './TrailAddRatings';
 
 function TrailRatings({ ratings }) {
 console.log("trails props",ratings)
@@ -12,11 +11,11 @@ console.log("trails props",ratings)
     <Stack
       direction="column"
       sx={{
-        border: 1,
-        borderColor: 'black',
-        borderRadius: 1,
-        margin: 1,
-        padding: 1,
+        borderLeft: 2,
+        borderColor: '#EEE2DC',
+        backgroundColor: '#123C69',
+        color: '#EEE2DC',
+        padding: 3,
       }}
     >
       {/* Ratings */}
@@ -25,7 +24,7 @@ console.log("trails props",ratings)
         precision={0.25}
         readOnly
         sx={{
-          color: 'gray',
+          color: '#EEE2DC',
           fontSize: 48,
           margin: 1,
           justifyContent: 'center',
@@ -54,7 +53,7 @@ console.log("trails props",ratings)
           precision={0.25}
           readOnly
           sx={{
-            color: 'gray',
+            color: '#EEE2DC',
             fontSize: 30,
             marginRight: 1,
           }}
@@ -82,7 +81,7 @@ console.log("trails props",ratings)
           precision={0.25}
           readOnly
           sx={{
-            color: 'gray',
+            color: '#EEE2DC',
             fontSize: 30,
             marginRight: 1,
           }}
@@ -111,7 +110,7 @@ console.log("trails props",ratings)
           precision={0.25}
           readOnly
           sx={{
-            color: 'gray',
+            color: '#EEE2DC',
             fontSize: 30,
             marginRight: 1,
             marginBottom: 2,
