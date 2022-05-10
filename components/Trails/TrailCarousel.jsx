@@ -83,7 +83,7 @@ function TrailCarousel() {
   };
 
   const uploadImage = (files) => {
-    console.log(files[0]);
+    //console.log(files[0]);
     const formData = new FormData();
     formData.append('file', imageSelected);
     formData.append('upload_preset', "cazizno0");

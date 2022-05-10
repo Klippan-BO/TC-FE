@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import TrailAddRatings from './TrailAddRatings';
 
 function TrailRatings({ ratings }) {
-console.log("trails props",ratings)
+//console.log("trails props",ratings)
   return (
     <Stack
       direction="column"

@@ -4,7 +4,6 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import StarRatings from "./StarRating";
 
 export default function MyTrails({ openTrails, closeTrails,my_trails }) {
-console.log("🚀 ~ file: MyTrails.js ~ line 6 ~ MyTrails ~ my_trails ", my_trails )
     
     const closePopUp = () => {
         closeTrails();
