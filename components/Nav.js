@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import navStyles from '../styles/Nav.module.css'
+import Leaderboard from './Leaderboard/index.js'
 
 import React from 'react'
 
@@ -18,6 +19,9 @@ function Nav() {
         </li>
         <li>
           <Link href='/user'> User </Link>
+        </li>
+        <li>
+          <Leaderboard />
         </li>
       </ul>
     </nav>

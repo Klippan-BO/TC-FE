@@ -44,7 +44,7 @@ function UserPage({ userData }) {
               requesting={userData.userProfile.requestingFriendData}
               openNotif={openNotif}
               closeNotif={closeNotif}
-              
+
             />
           </div>
           <div className={style.userName}>{userData.userProfile.name}</div>
@@ -93,7 +93,7 @@ function UserPage({ userData }) {
               </p>
             </div>
           </div>
-          {/* 
+          {/*
         <MyTrails />
         <MyConnections />*/}
         </div>

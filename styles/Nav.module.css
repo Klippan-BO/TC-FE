@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: flex-start;
   opacity: calc(95%);
+  z-index: 1000;
 }
 
 .nav ul {
@@ -28,7 +29,9 @@
   text-decoration: underline;
 }
 
-
-
-
-
+.nav li:last-child {
+  position: absolute;
+  right: 30px;
+  top: 5px;
+  z-index: 1000;
+}

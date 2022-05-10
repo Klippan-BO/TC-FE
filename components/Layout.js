@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 
 function Layout({ children }) {
   console.log(children)
-  
+
   return (
     <>
       <Nav />
