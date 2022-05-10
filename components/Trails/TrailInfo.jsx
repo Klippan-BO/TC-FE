@@ -1,11 +1,10 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
-
 import PropTypes from 'prop-types';
 import TrailRatings from './TrailRatings';
 import TrailDescription from './TrailDescription';
 
-function TrailInfo({ trail }) {
+function TrailInfo({ name, description, ratings }) {
   return (
     <Stack
       direction="row"
@@ -22,19 +21,21 @@ function TrailInfo({ trail }) {
           justifyContent: 'space-between',
         }}
       >
-        <TrailDescription name={trail.name} description={trail.description} />
-        <TrailRatings ratings={trail.ratings} />
+        <TrailDescription name={name} description={description} />
+        <TrailRatings ratings={ratings} />
       </Stack>
     </Stack>
   );
 }
 
 TrailInfo.propTypes = {
-  trail: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.object.isRequired,
-    PropTypes.array.isRequired,
-  ]).isRequired,
+  // trail: PropTypes.oneOfType([
+  //   PropTypes.string.isRequired,
+  //   PropTypes.object.isRequired,
+  //   PropTypes.array.isRequired,
+  // ]).isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default TrailInfo;

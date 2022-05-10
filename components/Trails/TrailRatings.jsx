@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TrailAddRatings from './TrailAddRatings';
-
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import TrailAddRatings from './TrailAddRatings';
 
 function TrailRatings({ ratings }) {
   return (

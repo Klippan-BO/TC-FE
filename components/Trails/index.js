@@ -1,41 +1,38 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import Script from 'next/script';
+import PropTypes from 'prop-types';
 import TrailInfo from './TrailInfo';
 import TrailComments from './TrailComments';
 import TrailCarousel from './TrailCarousel';
 
-// const { gisLoaded, gapiLoaded } = require('./createEvent');
+function TrailPage({ id }) {
+  const [trail, setTrail] = useState(null)
+  const [isLoading, setLoading] = useState(false);
 
-const sampleData = require('./sampleData');
+  useEffect(() => {
+    setLoading(true);
+    console.log(id);
+    fetch(`http://localhost:3000/api/trails?id=${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTrail(data);
+        setLoading(false);
+      });
+  }, []);
 
-function TrailPage() {
-  // console.log(gisLoaded);
+  if (isLoading) return <p>Loading...</p>;
+  if (!trail) return <p>No profile data</p>;
   return (
     <div>
       <Head>
-      <Script src="https://apis.google.com/js/api.js" type="text/javascript" />
-
         <title>TC - Trail</title>
-        {/* <script src="https://apis.google.com/js/api.js" type="text/javascript"/> */}
-        {/* <script
-          async
-          defer
-          src="https://apis.google.com/js/api.js"
-          onLoad={gapiLoaded}
-        />
-        <script
-          async
-          defer
-          src="https://accounts.google.com/gsi/client"
-          onLoad={gisLoaded} */}
       </Head>
       <Container
         sx={{
-          minWidth: '83vw',
+          minWidth: '63vw',
           backgroundColor: '#123C69',
         }}
       >
@@ -47,13 +44,21 @@ function TrailPage() {
             borderColor: 'red',
           }}
         >
-          <TrailCarousel />
-          <TrailInfo trail={sampleData.trail1} />
-          <TrailComments trail={sampleData.trail1} />
+          <TrailCarousel photos={trail.photos} />
+          <TrailInfo
+            name={trail.name}
+            description={trail.description}
+            ratings={trail.ratings}
+          />
+          <TrailComments comments={trail.comments} />
         </Stack>
       </Container>
     </div>
   );
 }
+
+TrailPage.propTypes = {
+  id: PropTypes.number.isRequired,
+};
 
 export default TrailPage;
