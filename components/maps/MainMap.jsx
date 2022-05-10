@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+im
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
 import MAPSAPIKEY from '../../config';
@@ -7,7 +8,6 @@ import apiLoaded from './mapLogic';
 
 // REPLACE WITH REAL FETCH DATA
 import trails from './dummyData';
-import dummyTrails from './dummyData';
 
 const containerStyle = {
   width: '90vw',
@@ -94,11 +94,15 @@ export default function MainMap() {
 
   initAutocomplete(); */
   // getGeo();
-  const [center, setCenter] = useState(defaultCenter);
+
+  const [trails, setTrails] = useState(null);
+
+  useEffect(() => {
+
+  }, []);
 
   const handleSearch = (latLng) => {
-    setCenter(latLng);
-    const event = new Event('locSearch');
+    const event = new CustomEvent('locSearch', { detail: latLng });
     document.dispatchEvent(event);
   };
 
@@ -110,7 +114,7 @@ export default function MainMap() {
       </div>
       <GoogleMapReact
         bootstrapURLKeys={{ key: MAPSAPIKEY }}
-        center={center}
+        center={defaultCenter}
         zoom={11}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => apiLoaded(map, maps, list)}

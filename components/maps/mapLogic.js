@@ -71,9 +71,13 @@ const calculateDist = (origin, point) => {
 const updateClosestTrails = (map, maps, trails) => {
   // CHANGE SEARCHLIMIT TO CHANGE NUMBER OF RESULTS
   const searchLimit = 5;
-  maps.event.addDomListener(document, 'locSearch', () => {
-    const origin = map.getCenter();
-    const bounds = new maps.LatLngBounds();
+  const rangeLimit = 30;
+  maps.event.addDomListener(document, 'locSearch', (e) => {
+    const origin = e.detail;
+    map.panTo(origin);
+    map.setZoom(11);
+
+    const bounds = map.getBounds();
     const sortedTrails = trails.sort((a, b) => {
       if (calculateDist(origin, a) < calculateDist(origin, b)) {
         return -1;
@@ -84,11 +88,19 @@ const updateClosestTrails = (map, maps, trails) => {
       return 0;
     });
 
+    let foundResults = false;
     for (let i = 0; i < searchLimit; i += 1) {
       const { lat, lng } = sortedTrails[i];
+      if (calculateDist(origin, { lat, lng }) > rangeLimit) {
+        break;
+      }
       bounds.extend({ lat, lng });
+      foundResults = true;
     }
     map.fitBounds(bounds);
+    if (!foundResults) {
+      alert(`No trails found within ${rangeLimit}km!`);
+    }
   });
 };
 
