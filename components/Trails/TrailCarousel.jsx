@@ -1,17 +1,15 @@
-/* eslint-disable camelcase */
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Stack from '@mui/material/Stack';
 import Image from 'next/image';
+import sampleData from './sampleData';
 
-const sample_data = require('./sampleData');
-
-function TrailCarousel() {
+function TrailCarousel({ photos }) {
+  var photos = sampleData.trail1.photos;
   return (
     <Stack direction="row" sx={{ border: 4, borderColor: 'primary.main', columnGap: 5 }}>
-      {sample_data.trail1.photos.map((photo) => (
+      {photos.map((photo) => (
         <Image
-          key={sample_data.trail1.photos.indexOf(photo)}
+          key={photos.indexOf(photo)}
           width="128px"
           height="128px"
           src={photo}

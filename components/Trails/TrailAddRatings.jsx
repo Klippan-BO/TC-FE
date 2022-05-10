@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';

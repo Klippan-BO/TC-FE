@@ -1,15 +1,30 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import PropTypes from 'prop-types';
 import TrailCarousel from './TrailCarousel';
 import TrailInfo from './TrailInfo';
 import TrailComments from './TrailComments';
 
-const sampleData = require('./sampleData');
+function TrailPage({ id }) {
+  const [trail, setTrail] = useState(null)
+  const [isLoading, setLoading] = useState(false)
 
-function TrailPage() {
+  useEffect(() => {
+    setLoading(true)
+    fetch(`http://localhost:3000/api/trails?id=${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setTrail(data)
+        setLoading(false)
+      })
+  }, [])
+
+  if (isLoading) return <p>Loading...</p>
+  if (!trail) return <p>No profile data</p>
   return (
     <div>
       <Head>
@@ -27,13 +42,21 @@ function TrailPage() {
             minWidth: '1000px',
           }}
         >
-          <TrailCarousel />
-          <TrailInfo trail={sampleData.trail1} />
-          <TrailComments trail={sampleData.trail1} />
+          <TrailCarousel photos={trail.photos} />
+          <TrailInfo
+            name={trail.name}
+            description={trail.description}
+            ratings={trail.ratings}
+          />
+          <TrailComments comments={trail.comments} />
         </Stack>
       </Container>
     </div>
   );
 }
+
+TrailPage.propTypes = {
+  id: PropTypes.number.isRequired,
+};
 
 export default TrailPage;
