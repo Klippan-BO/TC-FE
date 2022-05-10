@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-im
+import useSWR from 'swr';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
 import MAPSAPIKEY from '../../config';
@@ -95,16 +95,14 @@ export default function MainMap() {
   initAutocomplete(); */
   // getGeo();
 
-  const [trails, setTrails] = useState(null);
-
-  useEffect(() => {
-
-  }, []);
-
+  const [bounds, setBounds] = useState(null)
+;
   const handleSearch = (latLng) => {
     const event = new CustomEvent('locSearch', { detail: latLng });
     document.dispatchEvent(event);
   };
+
+
 
   return (
     <div style={containerStyle}>

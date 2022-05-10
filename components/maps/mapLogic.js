@@ -68,6 +68,17 @@ const calculateDist = (origin, point) => {
   return (c * r);
 };
 
+const locSearch = (map, maps) => {
+  maps.event.addDomListener(document, 'locSearch', (e) => {
+    const origin = e.detail;
+    map.panTo(origin);
+    map.setZoom(11);
+
+    const { north: nelat, south: swlat, east: nelng, west: swlng } = getBounds(map);
+    // FETCH TO /api/trails/map as QUERY
+  });
+};
+
 const updateClosestTrails = (map, maps, trails) => {
   // CHANGE SEARCHLIMIT TO CHANGE NUMBER OF RESULTS
   const searchLimit = 5;
@@ -78,6 +89,8 @@ const updateClosestTrails = (map, maps, trails) => {
     map.setZoom(11);
 
     const bounds = map.getBounds();
+    console.log(origin)
+    console.log(getBounds(map))
     const sortedTrails = trails.sort((a, b) => {
       if (calculateDist(origin, a) < calculateDist(origin, b)) {
         return -1;
