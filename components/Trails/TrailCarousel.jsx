@@ -110,12 +110,18 @@ function TrailCarousel() {
       <Stack
         direction="row"
         sx={{
-          columnGap: '1px',
-          color: 'white',
+          backgroundColor: '#EEE2DC',
+          margin: 1,
+          borderRadius: '10px',
           position: 'absolute',
-          right: 40,
+          right: 20,
           bottom: 0,
           zIndex: 2,
+          opacity: 0.6,
+          '&:hover': {
+            opacity: 1,
+          },
+          transition: 'opacity 0.4s linear',
           fontSize: '60px',
         }}
       >
@@ -165,7 +171,12 @@ function TrailCarousel() {
         <StarRateIcon
           sx={{
             fontSize: '60px',
-            color: 'yellow',
+            color: '#EEE2DC',
+            opacity: 0.6,
+            '&:hover': {
+              opacity: 1,
+            },
+            transition: 'opacity 0.4s linear',
           }}
         />
       </Button>

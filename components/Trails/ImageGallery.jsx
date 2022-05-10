@@ -47,6 +47,7 @@ export default function ImageGallery(props) {
               alignItem: 'center',
               justifyContent: 'center',
               position: 'relative',
+              margin: '5px',
             }}
           >
             <img
@@ -63,6 +64,12 @@ export default function ImageGallery(props) {
                 borderRadius: 10,
                 padding: 1,
                 margin: 0,
+                opacity: 0.6,
+                '&:hover': {
+                  backgroundColor: '#EEE2DC',
+                  opacity: 1,
+                },
+                transition: 'opacity 0.4s linear',
               }}
             >
               <ThumbUpIcon />
