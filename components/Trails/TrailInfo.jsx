@@ -1,45 +1,36 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
-
 import PropTypes from 'prop-types';
 import TrailRatings from './TrailRatings';
 import TrailDescription from './TrailDescription';
 
-function TrailInfo({ trail }) {
+function TrailInfo({ name, description, ratings }) {
   return (
     <Stack
       direction="row"
       sx={{
-        border: 1,
-        borderColor: 'black',
-        borderRadius: 1,
-        width: 960,
-        marginTop: 1,
-        marginBottom: 1,
+        backgroundColor: '#EEE2DC',
+        padding: 2,
+        borderRadius: '10px',
       }}
     >
       <Stack
         direction="row"
         sx={{
-          width: '960px',
-          border: 0,
           borderColor: 'black',
           justifyContent: 'space-evenly',
         }}
       >
-        <TrailDescription name={trail.name} description={trail.description} />
-        <TrailRatings ratings={trail.ratings} />
+        <TrailDescription name={name} description={description} />
+        <TrailRatings ratings={ratings} />
       </Stack>
     </Stack>
   );
 }
 
 TrailInfo.propTypes = {
-  trail: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.array,
-  ]),
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default TrailInfo;

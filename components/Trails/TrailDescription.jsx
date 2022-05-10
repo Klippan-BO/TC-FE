@@ -8,14 +8,15 @@ function TrailDescription({ name, description }) {
       direction="column"
       sx={{
         width: '960x',
-        margin: 1
+        backgroundColor: '#123C69',
+        color: '#EEE2DC',
       }}
     >
       <Typography
+        onClick={()=>console.log('yo')}
         sx={{
           fontSize: 30,
           margin: 1,
-          width: 600,
         }}
       >
         {name}
@@ -25,12 +26,11 @@ function TrailDescription({ name, description }) {
         sx={{
           fontSize: 16,
           margin: 1,
-          width: 600,
         }}
       >
         {description}
       </Typography>
-      </Stack>
+    </Stack>
   );
 }
 

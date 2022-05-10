@@ -14,7 +14,7 @@ function Nav() {
           <Link href='/map'> Map </Link>
         </li>
         <li>
-          <Link href='/trail'> Trail </Link>
+          <Link href='/trails'> Trail </Link>
         </li>
         <li>
           <Link href='/user'> User </Link>

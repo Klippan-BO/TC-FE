@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
@@ -35,7 +34,6 @@ function AddTrailRatings() {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 440,
             height: 380,
             bgcolor: 'background.paper',
             border: '0px solid #000',
@@ -70,7 +68,6 @@ function AddTrailRatings() {
             <Stack
               direction="row"
               justifyContent="space-between"
-              width="420"
               sx={{
                 gap: 1,
               }}

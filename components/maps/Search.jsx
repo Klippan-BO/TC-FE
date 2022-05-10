@@ -3,7 +3,11 @@ import axios from 'axios';
 
 import MAPSAPIKEY from '../../config';
 
+<<<<<<< HEAD
 export default function Search({ handleSearch }) {
+=======
+export default function Search() {
+>>>>>>> 37f170355942d59a7ccf4083f98c0b976fcd662d
   const [zipCode, setzipCode] = useState('');
   const getGeo = (e) => {
     if (e.key === 'Enter') {
