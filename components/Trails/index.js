@@ -3,9 +3,9 @@ import React from 'react';
 import Head from 'next/head';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import TrailCarousel from './TrailCarousel';
 import TrailInfo from './TrailInfo';
 import TrailComments from './TrailComments';
+import TrailCarousel from './TrailCarousel';
 
 const sampleData = require('./sampleData');
 
@@ -15,16 +15,18 @@ function TrailPage() {
       <Head>
         <title>TC - Trail</title>
       </Head>
-      <Container>
+      <Container
+        sx={{
+          minWidth: '83vw',
+          backgroundColor: '#123C69',
+        }}
+      >
         <Stack
           direction="column"
           sx={{
+            rowGap: '10px',
             border: 0,
             borderColor: 'red',
-            padding: 5,
-            height: '100vh',
-            width: '80vw',
-            minWidth: '1000px',
           }}
         >
           <TrailCarousel />
