@@ -1,18 +1,27 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useState } from 'react';
 import { Stack, ListItem, TextField } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import SendIcon from '@mui/icons-material/Send';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
-const sample_Data = require('./sampleData');
+function TrailComments({ comments }) {
+  const [trailComments, setComments] = useState(comments);
+  const [newComment, setNewComment] = useState('');
 
-function TrailComments({ trail }) {
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      setComments(comments.concat({ username: 'User', body: newComment, timestamp: Date.now()}));
+      setNewComment('');
+    }
+  };
+
   return (
     <Stack
       sx={{
-        maxHeight: '100%', overflow: 'auto', mt: '10px', backgroundColor: '#BAB2B5',
+        maxHeight: '100%', overflow: 'auto', mt: '10px', backgroundColor: '#BAB2B5', borderRadius: 3,
       }}
     >
       <Stack
@@ -23,13 +32,13 @@ function TrailComments({ trail }) {
           overflow: 'auto', backgroundColor: '#EEE2DC', borderRadius: '2px',
         }}
       >
-        {trail.comments.map((comment) =>
+        {trailComments.map((comment) =>
           (
             <ListItem sx={{
               wordWrap: 'break-word', backgroundColor: '#123C69', color: '#EEE2DC', m: 'auto', padding: '15px', borderRadius: '8px',
             }}
             >
-              <div key={sample_Data.trail1.comments.indexOf(comment)}>
+              <div key={trailComments.indexOf(comment)}>
                 <div>{comment.username}</div>
                 <div style={{ marginBottom: '10px' }}>{moment(comment.timestamp).format('MMM Do YY')}</div>
                 <div style={{ wordBreak: 'break-all' }}>{comment.body }</div>
@@ -37,6 +46,7 @@ function TrailComments({ trail }) {
               <ThumbUpIcon sx={{ fontSize: 'medium', justifyContent: 'flex-end' }} />
               <ChatBubbleIcon sx={{
                 marginLeft: '5px', fontSize: 'medium', justifyContent: 'flex-end',
+
               }}
               />
             </ListItem>
@@ -49,10 +59,17 @@ function TrailComments({ trail }) {
           }}
           InputProps={{ endAdornment: <SendIcon /> }}
           label="Leave a comment"
+          value={newComment}
+          onChange={() => setNewComment(event.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </ListItem>
     </Stack>
   );
 }
+
+TrailComments.propTypes = {
+  comments: PropTypes.object.isRequired,
+};
 
 export default TrailComments;
