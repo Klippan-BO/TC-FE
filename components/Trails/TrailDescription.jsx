@@ -21,7 +21,6 @@ function TrailDescription({ name, description }) {
       >
         {name}
       </Typography>
-
       <Typography
         sx={{
           fontSize: 16,
