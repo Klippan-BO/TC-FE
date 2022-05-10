@@ -3,6 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import Script from 'next/script';
 import TrailInfo from './TrailInfo';
 import TrailComments from './TrailComments';
 import TrailCarousel from './TrailCarousel';
@@ -16,6 +17,8 @@ function TrailPage() {
   return (
     <div>
       <Head>
+      <Script src="https://apis.google.com/js/api.js" type="text/javascript" />
+
         <title>TC - Trail</title>
         {/* <script src="https://apis.google.com/js/api.js" type="text/javascript"/> */}
         {/* <script

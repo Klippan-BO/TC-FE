@@ -14,7 +14,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import axios from 'axios';
-import { Image } from 'cloudinary-react';
+// import { Image } from 'cloudinary-react';
 import Typography from '@mui/material/Typography';
 
 const sample_data = require('./sampleData');
