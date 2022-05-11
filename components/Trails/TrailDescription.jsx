@@ -22,8 +22,8 @@ const StyledRating = styled(Rating)({
 const labels = {
   0.5: 'The DriveWay Incline',
   1: 'a steeper driveway?',
-  1.5: 'Poor',
-  2: 'Poor+',
+  1.5: 'Mild Sweat',
+  2: 'Moderate',
   2.5: 'Ok',
   3: 'Matterhorn',
   3.5: 'Fuji',

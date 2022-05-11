@@ -17,9 +17,8 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import ImageGallery from './ImageGallery';
 import Typography from '@mui/material/Typography';
-import { test, upvotePhoto } from './TrailPhotosController';
-
-const sample_data = require('./sampleData');
+import { upvotePhoto, uploadPhoto } from './TrailPhotosController';
+import { useAuth } from '../../context/AuthContext';
 
 const style = {
   position: 'absolute',
@@ -61,7 +60,8 @@ const modalPictureStyle = {
 };
 
 function TrailCarousel(props) {
-  const { photos } = props;
+  const { currentUser } = useAuth();
+  const { photos, id } = props;
   // const [photos] = useState(sample_data.trail1.photos); // is this sorted by upvotes already?
   const [index, setIndex] = useState(0);
   const [interval, setInterval] = useState(false);
@@ -87,7 +87,7 @@ function TrailCarousel(props) {
 
   const handleUpvoteTest = () => {
     upvotePhoto(photos[index].id);
-  }
+  };
 
   const uploadImage = (files) => {
     //console.log(files[0]);
@@ -97,9 +97,19 @@ function TrailCarousel(props) {
     //cazizno0
     axios.post('https://api.cloudinary.com/v1_1/dwjit4s8l/image/upload', formData)
       .then((result) => {
-        // console.log(JSON.parse(result.request.response).url);
+        console.log(JSON.parse(result.request.response).url);
         // <-- cloudinary link to post to database
         // need trail id and then can send to the database and post
+        console.log(currentUser.displayName);
+        const cloudPhoto = JSON.parse(result.request.response).url;
+        const photoUpload = {
+          trail_id: id,
+          username: currentUser.displayName,
+          url: cloudPhoto,
+          thumb: cloudPhoto,
+          //user_id: need this to be in auth provider
+        };
+        uploadPhoto(photoUpload);
       })
       .catch((err) => {
         console.log(err);

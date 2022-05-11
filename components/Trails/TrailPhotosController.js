@@ -19,6 +19,16 @@ const upvotePhoto = (id) => {
   });
 };
 
+const uploadPhoto = (photo) => {
+  fetch(`/api/photos/`, {
+    method: 'POST',
+    body: JSON.stringify({ photo }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
 export {
-  test, upvotePhoto,
+  test, upvotePhoto, uploadPhoto,
 };

@@ -107,7 +107,6 @@ function TrailAddEvent(props) {
           {`Trail description - ${description}`}
         </Typography>
         <Stack>
-
           <Box
             direction="column"
             component="form"

@@ -45,7 +45,7 @@ function TrailPage({ id }) {
             borderColor: 'red',
           }}
         >
-          <TrailCarousel photos={trail.photos} />
+          <TrailCarousel photos={trail.photos} id={trail.id} />
           <TrailInfo
             name={trail.name}
             id={trail.id}

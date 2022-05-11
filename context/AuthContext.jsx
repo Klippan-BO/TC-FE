@@ -12,7 +12,6 @@ import {
 // create context
 const AuthContext = React.createContext();
 
-
 // function to use context elsewhere in app
 export function useAuth() {
   return useContext(AuthContext);
