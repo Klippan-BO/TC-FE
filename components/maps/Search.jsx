@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -25,7 +26,7 @@ export default function Search({ handleSearch }) {
 
   return (
     <div className={Style.search}>
-      <form onSubmit={(e) => getGeo(e)}>
+      <form className={Style.search_btn} onSubmit={(e) => getGeo(e)}>
         <input
           type="text"
           placeholder="Enter zipcode"

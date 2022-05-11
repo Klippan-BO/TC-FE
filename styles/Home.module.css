@@ -20,12 +20,13 @@
   /* left: 50%; */
   /* transform: translateX(-50%); */
   width: 100%;
-  max-width: 265px;
+  max-width: 400px;
   z-index: 10;
   display: flex;
   margin-left: 8%;
   opacity: 0.6;
   transition: 1s;
+  display: flex;
 }
 
 .search:hover {
@@ -54,4 +55,8 @@
 }
 .searchButton:hover {
   opacity: 1;
+}
+
+.search_btn {
+  display: flex;
 }
