@@ -18,7 +18,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import mapQuadrants from '../maps/mapLogic';
 import Marker from '../maps/Marker';
-import { InitGoogleCal, createCalendarEvent } from '../../hooks/useGoogleCal';
+import { InitGoogleCal, createCalendarEvent, handleAuthClick } from '../../hooks/useGoogleCal';
 
 // import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 // import TimePicker from '@mui/x-date-pickers/TimePicker';
@@ -38,11 +38,23 @@ const style = {
 };
 
 function TrailAddEvent(props) {
+  const {
+    name, description,
+    elevation, id,
+    lat, lng,
+    trail,
+  } = props;
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('');
   const [startTime, setStartTime] = useState(Date.now());
   const [endTime, setEndTime] = useState(Date.now());
   const [friendsInvite, setFriendsInvite] = useState([]);
+  const [auth, setAuth] = useState(false);
   const handleTimeChange = (value) => { setStartTime(value); };
-  const handleEndTimeChange = (value) => { setEndTime(value)};
+  const handleEndTimeChange = (value) => { setEndTime(value); };
+  const handleSummary = (e) => { setSummary(e.target.value); };
+  const handleBody = (e) => { setBody(e.target.value); };
+
 
   // const selectFriendsChange = (value) => {
   //   console.log(value);
@@ -51,28 +63,42 @@ function TrailAddEvent(props) {
   // };
 
   const handleAddEvent = () => {
-    const event = {
-
-
-
+    if (!auth) {
+      handleAuthClick();
+      setAuth(true);
+    } else {
+      const event = {
+        summary,
+        description: body,
+        start: {
+          dateTime: startTime,
+          timeZone: 'America/Los_Angeles',
+        },
+        end: {
+          dateTime: endTime,
+          timeZone: 'America/Los_Angeles',
+        },
+        location: `${lat}, ${lng}`,
+        reminders: {
+          useDefault: false,
+          overrides: [
+            {method: 'email', 'minutes': 24 * 60},
+            {method: 'popup', 'minutes': 30}
+          ]
+        },
+      };
+      console.log(event);
+      createCalendarEvent(event);
     }
+  };
 
-    createCalendarEvent(event)
-  }
-
-  const {
-    name, description,
-    elevation, id,
-    lat, lng,
-    trail,
-  } = props;
   const defaultCenter = {
     lat: Number(lat),
     lng: Number(lng),
   };
   return (
     <>
-    <InitGoogleCal />
+      <InitGoogleCal />
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h4">
           {`Plan your next hike to - ${name}`}
@@ -98,11 +124,15 @@ function TrailAddEvent(props) {
                   label="Summary"
                   variant="outlined"
                   fullWidth
+                  value={summary}
+                  onChange={handleSummary}
                 />
                 <TextField
                   id="outlined-multiline-static"
                   label="Description"
                   fullWidth="true"
+                  value={body}
+                  onChange={handleBody}
                   rows={12}
                   multiline
                 />
@@ -117,9 +147,9 @@ function TrailAddEvent(props) {
                 >
                   {[trail].map((t) => (
                     <Marker
-                    lat={Number(t.lat)}
-                    lng={Number(t.lng)}
-                    trail={t}
+                      lat={Number(t.lat)}
+                      lng={Number(t.lng)}
+                      trail={t}
                     />
                   ))}
                 </GoogleMapReact>
