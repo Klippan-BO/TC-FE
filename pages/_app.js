@@ -5,14 +5,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css';
 import Layout from '../components/Layout';
 import RouteGuard from '../components/RouteGuard';
+import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter()
+
   return (
     <AuthProvider>
       <RouteGuard>
       <div className='page_container'>
         <Layout>
-          <Component {...pageProps} />
+          <Component {...pageProps} key={router.asPath} />
         </Layout>
       </div>
       </RouteGuard>

@@ -52,7 +52,7 @@ function Top({ trail }) {
             gutterBottom
           >
             {trail.name}
-            <StyledRating sx={{ ml: 1 }} precision={0.25} emptyIcon={<HikingIcon style={{ fontSize: '10px' }} />} icon={<HikingIcon style={{ fontSize: '10px' }} />} value={trail.ratings.average} readOnly />
+            <StyledRating sx={{ ml: 1 }} precision={0.25} emptyIcon={<HikingIcon style={{ fontSize: '12px' }} />} icon={<HikingIcon style={{ fontSize: '12px' }} />} value={trail.ratings.average} readOnly />
           </Typography>
           <Typography
             sx={{
@@ -69,7 +69,7 @@ function Top({ trail }) {
               component="img"
               src={preview}
               style={{
-                width: '13vh', height: '13vh', borderRadius: '50%', border: '2px solid #BAB2B5', left: '-15vh', top: '-45px', position: 'absolute', marginBottom: 'auto', marginTop: 'auto', marginLeft: 'auto', marginRight: 'auto',
+                width: '14vh', height: '14vh', borderRadius: '50%', border: '2px solid #BAB2B5', left: '-18vh', top: '-50px', position: 'absolute', marginBottom: 'auto', marginTop: 'auto', marginLeft: 'auto', marginRight: 'auto',
               }}
             />
           </div>

@@ -64,7 +64,7 @@ function Leaderboard() {
             }}
           >
             <Paper sx={{
-              width: '80vh', backgroundColor: '#EEE2DC', borderRadius: '6px', borderTop: '18px solid #AC3B61', borderLeft: '0.5px solid #AC3B61', borderRight: '0.5px solid #AC3B61', borderBottom: '0.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', minHeight: '10vh', maxHeight: '60vh', height: 'auto', textAlign: 'center',
+              width: '80vh', backgroundColor: '#EEE2DC', borderRadius: '6px', borderTop: '18px solid #AC3B61', borderLeft: '0.5px solid #AC3B61', borderRight: '0.5px solid #AC3B61', borderBottom: '0.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', minHeight: '10vh', maxHeight: '60vh', height: 'auto', textAlign: 'center', boxShadow: '3px 3px 3px #BAB2B5',
             }}
             >
               {(leaderboard.length >= 1)
