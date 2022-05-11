@@ -26,7 +26,6 @@ function Nav() {
           </li>
           <li>
             <Link href={{pathname:'/[username]',query:{username:currentUser?.displayName} }}
-
             >Profile</Link>
           </li>
           <li>
