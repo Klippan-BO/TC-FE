@@ -24,7 +24,9 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '80vw',
+  maxWidth: '1000px',
   height: '80vh',
+  overflowY: 'auto',
 };
 
 export default function ImageGallery(props) {
@@ -32,27 +34,27 @@ export default function ImageGallery(props) {
   return (
     <Box sx={style}>
       <Stack
-        direction="row"
+        direction="column"
         sx={{
           alignContent: 'center',
           justifyContent: 'flex-start',
-          overflowX: 'scroll',
           alignItems: 'center',
+
         }}
       >
         {photos.map((photo) => (
           <Box
             sx={{
-              // width: '400px',
               alignItem: 'center',
               justifyContent: 'center',
               position: 'relative',
               margin: '5px',
+
             }}
           >
             <img
-              src={photo}
-              height='80%s'
+              src={photo.url}
+              width='900px'
               objectFit="contain"
             />
             <Button
@@ -105,5 +107,7 @@ export default function ImageGallery(props) {
 }
 
 ImageGallery.propTypes = {
-  photos: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  photos: PropTypes.arrayOf(PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  })).isRequired,
 }
