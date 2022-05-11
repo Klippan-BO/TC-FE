@@ -42,7 +42,7 @@ export default function UserLogin() {
         }}
         onClick={() => handleLogin()}
       >
-        Login
+        <span className={styles.buttonText}>Login</span>
       </Button>
     </div>
   );

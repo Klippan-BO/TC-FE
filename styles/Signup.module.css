@@ -1,0 +1,24 @@
+.signupCard {
+  height: 500px;
+  width: 420px;
+  background-color: #EDC7B7;
+  border-radius: 20px;
+  box-shadow: 2px 4px 4px rgba(0,0,0, .25);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 1.25em;
+  justify-content: space-between;
+}
+
+.subText {
+  max-width: 30ch;
+  margin-top: -5px;
+  color: #123C69;
+}
+
+.header {
+  margin: 0;
+  color: #123C69;
+}
