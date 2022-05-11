@@ -5,7 +5,7 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import style from '../../styles/user.module.css';
 
-function StarRatings({ ratings }) {
+function StarRatings({ rating }) {
   return (
     <div className={style.starCont}>
       <Stack
@@ -13,7 +13,7 @@ function StarRatings({ ratings }) {
         >
         {/* Ratings */}
         <Rating
-          defaultValue={ratings.average}
+          defaultValue={rating.average}
           precision={0.25}
           readOnly
           sx={{
@@ -40,7 +40,7 @@ function StarRatings({ ratings }) {
             Beauty
           </Typography>
           <Rating
-            defaultValue={ratings.beauty}
+            defaultValue={rating.beauty}
             precision={0.25}
             readOnly
             sx={{
@@ -67,7 +67,7 @@ function StarRatings({ ratings }) {
             Nature
           </Typography>
           <Rating
-            defaultValue={ratings.nature}
+            defaultValue={rating.nature}
             precision={0.25}
             readOnly
             sx={{
@@ -94,7 +94,7 @@ function StarRatings({ ratings }) {
             Difficulty
           </Typography>
           <Rating
-            defaultValue={ratings.difficulty}
+            defaultValue={rating.difficulty}
             size="small"
             precision={0.25}
             readOnly
