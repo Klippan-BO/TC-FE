@@ -8,11 +8,15 @@ import React, { useState } from 'react';
 import Popper from '@mui/material/Popper';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
+import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import Typography from '@mui/material/Typography';
+import CloseIcon from '@mui/icons-material/Close';
 import Top from './Top';
 import dummyTrails from '../maps/dummyData';
+import Link from 'next/link';
+
 
 function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState(dummyTrails);
@@ -38,7 +42,7 @@ function Leaderboard() {
         onClick={handleToggle}
         style={{
           color: open === false ? null : '#123C69',
-          borderBottom: open === false ? null : '3px solid #BAB2B5',
+          borderBottom: open === false ? null : '3px solid #123C69',
         }}
       >
         Leaderboard
@@ -60,7 +64,7 @@ function Leaderboard() {
             }}
           >
             <Paper sx={{
-              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '6px', borderTop: '18px solid #AC3B61', borderLeft: '0.5px solid #AC3B61', borderRight: '0.5px solid #AC3B61', borderBottom: '0.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', minHeight: '10vh', maxHeight: '60vh', height: 'auto', textAlign: 'center',
+              width: '80vh', backgroundColor: '#EEE2DC', borderRadius: '6px', borderTop: '18px solid #AC3B61', borderLeft: '0.5px solid #AC3B61', borderRight: '0.5px solid #AC3B61', borderBottom: '0.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', minHeight: '10vh', maxHeight: '60vh', height: 'auto', textAlign: 'center',
             }}
             >
               {(leaderboard.length >= 1)
@@ -72,11 +76,10 @@ function Leaderboard() {
                     Top 5 Trails in Your Area
                   </Typography>
                   <br />
-                  <small style={{ fontFamily: 'inherit', fontSize: '10px' }}> Click on a Trail to View Details</small>
+                  <small style={{ fontFamily: 'inherit', fontSize: '10px' }}> Click a Trail to View Details & Ratings</small>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList
                       autoFocusItem={open}
-                      id="composition-menu"
                     >
                       {leaderboard.sort((b, a) => a.ratings.average - b.ratings.average).slice(0, 5).map((trail) => (
                         <Top trail={trail} key={trail.name} />
