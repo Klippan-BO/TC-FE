@@ -1,8 +1,8 @@
-import { Dialog, DialogTitle, stepLabelClasses } from "@mui/material";
-import style from "../../styles/user.module.css";
-import CancelIcon from "@mui/icons-material/Cancel";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import { Dialog, DialogTitle, stepLabelClasses } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import style from '../../styles/user.module.css';
 
 export default function MyNotification({
   openNotif,
@@ -13,22 +13,26 @@ export default function MyNotification({
   const closePopUp = () => {
     closeNotif();
   };
-  const handleAccept = () => {};
+  const handleAccept = () => {
 
-  const handleReject = () => {};
+  };
+
+  const handleReject = () => {
+
+  };
 
   return (
     <Dialog
       open={openNotif}
       PaperProps={{
         sx: {
-          position: "absolute",
+          position: 'absolute',
           top: 50,
           right: 50,
           m: 0,
           width: 500,
           height: 500,
-          backgroundColor:"#eee2dc"
+          backgroundColor: '#eee2dc',
         },
       }}
     >
@@ -40,18 +44,23 @@ export default function MyNotification({
       </DialogTitle>
       <div className={style.popUpCont}>
         {requests.map((person) => (
-          <div className={style.popUpRowCont} key={person.name}>
+          <div className={style.popUpRowCont} key={person.username}>
             <img src={person.photo} className={style.popUpImg} />
-            <h3>
-              <span>{person.name}</span>
-              <br />
-              {person.city}
-            </h3>
+            <div className={style.popUpRowMidCont}>
+              {' '}
+              <h4>
+                <span>{person.username}</span>
+                <br />
+                {person.description}
+              </h4>
+              {' '}
+
+            </div>
             <div className={style.popUpBtnWrap}>
               <ThumbUpIcon
                 className={style.request}
                 onClick={handleAccept}
-              ></ThumbUpIcon>
+              />
               <ThumbDownIcon className={style.request} onClick={handleReject} />
             </div>
           </div>
@@ -62,14 +71,13 @@ export default function MyNotification({
         <div className={style.popUpTitle}>My Requests to Other Hikers</div>
       </DialogTitle>
       <div className={style.imgRow}>
-      {requesting.map(person=>(
-          <div className={style.darkImgBox}>
-          <img src={person.photo} className={style.popUpImg}/>
-          <span className={style.darkName}>{person.name}</span>
-         </div>
-      ))}
+        {requesting.map((person) => (
+          <div className={style.darkImgBox} key={person.username}>
+            <img src={person.photo} className={style.popUpImg} />
+            <span className={style.darkName}>{person.username}</span>
+          </div>
+        ))}
       </div>
-
     </Dialog>
   );
 }
