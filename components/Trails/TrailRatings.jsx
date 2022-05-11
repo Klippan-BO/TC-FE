@@ -4,6 +4,9 @@ import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import TrailAddRatings from './TrailAddRatings';
+import ParkIcon from '@mui/icons-material/Park';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import LandscapeIcon from '@mui/icons-material/Landscape';
 
 function TrailRatings({ ratings }) {
 //console.log("trails props",ratings)
@@ -24,7 +27,7 @@ function TrailRatings({ ratings }) {
         precision={0.25}
         readOnly
         sx={{
-          color: '#EEE2DC',
+          color: '#F6CC66',
           fontSize: 48,
           margin: 1,
           justifyContent: 'center',
@@ -52,8 +55,10 @@ function TrailRatings({ ratings }) {
           defaultValue={ratings.beauty}
           precision={0.25}
           readOnly
+          icon={<ParkIcon fontSize="inherit" />}
+          emptyIcon={<ParkIcon fontSize="inherit" />}
           sx={{
-            color: '#EEE2DC',
+            color: '#97C1A9',
             fontSize: 30,
             marginRight: 1,
           }}
@@ -74,14 +79,16 @@ function TrailRatings({ ratings }) {
             fontSize: 24,
           }}
         >
-          Nature
+          Sunlight
         </Typography>
         <Rating
           defaultValue={ratings.nature}
           precision={0.25}
           readOnly
+          icon={<WbSunnyIcon fontSize="inherit" />}
+          emptyIcon={<WbSunnyIcon fontSize="inherit" />}
           sx={{
-            color: '#EEE2DC',
+            color: '#FFFFB5',
             fontSize: 30,
             marginRight: 1,
           }}
@@ -109,8 +116,10 @@ function TrailRatings({ ratings }) {
           size="small"
           precision={0.25}
           readOnly
+          icon={<LandscapeIcon fontSize="inherit" />}
+          emptyIcon={<LandscapeIcon fontSize="inherit" />}
           sx={{
-            color: '#EEE2DC',
+            color: '#FFC7A2',
             fontSize: 30,
             marginRight: 1,
             marginBottom: 2,
