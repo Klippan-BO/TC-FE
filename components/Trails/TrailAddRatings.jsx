@@ -16,6 +16,7 @@ function AddTrailRatings() {
     setModal(boolean);
   };
 
+
   return (
     <>
       <Button
@@ -37,9 +38,9 @@ function AddTrailRatings() {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            height: 380,
-            bgcolor: 'background.paper',
-            border: '0px solid #000',
+            height: 410,
+            bgcolor: '#123C68 ',
+            borderTop: '15px solid #AC3A60',
             borderRadius: 2,
             boxShadow: 24,
             p: 4,
@@ -52,6 +53,7 @@ function AddTrailRatings() {
             <Typography
               sx={{
                 fontSize: 25,
+                color: '#FFFFFF',
               }}
             >
               How did you feel about this trail?
@@ -79,6 +81,7 @@ function AddTrailRatings() {
                 sx={{
                   fontSize: 16,
                   margin: 2,
+                  color: '#FFFFFF',
                 }}
               >
                 Beauty
@@ -107,6 +110,7 @@ function AddTrailRatings() {
                 sx={{
                   fontSize: 16,
                   margin: 2,
+                  color: '#FFFFFF',
                 }}
               >
                 Sunlight
@@ -136,6 +140,7 @@ function AddTrailRatings() {
                 sx={{
                   fontSize: 16,
                   margin: 2,
+                  color: '#FFFFFF',
                 }}
               >
                 Difficulty
