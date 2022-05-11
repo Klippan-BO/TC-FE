@@ -1,4 +1,4 @@
-import Nav from './Nav';
+import Nav from './Nav.jsx';
 import styles from '../styles/Home.module.css';
 
 function Layout({ children }) {
