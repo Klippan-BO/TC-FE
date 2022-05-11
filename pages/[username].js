@@ -1,15 +1,15 @@
 import React from "react";
 // eslint-disable-next-line import/extensions
-import sampleData from "../../components/User/sampleData.js";
+import sampleData from "../components/User/sampleData.js";
 import Link from "next/link";
 // eslint-disable-next-line import/extensions
-import UserPage from './[id].js';
+import UserPage from "../components/User/UserPage.js";
 
 function User() {
   return (
-    <Link href={'/user/'+sampleData.username}>
+    <div>
       <UserPage userData={sampleData} />
-    </Link>
+      </div>
   );
 }
 export default User;

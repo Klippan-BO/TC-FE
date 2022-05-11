@@ -1,8 +1,8 @@
-import { Dialog, DialogTitle, stepLabelClasses } from "@mui/material";
-import style from "../../styles/user.module.css";
-import CancelIcon from "@mui/icons-material/Cancel";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import { Dialog, DialogTitle, stepLabelClasses } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import style from '../../styles/user.module.css';
 
 export default function MyNotification({
   openNotif,
@@ -18,7 +18,7 @@ export default function MyNotification({
   };
 
   const handleReject = () => {
-      
+
   };
 
   return (
@@ -26,13 +26,13 @@ export default function MyNotification({
       open={openNotif}
       PaperProps={{
         sx: {
-          position: "absolute",
+          position: 'absolute',
           top: 50,
           right: 50,
           m: 0,
           width: 500,
           height: 500,
-          backgroundColor: "#eee2dc",
+          backgroundColor: '#eee2dc',
         },
       }}
     >
@@ -46,16 +46,21 @@ export default function MyNotification({
         {requests.map((person) => (
           <div className={style.popUpRowCont} key={person.username}>
             <img src={person.photo} className={style.popUpImg} />
-            <h3>
-              <span>{person.username}</span>
-              <br />
-              {person.city}
-            </h3>
+            <div className={style.popUpRowMidCont}>
+              {' '}
+              <h4>
+                <span>{person.username}</span>
+                <br />
+                {person.description}
+              </h4>
+              {' '}
+
+            </div>
             <div className={style.popUpBtnWrap}>
               <ThumbUpIcon
                 className={style.request}
                 onClick={handleAccept}
-              ></ThumbUpIcon>
+              />
               <ThumbDownIcon className={style.request} onClick={handleReject} />
             </div>
           </div>

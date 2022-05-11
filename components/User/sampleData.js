@@ -11,7 +11,7 @@ module.exports = {
     // can be seperate data file or inside the same data file
     my_trails: [
       {
-        trailID: 123,
+        trailID: 1,
         trail_name: 'Sunny trail',
         photos: [
           'http://www.trailstompers.com/uploads/2/6/8/6/2686411/9693769.jpg',
@@ -30,7 +30,7 @@ module.exports = {
         },
       },
       {
-        trailID: 234,
+        trailID: 2,
         trail_name: 'shady trail',
         photos: [
           'https://preview.redd.it/syytq2n53wl81.jpg?width=960&crop=smart&auto=webp&s=e8623a9525cc0f6a75d962c8e05776e119b626a2',
@@ -48,7 +48,7 @@ module.exports = {
         },
       },
       {
-        trailID: 345,
+        trailID: 3,
         trail_name: 'ocean side',
         photos: [
           'https://www.rpvca.gov/ImageRepository/Document?documentID=12712',
@@ -63,7 +63,7 @@ module.exports = {
         },
       },
       {
-        trailID: 456,
+        trailID: 4,
         trail_name: 'mountain side',
         photos: [
           'https://www.planetware.com/wpimages/2019/10/montana-best-hiking-trails-glacier-national-park-highline-trail.jpg',
@@ -78,7 +78,7 @@ module.exports = {
         },
       },
       {
-        trailID: 567,
+        trailID: 5,
         trail_name: 'river side',
         photos: [
           'https://www.atlantatrails.com/wp-content/uploads/2018/10/chattooga-river-trail-01-770x515@2x.jpg',

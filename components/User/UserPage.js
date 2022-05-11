@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Container from "@mui/material/Container";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
-import MyNotification from "../../components/User/MyNotification";
-import MyTrails from "../../components/User/MyTrails";
-import MyConnections from "../../components/User/myConnections";
+import MyNotification from "./MyNotification";
+import MyTrails from "./MyTrails";
+import MyConnections from "./myConnections";
 import style from "../../styles/user.module.css";
 import Badge from "@mui/material/Badge";
-import sampleData from "../../components/User/sampleData";
+import sampleData from "./sampleData";
 
 function UserPage({ userData }) {
   const [openNotif, setOpenNotif] = useState(false);
@@ -71,10 +71,10 @@ function UserPage({ userData }) {
             />
           </div>
           <div className={style.userName}>{userData.userProfile.username}</div>
-          <div className={style.userCity}>{userData.userProfile.city}</div>
+          {/* <div className={style.userCity}>{userData.userProfile.city}</div> 
           <div className={style.userFriends}>
             I HAVE {userData.userProfile.friends} FRIENDS
-          </div>
+          </div> */}
           <div className={style.description}>
             {userData.userProfile.description}
           </div>
