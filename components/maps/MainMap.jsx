@@ -67,7 +67,6 @@ export default function MainMap() {
   return (
     <div style={containerStyle}>
       <div className="search">
-        {/* <input ref={searchInput} type="text" placeholder="Search location..." /> */}
         <Search handleSearch={handleSearch} />
       </div>
       <GoogleMapReact
