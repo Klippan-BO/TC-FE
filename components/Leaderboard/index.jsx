@@ -1,21 +1,15 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import dummyTrails from '../maps/dummyData.js';
-import style from '../../styles/Leaderboard.module.css';
-import Top from './Top.jsx';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
 import Popper from '@mui/material/Popper';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
+import Typography from '@mui/material/Typography';
+import Top from './Top';
+import dummyTrails from '../maps/dummyData';
 
 function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState(dummyTrails);
@@ -36,39 +30,39 @@ function Leaderboard() {
 
   return (
     <div>
-      <Button
-        ref={anchorRef}
-        id="composition-button"
-        aria-controls={open ? 'composition-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}
-      >
-        Leaderboard
-      </Button>
+      <div ref={anchorRef} onClick={handleToggle}> Leaderboard </div>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
-        placement="bottom-start"
+        placement="bottom-end"
         transition
+        sx={{ zIndex: 4, width: '35%' }}
       >
-        {({ TransitionProps, placement }) => (
+        {({ TransitionProps }) => (
           <Grow
             {...TransitionProps}
             style={{
               transformOrigin:
-                placement === 'bottom-start' ? 'left top' : 'left bottom',
+                'right top',
             }}
           >
-            <Paper>
+            <Paper sx={{
+              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '4px', border: '1.5px solid #AC3B61', marginTop: '5px',
+            }}
+            >
+              <Typography style={{
+                textAlign: 'center', paddingTop: '', fontFamily: 'inherit', fontWeight: '450', display: 'inline-block'
+              }}
+              >
+                Top 5 Trails in Your Area
+              </Typography>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={open}
                   id="composition-menu"
-                  aria-labelledby="composition-button"
                 >
-                  {leaderboard.map((trail) => (
+                  {leaderboard.sort((b, a) => a.ratings.average - b.ratings.average).slice(0, 5).map((trail) => (
                     <Top trail={trail} key={trail.name} />
                   ))}
                 </MenuList>

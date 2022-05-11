@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
-import { Dropdown, Button } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 function Top({ trail }) {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card variant="outlined" sx={{ margin: 1 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} gutterBottom>
           {trail.name}
@@ -17,11 +17,11 @@ function Top({ trail }) {
           {trail.ratings.average}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">View Trail</Button>
-      </CardActions>
+      {/* <CardActions>
+        <Button variant="outlined" size="small" disableElevation>View Trail</Button>
+      </CardActions> */}
     </Card>
-  )
+  );
 }
 
 export default Top;
