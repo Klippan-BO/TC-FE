@@ -17,7 +17,7 @@ function TrailPage({ id }) {
     fetch(`http://localhost:3000/api/trails?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        //console.log(data)
         setTrail(data)
         setLoading(false)
       })
