@@ -6,30 +6,63 @@ import { useAuth } from '../../context/AuthContext';
 
 export default function UserLogin({ setNewUser }) {
   const router = useRouter();
-  const { signInUser, setCurrentUser } = useAuth();
+  const { signInUser, setCurrentUser, currentUser } = useAuth();
 
   // switch newUser to true in here on failed post
-
   async function handleLogin() {
-    // sign in through Google Auth
+    // sign in through Google Auth and store user result
     const user = await signInUser();
-    console.log(user);
-      // .then((result) => {
-      //   // pull email and photoUrl from the Google result
-      //   const { user } = result;
-      //   setCurrentUser({
-      //     email: user.email,
-      //     photo: user.photoURL,
-      //   });
+    const { photoURL, email } = user;
 
-      //   try {
-      //     const response = await fetch()
+    try {
+      // POST to server to check if user exists
+      const response = await fetch(
+        'http://localhost:3005/users/login',
+        {
+          body: email,
+          method: 'POST',
+        },
+      );
 
-      //   // construct return url - default to /map
-      //   const returnUrl = router.query.returnUrl || '/map';
-      //   router.push(returnUrl);
-      // })
-      // .catch((err) => console.log('error signing in with Google auth: ', err));
+      const { id } = response;
+      setCurrentUser({
+        ...currentUser,
+        id,
+        photo: photoURL,
+        email,
+      });
+
+      console.log('Existing user found');
+
+      // construct return url to redirect user after login
+      const returnUrl = router.query.returnUrl || '/map';
+      router.push(returnUrl);
+    } catch (error) {
+      // hit here when the user does not exist in the db
+      console.log('New user found');
+      setCurrentUser({
+        ...currentUser,
+        photo: photoURL,
+        email,
+      });
+
+      // flip newUser to true
+      setNewUser((prevState) => !prevState);
+    }
+
+    // .then((result) => {
+    //   // pull email and photoUrl from the Google result
+    //   const { user } = result;
+    //   setCurrentUser({
+    //     email: user.email,
+    //     photo: user.photoURL,
+    //   });
+
+    //   // construct return url - default to /map
+    //   const returnUrl = router.query.returnUrl || '/map';
+    //   router.push(returnUrl);
+    // })
+    // .catch((err) => console.log('error signing in with Google auth: ', err));
   }
 
   return (

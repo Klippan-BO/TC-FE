@@ -17,7 +17,7 @@ function LoginPage() {
       <div className={styles.loginContainer}>
         {
           newUser
-            ? <UserSignup />
+            ? <UserSignup setNewUser={setNewUser} />
             : <UserLogin setNewUser={setNewUser} />
         }
       </div>

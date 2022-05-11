@@ -1,24 +1,53 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styles from '../../styles/Signup.module.css';
 import { useAuth } from '../../context/AuthContext';
 
-export default function UserSignup() {
-  const { currentUser } = useAuth();
+export default function UserSignup({ setNewUser }) {
+  const { currentUser, setCurrentUser } = useAuth();
   const [bio, setBio] = useState('');
   const [username, setUsername] = useState('');
+  const router = useRouter();
 
-  // const { photo, email } = currentUser;
-  function handleSignUp() {
+  const { photo, email } = currentUser;
+  async function handleSignUp() {
     const userDetails = {
-      // photo
-      // email
+      photo,
+      email,
       bio,
       username,
     };
+
     // post with userDetails
+    try {
+      const response = await fetch(
+        'http://localhost:3005/users/signup',
+        {
+          body: userDetails,
+          method: 'POST',
+        },
+      );
+
+      // store the id of the user
+      const { id } = response;
+      setCurrentUser({
+        ...currentUser,
+        photo,
+        email,
+        bio,
+        username,
+        id,
+      });
+
+      const returnUrl = router.query.returnUrl || '/map';
+      setNewUser((prevState) => !prevState);
+      router.push(returnUrl);
+    } catch (error) {
+      console.log('Error signing up');
+    }
   }
 
   return (
