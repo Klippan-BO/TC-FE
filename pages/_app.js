@@ -1,12 +1,13 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { AuthProvider } from '../context/AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css';
 import Layout from '../components/Layout';
 import RouteGuard from '../components/RouteGuard';
-import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

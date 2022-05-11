@@ -17,6 +17,7 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import ImageGallery from './ImageGallery';
 import Typography from '@mui/material/Typography';
+import { test, upvotePhoto } from './TrailPhotosController';
 
 const sample_data = require('./sampleData');
 
@@ -84,6 +85,10 @@ function TrailCarousel(props) {
     setPhotoModal(true);
   };
 
+  const handleUpvoteTest = () => {
+    upvotePhoto(photos[index].id);
+  }
+
   const uploadImage = (files) => {
     //console.log(files[0]);
     const formData = new FormData();
@@ -141,7 +146,9 @@ function TrailCarousel(props) {
             sx={iconStyles}
           />
         </Button>
-        <Button>
+        <Button
+          onClick={handleUpvoteTest}
+        >
           <ThumbUpIcon
             sx={iconStyles}
           />
