@@ -21,9 +21,9 @@ function Nav() {
           <li>
             <Link href="/map">Map</Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/trail">Trail</Link>
-          </li>
+          </li> */}
           <li>
             <Link href={{pathname:'/[username]',query:{username:currentUser?.displayName} }}
 
