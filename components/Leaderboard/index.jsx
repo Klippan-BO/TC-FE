@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable max-len */
@@ -59,27 +60,38 @@ function Leaderboard() {
             }}
           >
             <Paper sx={{
-              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '6px', borderTop: '18px solid #AC3B61', borderLeft: '0.5px solid #AC3B61', borderRight: '0.5px solid #AC3B61', borderBottom: '0.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', maxHeight: '60vh', height: 'auto', textAlign: 'center',
+              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '6px', borderTop: '18px solid #AC3B61', borderLeft: '0.5px solid #AC3B61', borderRight: '0.5px solid #AC3B61', borderBottom: '0.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', minHeight: '10vh', maxHeight: '60vh', height: 'auto', textAlign: 'center',
             }}
             >
-              <Typography style={{
-                display: 'inline', fontFamily: 'inherit', fontWeight: '450', backgroundColor: '#EDC7B7', border: '4px solid #BAB2B5', borderRadius: '15px', padding: '4.5px', color: '#123C69',
-              }}
-              >
-                Top 5 Trails in Your Area
-              </Typography>
-              <br />
-              <small style={{ fontFamily: 'inherit', fontSize: '10px' }}> Click on a Trail to View Details</small>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="composition-menu"
-                >
-                  {leaderboard.sort((b, a) => a.ratings.average - b.ratings.average).slice(0, 5).map((trail) => (
-                    <Top trail={trail} key={trail.name} />
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
+              {(leaderboard.length >= 1)
+                ? <>
+                  <Typography style={{
+                    display: 'inline', fontFamily: 'inherit', fontWeight: '450', backgroundColor: '#EDC7B7', border: '4px solid #BAB2B5', borderRadius: '15px', padding: '4.5px', color: '#123C69',
+                  }}
+                  >
+                    Top 5 Trails in Your Area
+                  </Typography>
+                  <br />
+                  <small style={{ fontFamily: 'inherit', fontSize: '10px' }}> Click on a Trail to View Details</small>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList
+                      autoFocusItem={open}
+                      id="composition-menu"
+                    >
+                      {leaderboard.sort((b, a) => a.ratings.average - b.ratings.average).slice(0, 5).map((trail) => (
+                        <Top trail={trail} key={trail.name} />
+                      ))}
+                    </MenuList>
+                  </ClickAwayListener>
+                </>
+                : <ClickAwayListener onClickAway={handleClose}>
+                  <Typography style={{
+                    display: 'inline', fontFamily: 'inherit', fontWeight: '450', backgroundColor: '#EDC7B7', border: '4px solid #BAB2B5', borderRadius: '15px', padding: '4.5px', color: '#123C69',
+                  }}
+                  >
+                    No Trails Upvoted, be the First!
+                  </Typography>
+                </ClickAwayListener> }
             </Paper>
           </Grow>
         )}
