@@ -1,6 +1,7 @@
 import React from 'react';
 import Script from 'next/script';
 
+const { calendar } = require('../calendarConfig');
 // const event = {
 //   'summary': 'Google I/O 2015',
 //   'location': '800 Howard St., San Francisco, CA 94103',
@@ -28,8 +29,8 @@ import Script from 'next/script';
 //   }
 // };
 
-const CLIENT_ID = '653101413471-gjg20eqtflhb4sqb9iohigufkvbp28nk.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyA5z1Ny5nGSVREoZ3XCWy3AS8s6g3Ehpuc';
+const CLIENT_ID = calendar.clientId;
+const API_KEY = calendar.apiKey;
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/calendar';
 
