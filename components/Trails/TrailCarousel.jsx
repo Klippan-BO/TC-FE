@@ -2,6 +2,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import PauseIcon from '@mui/icons-material/Pause';
@@ -58,8 +59,9 @@ const modalPictureStyle = {
 
 };
 
-function TrailCarousel() {
-  const [photos] = useState(sample_data.trail1.photos); // is this sorted by upvotes already?
+function TrailCarousel(props) {
+  const { photos } = props;
+  // const [photos] = useState(sample_data.trail1.photos); // is this sorted by upvotes already?
   const [index, setIndex] = useState(0);
   const [interval, setInterval] = useState(false);
   const [open, setOpen] = useState(false);
@@ -192,11 +194,11 @@ function TrailCarousel() {
         {photos.map((photo, i) => {
           if (i < 5) {
             return (
-              <Carousel.Item key={photo}>
+              <Carousel.Item key={photo.id}>
                 <img
                   role="presentation"
-                  src={photo}
-                  alt={photo}
+                  src={photo.url}
+                  alt={photo.id}
                   style={{
                     position: 'relative',
                     width: '100%',
@@ -207,8 +209,8 @@ function TrailCarousel() {
                 />
                 <img
                   onClick={handleOpen}
-                  alt={photo}
-                  src={photo}
+                  alt={photo.id}
+                  src={photo.url}
                   role="presentation"
                   // onClick={handleOpen}
                   style={backgroundStyle}
@@ -226,7 +228,7 @@ function TrailCarousel() {
                       onClick={handleClose}
                       alt={photo}
                       role="presentation"
-                      src={photos[index]}
+                      src={photos[index].url}
                       style={modalPictureStyle}
                     />
                   </Box>
@@ -269,6 +271,11 @@ function TrailCarousel() {
   );
 }
 
-// TrailCarousel.propTypes = {};
+TrailCarousel.propTypes = {
+  photos: PropTypes.arrayOf(PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  })).isRequired,
+
+};
 
 export default TrailCarousel;

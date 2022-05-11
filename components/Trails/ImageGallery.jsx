@@ -53,7 +53,7 @@ export default function ImageGallery(props) {
             }}
           >
             <img
-              src={photo}
+              src={photo.url}
               width='900px'
               objectFit="contain"
             />
@@ -107,5 +107,7 @@ export default function ImageGallery(props) {
 }
 
 ImageGallery.propTypes = {
-  photos: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  photos: PropTypes.arrayOf(PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  })).isRequired,
 }
