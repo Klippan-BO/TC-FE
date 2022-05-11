@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import Rating from '@mui/material/Rating';
 import { styled } from '@mui/material/styles';
@@ -22,33 +21,38 @@ function Top({ trail }) {
   return (
     <Card
       sx={{
-        m: 1, backgroundColor: '#123C69', borderRadius: '20px', border: '3px solid #bab2b5'
+        m: 1, backgroundColor: '#123C69', borderRadius: '20px', border: '3px solid #bab2b5', ':hover': {
+          transform: 'scale3d(1.05, 1.05, 1)',
+        },
       }}
     >
-      <CardContent>
-        <Typography
-          sx={{
-            fontSize: 10, fontFamily: 'inherit', color: '#EEE2DC', display: 'flex', alignItems: 'center',
-          }}
-          gutterBottom
-        >
-          {trail.name}
-          <StyledRating sx={{ ml: 1 }} precision={0.25} emptyIcon={<HikingIcon style={{ fontSize: '10px' }} />} icon={<HikingIcon style={{ fontSize: '10px' }} />} value={trail.ratings.average} readOnly />
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: 10, fontFamily: 'inherit', color: '#EEE2DC', width: '75%',
-          }}
-          align="left"
-        >
-          {trail.description.length > 150
-            ? `${trail.description.substring(0, 150)}...`
-            : trail.description}
-        </Typography>
-      </CardContent>
-      {/* <CardActions>
-        <Button variant="outlined" size="small" disableElevation>View Trail</Button>
-      </CardActions> */}
+      <CardActionArea>
+        <CardContent>
+          <Typography
+            sx={{
+              fontSize: 10, fontFamily: 'inherit', color: '#EEE2DC', display: 'flex', alignItems: 'center', borderBottom: '1px solid #BAB2B5', width: '70%',
+            }}
+            display="inline"
+            gutterBottom
+          >
+            {trail.name}
+            <StyledRating sx={{ ml: 1 }} precision={0.25} emptyIcon={<HikingIcon style={{ fontSize: '10px' }} />} icon={<HikingIcon style={{ fontSize: '10px' }} />} value={trail.ratings.average} readOnly />
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: 10, fontFamily: 'inherit', color: '#EEE2DC', width: '70%',
+            }}
+            align="left"
+          >
+            {trail.description.length > 150
+              ? `${trail.description.substring(0, 150)}...`
+              : trail.description}
+          </Typography>
+        </CardContent>
+        {/* <CardActions>
+          <Button variant="outlined" size="small" disableElevation>View Trail</Button>
+        </CardActions> */}
+      </CardActionArea>
     </Card>
   );
 }

@@ -37,7 +37,7 @@ function Leaderboard() {
         role={undefined}
         placement="bottom-end"
         transition
-        sx={{ zIndex: 4, width: '35%' }}
+        sx={{ zIndex: 4, width: '40%' }}
       >
         {({ TransitionProps }) => (
           <Grow
@@ -48,7 +48,7 @@ function Leaderboard() {
             }}
           >
             <Paper sx={{
-              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '6px', border: '1.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', height: '60vh', textAlign: 'center',
+              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '6px', border: '1px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', height: '60vh', textAlign: 'center',
             }}
             >
               <Typography style={{

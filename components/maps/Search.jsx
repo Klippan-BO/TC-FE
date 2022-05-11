@@ -15,7 +15,7 @@ export default function Search() {
         },
       })
         .then((res) => {
-          console.log(res.data.results[0].geometry.location);
+          //console.log(res.data.results[0].geometry.location);
         })
         .catch((err) => {
           console.log(err);
