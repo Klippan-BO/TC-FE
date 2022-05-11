@@ -7,16 +7,19 @@ import { useAuth } from '../../context/AuthContext';
 
 export default function UserSignup() {
   const { currentUser } = useAuth();
-  // const { photoURL, email } = currentUser;
-  const [newUser, setNewUser] = useState({
-    // photoURL,
-    // email,
-    bio: null,
-    username: null,
-  });
-
-  const [userBio, setUserBio] = useState('');
+  const [bio, setBio] = useState('');
   const [username, setUsername] = useState('');
+
+  // const { photo, email } = currentUser;
+  function handleSignUp() {
+    const userDetails = {
+      // photo
+      // email
+      bio,
+      username,
+    };
+    // post with userDetails
+  }
 
   return (
     <div className={styles.signupCard}>
@@ -45,7 +48,8 @@ export default function UserSignup() {
           multiline
           rows={4}
           variant="filled"
-          onChange={(e) => setUserBio(e.target.value)}
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
         />
       </Box>
       <Button
@@ -60,6 +64,7 @@ export default function UserSignup() {
             bgcolor: '#0A2452',
           },
         }}
+        onClick={() => handleSignUp()}
       >
         <span>Sign Up</span>
       </Button>

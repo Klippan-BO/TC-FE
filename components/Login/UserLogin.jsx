@@ -4,22 +4,32 @@ import Button from '@mui/material/Button';
 import styles from '../../styles/Login.module.css';
 import { useAuth } from '../../context/AuthContext';
 
-export default function UserLogin() {
+export default function UserLogin({ setNewUser }) {
   const router = useRouter();
   const { signInUser, setCurrentUser } = useAuth();
 
-  function handleLogin() {
-    signInUser()
-      .then((result) => {
-        const { user } = result;
-        setCurrentUser({
-          displayName: user.displayName,
-          email: user.email,
-        });
-        const returnUrl = router.query.returnUrl || '/map';
-        router.push(returnUrl);
-      })
-      .catch((err) => console.log('error signing in: ', err));
+  // switch newUser to true in here on failed post
+
+  async function handleLogin() {
+    // sign in through Google Auth
+    const user = await signInUser();
+    console.log(user);
+      // .then((result) => {
+      //   // pull email and photoUrl from the Google result
+      //   const { user } = result;
+      //   setCurrentUser({
+      //     email: user.email,
+      //     photo: user.photoURL,
+      //   });
+
+      //   try {
+      //     const response = await fetch()
+
+      //   // construct return url - default to /map
+      //   const returnUrl = router.query.returnUrl || '/map';
+      //   router.push(returnUrl);
+      // })
+      // .catch((err) => console.log('error signing in with Google auth: ', err));
   }
 
   return (

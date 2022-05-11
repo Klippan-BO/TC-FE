@@ -7,7 +7,8 @@ import UserLogin from './UserLogin';
 import UserSignup from './UserSignup';
 
 function LoginPage() {
-  const [newUser, setNewUser] = useState(true);
+  // make this false for prod
+  const [newUser, setNewUser] = useState(false);
   return (
     <div>
       <Head>
@@ -17,7 +18,7 @@ function LoginPage() {
         {
           newUser
             ? <UserSignup />
-            : <UserLogin />
+            : <UserLogin setNewUser={setNewUser} />
         }
       </div>
     </div>
