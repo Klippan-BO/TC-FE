@@ -25,7 +25,7 @@ function TrailComments({ comments }) {
   };
 
   const handleSubmit = () => {
-    
+
   }
 
   return (
@@ -34,6 +34,22 @@ function TrailComments({ comments }) {
         maxHeight: '100%', overflow: 'auto', mt: '10px', backgroundColor: '#BAB2B5', borderRadius: 3,
       }}
     >
+      <ListItem key={1} style={{ justifyContent: 'center' }}>
+        <TextField
+          sx={{
+            backgroundColor: '#EEE2DC', variant: 'filled', margin: 'none', width: '90%', size: 'small',
+          }}
+          InputProps={{
+            endAdornment: <SendIcon
+              style={{ cursor: 'pointer' }}
+              onClick={(e) => handleClick(e.target.value)} />,
+          }}
+          label="Leave a comment"
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </ListItem>
       <Stack
         spacing={2}
         p={2}
@@ -58,22 +74,6 @@ function TrailComments({ comments }) {
             </ListItem>
           ))}
       </Stack>
-      <ListItem key={1} style={{ justifyContent: 'center' }}>
-        <TextField
-          sx={{
-            backgroundColor: '#EEE2DC', variant: 'filled', margin: 'none', width: '90%', size: 'small',
-          }}
-          InputProps={{
-            endAdornment: <SendIcon
-              style={{ cursor: 'pointer' }}
-              onClick={(e) => handleClick(e.target.value)} />,
-          }}
-          label="Leave a comment"
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-      </ListItem>
     </Stack>
   );
 }

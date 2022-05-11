@@ -46,13 +46,13 @@ function Top({ trail }) {
         <CardContent sx={{ cursor: 'pointer' }}>
           <Typography
             sx={{
-              fontSize: 10, fontFamily: 'inherit', color: '#EEE2DC', display: 'flex', alignItems: 'center', borderBottom: '1px solid #BAB2B5', width: '60%',
+              fontSize: 12, fontFamily: 'inherit', color: '#EEE2DC', display: 'flex', alignItems: 'center', borderBottom: '1px solid #BAB2B5', width: '60%',
             }}
             display="inline"
             gutterBottom
           >
             {trail.name}
-            <StyledRating sx={{ ml: 1 }} precision={0.25} emptyIcon={<HikingIcon style={{ fontSize: '12px' }} />} icon={<HikingIcon style={{ fontSize: '12px' }} />} value={trail.ratings.average} readOnly />
+            <StyledRating sx={{ ml: 1 }} precision={0.25} emptyIcon={<HikingIcon style={{ fontSize: '14px' }} />} icon={<HikingIcon style={{ fontSize: '14px' }} />} value={trail.ratings.average} readOnly />
           </Typography>
           <Typography
             sx={{

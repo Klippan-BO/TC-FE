@@ -43,6 +43,7 @@ function TrailPage({ id }) {
             rowGap: '10px',
             border: 0,
             borderColor: 'red',
+            maxHeight: '100vh',
           }}
         >
           <TrailCarousel photos={trail.photos} />
