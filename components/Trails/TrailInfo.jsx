@@ -8,7 +8,7 @@ function TrailInfo({
   name, description,
   ratings, length,
   elevation, id,
-  lat, lng, trail
+  lat, lng, trail,
 }) {
   return (
     <Stack

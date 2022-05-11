@@ -20,15 +20,15 @@ const StyledRating = styled(Rating)({
   },
 });
 const labels = {
-  0.5: 'Lazy Hill',
-  1: 'Useless+',
+  0.5: 'The DriveWay Incline',
+  1: 'a steeper driveway?',
   1.5: 'Poor',
   2: 'Poor+',
   2.5: 'Ok',
-  3: 'Ok+',
-  3.5: 'Good',
-  4: 'Good+',
-  4.5: 'Excellent',
+  3: 'Matterhorn',
+  3.5: 'Fuji',
+  4: 'K2',
+  4.5: 'Mount Kilimanjaro',
   5: 'Everest',
 };
 
