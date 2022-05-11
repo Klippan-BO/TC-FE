@@ -48,11 +48,11 @@ function Leaderboard() {
             }}
           >
             <Paper sx={{
-              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '4px', border: '1.5px solid #AC3B61', marginTop: '5px',
+              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '6px', border: '1.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', height: '60vh', textAlign: 'center',
             }}
             >
               <Typography style={{
-                textAlign: 'center', paddingTop: '', fontFamily: 'inherit', fontWeight: '450', display: 'inline-block'
+                display: 'inline', fontFamily: 'inherit', fontWeight: '450', backgroundColor: '#EDC7B7', border: '4px solid #BAB2B5', borderRadius: '15px', padding: '3px', color: '#123C69',
               }}
               >
                 Top 5 Trails in Your Area

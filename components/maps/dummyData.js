@@ -53,7 +53,7 @@ const dummyTrails = [
     elevation: '935',
     google_url: 'https://goo.gl/maps/QptjVk4XzvysMJzf9',
     ratings: {
-      average: 5.00,
+      average: 4.5,
       beauty: 2.36,
       nature: 2.92,
       difficulty: 3.8,
