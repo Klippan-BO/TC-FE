@@ -10,13 +10,10 @@ function Nav() {
       <div className={navStyles.navContainer}>
         <ul>
           <li>
-            <Link href="/">TC</Link>
+            <Link href="#">TC</Link>
           </li>
           <li>
             <Link href="/map">Map</Link>
-          </li>
-          <li>
-            <Link href="/trail">Trail</Link>
           </li>
           <li>
             <Link href="/user">Profile</Link>

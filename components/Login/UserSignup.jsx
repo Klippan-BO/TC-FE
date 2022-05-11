@@ -39,8 +39,6 @@ export default function UserSignup({ setNewUser }) {
         ...currentUser,
         photo,
         email,
-        bio,
-        username,
         id,
       });
 
