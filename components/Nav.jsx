@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
+import {useRouter} from 'next/router'
 import navStyles from '../styles/Nav.module.css';
 import { useAuth } from '../context/AuthContext';
-import {useRouter} from 'next/router'
+import Leaderboard from './Leaderboard';
 
 function Nav() {
   const { currentUser, signOutUser } = useAuth();
@@ -25,8 +26,13 @@ function Nav() {
           </li>
           <li>
             <Link href={{pathname:'/[username]',query:{username:currentUser.displayName} }}
-            
+
             >Profile</Link>
+          </li>
+          <li>
+            <span className={navStyles.leaderboard}>
+              <Leaderboard />
+            </span>
           </li>
           <li
             onClick={signOutUser}
