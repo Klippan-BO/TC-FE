@@ -15,15 +15,17 @@ export default function UserLogin({ setNewUser }) {
 
     try {
       // POST to server to check if user exists
-      const response = await fetch(
-        'http://localhost:3005/users/login',
-        {
-          body: email,
-          method: 'POST',
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+      });
 
-      const { id } = response;
+      const data = await response.json();
+
+      const { id } = data;
       setCurrentUser({
         ...currentUser,
         id,

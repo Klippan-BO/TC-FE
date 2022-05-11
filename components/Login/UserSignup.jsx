@@ -23,16 +23,18 @@ export default function UserSignup({ setNewUser }) {
 
     // post with userDetails
     try {
-      const response = await fetch(
-        'http://localhost:3005/users/signup',
-        {
-          body: userDetails,
-          method: 'POST',
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        body: JSON.stringify({ userDetails }),
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+      });
+
+      const data = await response.json();
 
       // store the id of the user
-      const { id } = response;
+      const { id } = data;
       setCurrentUser({
         ...currentUser,
         photo,
