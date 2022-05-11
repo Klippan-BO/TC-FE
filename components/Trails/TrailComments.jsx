@@ -16,6 +16,11 @@ function TrailComments({ comments }) {
     }
   };
 
+  const handleClick = () => {
+    setComments(comments.concat({ username: 'User', body: newComment, timestamp: Date.now()}));
+    setNewComment('');
+  };
+
   return (
     <Stack
       sx={{
@@ -49,10 +54,14 @@ function TrailComments({ comments }) {
           sx={{
             backgroundColor: '#EEE2DC', variant: 'filled', margin: 'none', width: '90%', size: 'small',
           }}
-          InputProps={{ endAdornment: <SendIcon /> }}
+          InputProps={{
+            endAdornment: <SendIcon
+              style={{ cursor: 'pointer' }}
+              onClick={(e) => handleClick(e.target.value)} />,
+          }}
           label="Leave a comment"
           value={newComment}
-          onChange={() => setNewComment(event.target.value)}
+          onChange={(e) => setNewComment(e.target.value)}
           onKeyDown={handleKeyDown}
         />
       </ListItem>

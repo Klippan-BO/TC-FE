@@ -42,7 +42,10 @@
   cursor: pointer;
 }
 
-
-
+.leaderboard {
+  position: absolute;
+  right: 100px;
+  display: inline-block;
+}
 
 
