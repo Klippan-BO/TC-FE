@@ -9,8 +9,6 @@ function Nav() {
   const { currentUser, signOutUser } = useAuth();
   const router=useRouter();
 
-  console.log("currentUser",currentUser);
-
   return (
     <nav className={navStyles.nav}>
       <div className={navStyles.navContainer}>

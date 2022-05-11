@@ -23,32 +23,33 @@ export default function UserLogin({ setNewUser }) {
         },
       });
 
-      const data = await response.json();
+      if (response.ok) {
+        const data = await response.json();
 
-      const { id } = data;
-      setCurrentUser({
-        ...currentUser,
-        id,
-        photo: photoURL,
-        email,
-      });
+        const { id } = data;
+        setCurrentUser({
+          ...currentUser,
+          id,
+          photo: photoURL,
+          email,
+        });
 
-      console.log('Existing user found');
+        // construct return url to redirect user after login
+        const returnUrl = router.query.returnUrl || '/map';
+        router.push(returnUrl);
+      } else {
+        // hit here when the user does not exist in the db
+        setCurrentUser({
+          ...currentUser,
+          photo: photoURL,
+          email,
+        });
 
-      // construct return url to redirect user after login
-      const returnUrl = router.query.returnUrl || '/map';
-      router.push(returnUrl);
+        // flip newUser to true
+        setNewUser((prevState) => !prevState);
+      }
     } catch (error) {
-      // hit here when the user does not exist in the db
-      console.log('New user found');
-      setCurrentUser({
-        ...currentUser,
-        photo: photoURL,
-        email,
-      });
-
-      // flip newUser to true
-      setNewUser((prevState) => !prevState);
+      console.log('Error posting to db in login: ', error);
     }
   }
 

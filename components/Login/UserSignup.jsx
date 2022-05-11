@@ -31,20 +31,24 @@ export default function UserSignup({ setNewUser }) {
         },
       });
 
-      const data = await response.json();
+      if (response.ok) {
+        const data = await response.json();
 
-      // store the id of the user
-      const { id } = data;
-      setCurrentUser({
-        ...currentUser,
-        photo,
-        email,
-        id,
-      });
+        // store the id of the user
+        const { id } = data;
+        setCurrentUser({
+          ...currentUser,
+          photo,
+          email,
+          id,
+        });
 
-      const returnUrl = router.query.returnUrl || '/map';
-      setNewUser((prevState) => !prevState);
-      router.push(returnUrl);
+        const returnUrl = router.query.returnUrl || '/map';
+        setNewUser((prevState) => !prevState);
+        router.push(returnUrl);
+      } else {
+        console.log('404\'d to post user details on signup');
+      }
     } catch (error) {
       console.log('Error signing up');
     }
