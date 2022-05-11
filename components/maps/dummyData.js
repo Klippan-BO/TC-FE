@@ -679,4 +679,4 @@ const dummyTrails = [
   }
 ]
 
-export default dummyData;
+export default dummyTrails;
