@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Style from '../../styles/Home.module.css';
 import MAPSAPIKEY from '../../config';
 
 export default function Search() {
@@ -15,7 +15,7 @@ export default function Search() {
         },
       })
         .then((res) => {
-          //console.log(res.data.results[0].geometry.location);
+          // console.log(res.data.results[0].geometry.location);
         })
         .catch((err) => {
           console.log(err);
@@ -24,14 +24,14 @@ export default function Search() {
   };
 
   return (
-    <div>
+    <div className={Style.search}>
       <input
         type="text"
         placeholder="Enter zipcode"
         onChange={(e) => setzipCode(e.target.value)}
         onKeyDown={getGeo}
       />
-      <button onClick={getGeo}> Find </button>
+      <button onClick={getGeo} type="button" className={Style.searchButton}> Find </button>
     </div>
   );
 }
