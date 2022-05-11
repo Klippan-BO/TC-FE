@@ -30,7 +30,7 @@ function Leaderboard() {
 
   return (
     <div>
-      <div ref={anchorRef} onClick={handleToggle}> Leaderboard </div>
+      <div ref={anchorRef} onClick={handleToggle} > Leaderboard </div>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
@@ -48,7 +48,7 @@ function Leaderboard() {
             }}
           >
             <Paper sx={{
-              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '6px', border: '1px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', height: '60vh', textAlign: 'center',
+              width: '100%', backgroundColor: '#EEE2DC', borderRadius: '6px', borderTop: '18px solid #AC3B61', borderLeft: '0.5px solid #AC3B61', borderRight: '0.5px solid #AC3B61', borderBottom: '0.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', maxHeight: '60vh', height: 'auto', textAlign: 'center',
             }}
             >
               <Typography style={{

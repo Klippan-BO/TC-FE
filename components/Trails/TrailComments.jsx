@@ -37,11 +37,13 @@ function TrailComments({ comments }) {
       >
         {trailComments.map((comment) =>
           (
-            <ListItem sx={{
-              wordWrap: 'break-word', backgroundColor: '#123C69', color: '#EEE2DC', m: 'auto', padding: '15px', borderRadius: '8px',
-            }}
+            <ListItem
+              sx={{
+                wordWrap: 'break-word', backgroundColor: '#123C69', color: '#EEE2DC', m: 'auto', padding: '15px', borderRadius: '8px',
+              }}
+              key={trailComments.indexOf(comment)}
             >
-              <div key={trailComments.indexOf(comment)}>
+              <div>
                 <div>{comment.username}</div>
                 <div style={{ marginBottom: '10px' }}>{moment(comment.timestamp).format('MMM Do YY')}</div>
                 <div style={{ wordBreak: 'break-all' }}>{comment.body }</div>
@@ -69,8 +71,8 @@ function TrailComments({ comments }) {
   );
 }
 
-TrailComments.propTypes = {
-  comments: PropTypes.object.isRequired,
-};
+// TrailComments.propTypes = {
+//   comments: PropTypes.object.isRequired,
+// };
 
 export default TrailComments;

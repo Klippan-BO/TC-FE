@@ -22,7 +22,7 @@ function Top({ trail }) {
     <Card
       sx={{
         m: 1, backgroundColor: '#123C69', borderRadius: '20px', border: '3px solid #bab2b5', ':hover': {
-          transform: 'scale3d(1.05, 1.05, 1)',
+          transform: 'scale(1.03)',
         },
       }}
     >
@@ -40,7 +40,7 @@ function Top({ trail }) {
           </Typography>
           <Typography
             sx={{
-              fontSize: 10, fontFamily: 'inherit', color: '#EEE2DC', width: '70%',
+              fontSize: 10, fontFamily: 'inherit', color: '#EEE2DC', width: '70%', wordWrap: 'break-word',
             }}
             align="left"
           >
