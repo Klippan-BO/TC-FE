@@ -1,6 +1,8 @@
 import React from 'react';
 import Chip from '@mui/material/Chip';
 
+import PropTypes from 'prop-types';
+
 export default function Difficulty({ difficulty }) {
   if (difficulty < 1.67) {
     return (
@@ -26,3 +28,7 @@ export default function Difficulty({ difficulty }) {
     />
   );
 }
+
+Difficulty.propTypes = {
+  difficulty: PropTypes.number.isRequired,
+};
