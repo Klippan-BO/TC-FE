@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-filename-extension */
@@ -30,7 +32,16 @@ function Leaderboard() {
 
   return (
     <div>
-      <div ref={anchorRef} onClick={handleToggle} > Leaderboard </div>
+      <div
+        ref={anchorRef}
+        onClick={handleToggle}
+        style={{
+          color: open === false ? null : '#123C69',
+          borderBottom: open === false ? null : '3px solid #BAB2B5',
+        }}
+      >
+        Leaderboard
+      </div>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
@@ -52,11 +63,13 @@ function Leaderboard() {
             }}
             >
               <Typography style={{
-                display: 'inline', fontFamily: 'inherit', fontWeight: '450', backgroundColor: '#EDC7B7', border: '4px solid #BAB2B5', borderRadius: '15px', padding: '3px', color: '#123C69',
+                display: 'inline', fontFamily: 'inherit', fontWeight: '450', backgroundColor: '#EDC7B7', border: '4px solid #BAB2B5', borderRadius: '15px', padding: '4.5px', color: '#123C69',
               }}
               >
                 Top 5 Trails in Your Area
               </Typography>
+              <br />
+              <small style={{ fontFamily: 'inherit', fontSize: '10px' }}> Click on a Trail to View Details</small>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={open}
