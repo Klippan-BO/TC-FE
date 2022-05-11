@@ -25,7 +25,9 @@ function TrailComments() {
         }}
       >
         {sample_Data.trail1.comments.map((comment) =>(
-          <ListItem sx={{
+          <ListItem
+            key={JSON.stringify(comment)}
+            sx={{
             wordWrap: 'break-word', backgroundColor: '#123C69', color: '#EEE2DC', m: 'auto', padding: '15px', borderRadius: '8px',
           }}
           >

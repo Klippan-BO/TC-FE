@@ -7,24 +7,25 @@ import PropTypes from 'prop-types';
 import TrailInfo from './TrailInfo';
 import TrailComments from './TrailComments';
 import TrailCarousel from './TrailCarousel';
+import EventRoundedIcon from '@mui/icons-material/EventRounded';
+import IconButton from '@mui/material/IconButton';
 
 function TrailPage({ id }) {
-  const [trail, setTrail] = useState(null)
-  const [isLoading, setLoading] = useState(false)
+  const [trail, setTrail] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     fetch(`http://localhost:3000/api/trails?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        setTrail(data)
-        setLoading(false)
-      })
-  }, [])
+        setTrail(data);
+        setLoading(false);
+      });
+  }, [id]);
 
-  if (isLoading) return <p>Loading...</p>
-  if (!trail) return <p>No profile data</p>
+  if (isLoading) return <p>Loading...</p>;
+  if (!trail) return <p>No profile data</p>;
   return (
     <div>
       <Head>
@@ -32,7 +33,7 @@ function TrailPage({ id }) {
       </Head>
       <Container
         sx={{
-          minWidth: '83vw',
+          minWidth: '63vw',
           backgroundColor: '#123C69',
         }}
       >
@@ -47,8 +48,15 @@ function TrailPage({ id }) {
           <TrailCarousel photos={trail.photos} />
           <TrailInfo
             name={trail.name}
+            id={trail.id}
+            length={trail.length}
+            lat={trail.lat}
+            lng={trail.lng}
+            elevation={trail.elevation}
+            google_url={trail.google_url}
             description={trail.description}
             ratings={trail.ratings}
+            trail={trail}
           />
           <TrailComments comments={trail.comments} />
         </Stack>
@@ -58,7 +66,7 @@ function TrailPage({ id }) {
 }
 
 TrailPage.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default TrailPage;
