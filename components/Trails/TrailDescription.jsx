@@ -22,39 +22,15 @@ function TrailDescription({ name, description }) {
         color: '#EEE2DC',
       }}
     >
-      <Stack
-        direction="row"
+      <Typography
+        onClick={()=>console.log('yo')}
+        sx={{
+          fontSize: 30,
+          margin: 1,
+        }}
       >
-        <Typography
-          sx={{
-            fontSize: 50,
-            margin: 1,
-          }}
-        >
-          {name}
-        </Typography>
-        <IconButton
-          // children={CalendarTodayIcon}
-          onClick={handleClick}
-        >
-          <CalendarTodayIcon
-            sx={{
-              fontSize: '50px',
-              color: 'primary.main',
-            }}
-          />
-        </IconButton>
-        {/* <Button>
-          add signin
-        </Button> */}
-        {/* <GoogleLogin
-          clientId="553893922788-mu7p28kt19digrrma01h2m2bdbr9ralo.apps.googleusercontent.com"
-          buttonText="Log in with Google"
-          cookiePolicy="single_host_origin"
-          scope="profile"
-        /> */}
-      </Stack>
-
+        {name}
+      </Typography>
       <Typography
         sx={{
           fontSize: 16,

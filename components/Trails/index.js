@@ -9,19 +9,19 @@ import TrailComments from './TrailComments';
 import TrailCarousel from './TrailCarousel';
 
 function TrailPage({ id }) {
-  const [trail, setTrail] = useState(null)
+  const [trail, setTrail] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    console.log(id);
     fetch(`http://localhost:3000/api/trails?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setTrail(data);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   if (isLoading) return <p>Loading...</p>;
   if (!trail) return <p>No profile data</p>;

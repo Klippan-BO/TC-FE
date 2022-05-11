@@ -260,6 +260,7 @@ function TrailCarousel() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         sx={{
+          background: '#0000007f ',
         }}
       >
         <ImageGallery photos={photos} />

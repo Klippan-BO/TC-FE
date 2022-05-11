@@ -29,11 +29,6 @@ function TrailInfo({ name, description, ratings }) {
 }
 
 TrailInfo.propTypes = {
-  // trail: PropTypes.oneOfType([
-  //   PropTypes.string.isRequired,
-  //   PropTypes.object.isRequired,
-  //   PropTypes.array.isRequired,
-  // ]).isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };

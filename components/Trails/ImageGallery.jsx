@@ -24,10 +24,9 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '80vw',
-  maxWidth: '800px',
+  maxWidth: '1000px',
   height: '80vh',
-  overflowY: 'scroll',
-  // overflow: 'hidden',
+  overflowY: 'auto',
 };
 
 export default function ImageGallery(props) {
@@ -40,28 +39,29 @@ export default function ImageGallery(props) {
           alignContent: 'center',
           justifyContent: 'flex-start',
           alignItems: 'center',
+
         }}
       >
         {photos.map((photo) => (
           <Box
             sx={{
-              // width: '400px',
-
               alignItem: 'center',
               justifyContent: 'center',
               position: 'relative',
               margin: '5px',
+
             }}
           >
             <img
               src={photo}
+              width='900px'
               objectFit="contain"
             />
             <Button
               sx={{
                 position: 'absolute',
                 bottom: '20px',
-                right: '10%',
+                right: '10px',
                 background: '#EEE2DC;',
                 borderRadius: 10,
                 padding: 1,
