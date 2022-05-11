@@ -38,7 +38,7 @@ export default function Search({ handleSearch }) {
             }
           }}
         />
-        <button type="submit"> Find </button>
+        <button className={Style.searchButton} type="submit"> Find </button>
       </form>
     </div>
   );

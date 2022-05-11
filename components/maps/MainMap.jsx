@@ -4,9 +4,8 @@ import GoogleMapReact from 'google-map-react';
 import PropTypes from 'prop-types';
 import Marker from './Marker';
 import MAPSAPIKEY from '../../config';
-// eslint-disable-next-line import/no-named-as-default
 import Search from './Search';
-import mapQuadrants from './mapLogic';
+import apiLoaded from './mapLogic';
 import Styles from '../../styles/Home.module.css';
 
 // REPLACE WITH REAL FETCH DATA
@@ -34,11 +33,9 @@ export default function MainMap(props) {
 
   const [bounds, setBounds] = useState(defaultBounds);
   const [trails, setTrails] = useState([]);
-
   const { height, width } = props;
 
   const loadTrails = () => {
-    // eslint-disable-next-line no-console
     console.log('fetching trails');
     // setLoading(true);
     const {
@@ -72,16 +69,16 @@ export default function MainMap(props) {
   });
   return (
     <div style={containerStyle}>
-      <div className="search">
-        <Search handleSearch={handleSearch} />
-      </div>
       <div className={Styles.map} style={{ height: `${height}%`, width: `${width}%` }}>
+        <div className="search">
+          <Search handleSearch={handleSearch} />
+        </div>
         <GoogleMapReact
           bootstrapURLKeys={{ key: MAPSAPIKEY }}
-          defaultCenter={defaultCenter}
-          defaultZoom={10}
+          center={defaultCenter}
+          zoom={12}
           yesIWantToUseGoogleMapApiInternals
-          onGoogleApiLoaded={({ map, maps }) => mapQuadrants(map, maps, trails)}
+          onGoogleApiLoaded={({ map, maps }) => apiLoaded(map, maps, trails)}
         >
           {trails.map((trail) => {
             const { id, lat, lng } = trail;

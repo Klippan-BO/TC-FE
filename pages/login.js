@@ -7,7 +7,7 @@ function login() {
     <div>
       <LoginPage />
     </div>
-  )
+  );
 }
 
 export default login;

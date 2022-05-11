@@ -9,7 +9,7 @@ function map() {
       <Head>
         <title>TC - Map</title>
       </Head>
-      <MainMap height={75} width={85} />
+      <MainMap height={90} width={85} />
     </div>
   );
 }
