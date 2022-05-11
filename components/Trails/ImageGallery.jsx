@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import PropTypes from 'prop-types';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import Button from '@mui/material/Button';
+import { upvotePhoto } from './TrailPhotosController';
 
 function srcset(image, size, rows = 1, cols = 1) {
   return {
@@ -31,6 +32,9 @@ const style = {
 
 export default function ImageGallery(props) {
   const { photos } = props;
+  const handleUpvote = (id) => {
+    upvotePhoto(id);
+  };
   return (
     <Box sx={style}>
       <Stack
@@ -58,6 +62,7 @@ export default function ImageGallery(props) {
               objectFit="contain"
             />
             <Button
+              onClick={(e) => { e.preventDefault(); handleUpvote(photo.id); }}
               sx={{
                 position: 'absolute',
                 bottom: '20px',

@@ -13,12 +13,23 @@ export default function MyNotification({
   const closePopUp = () => {
     closeNotif();
   };
-  const handleAccept = () => {
-
+  const handleAccept = (e) => {
+    fetch('api/users',{
+      method:'PATCH',
+      body:JSON.stringify({userId:e.userID,
+        action:"accept"
+      })
+    })
   };
 
-  const handleReject = () => {
 
+  const handleReject = (e) => {
+    fetch('api/users',{
+      method:'PATCH',
+      body:JSON.stringify({userId:e.userID,
+        action:"deny"
+      })
+    })
   };
 
   return (
@@ -59,9 +70,10 @@ export default function MyNotification({
             <div className={style.popUpBtnWrap}>
               <ThumbUpIcon
                 className={style.request}
-                onClick={handleAccept}
+                onClick={()=>{handleAccept(person)}}
+                receipient={person.id}
               />
-              <ThumbDownIcon className={style.request} onClick={handleReject} />
+              <ThumbDownIcon className={style.request} onClick={()=>{handleReject(person)}} recipient={person.id} />
             </div>
           </div>
         ))}

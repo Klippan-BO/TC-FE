@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+// eslint-disable-next-line no-unused-vars
 const getBounds = (map, maps) => {
   const { Ab, Va } = map.getBounds();
   return ({
@@ -127,6 +128,7 @@ const updateClosestTrails = (map, maps) => {
     if (foundResults) {
       map.fitBounds(bounds);
     } else {
+      // eslint-disable-next-line no-alert
       alert(`No trails found within ${rangeLimit}km!`);
     }
   });
