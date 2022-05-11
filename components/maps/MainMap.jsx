@@ -1,14 +1,13 @@
-import React, { useEffect, useRef } from 'react';
-import axios from 'axios';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
 import MAPSAPIKEY from '../../config';
 import Search from './Search';
-import mapQuadrants from './mapLogic';
+import apiLoaded from './mapLogic';
 
 // REPLACE WITH REAL FETCH DATA
-import trails from './dummyData';
-import dummyTrails from './dummyData';
+// import list from './dummyData';
 
 const containerStyle = {
   width: '90vw',
@@ -20,78 +19,68 @@ const defaultCenter = {
   lng: -122.41,
 };
 
-// CURRENT:
-// fx to obtain current map bounds
-
-// NEXT:
-// determine quadrant location rel to map bounds
-
-/* {AUTOCOMPLETE FEATURE}
-const mapAutoApi = 'https://maps.googleapis.com/maps/api/js';
-
-function loadAsyncScript(src) {
-  return new Promise((resolve) => {
-    const script = document.createElement('script');
-    Object.assign(script, {
-      type: 'text/javascript',
-      async: true,
-      src,
-    });
-    script.addEventListener('load', () => resolve(script));
-  });
-} */
-
-// PASS "lat" + "lng" PROPS TO MARKER
+const defaultBounds = {
+  nelat: 41.88953,
+  nelng: -112.47457,
+  swlat: 32.75912,
+  swlng: -124.07019,
+};
 
 export default function MainMap() {
-  /* autoComplete feature
-  const searchInput = useRef(null);
-  const initMapScript = () => {
-    if (window.google) {
-      return Promise.resolve();
-    }
-    const src = `${mapAutoApi}?key=${MAPSAUTOKEY}&libraries=places&v=weekly`;
-    return loadAsyncScript(src);
+  const hostURL = 'http://localhost:3000';
+
+  const [bounds, setBounds] = useState(defaultBounds);
+  const [trails, setTrails] = useState([]);
+
+  const loadTrails = () => {
+    console.log('fetching trails');
+    // setLoading(true);
+    const {
+      nelat, swlat, nelng, swlng,
+    } = bounds;
+    fetch(`${hostURL}/api/map?nelat=${nelat}&swlat=${swlat}&nelng=${nelng}&swlng=${swlng}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTrails(data);
+        // setLoading(false);
+        const event = new CustomEvent('newTrails', { detail: data });
+        document.dispatchEvent(event);
+      })
+      .catch((err) => console.log(err));
   };
 
-  const onChangeAddress = (autocomplete) => {
-    const location = autocomplete.getPlace();
-    console.log(location);
-  };
-  const initAutocomplete = () => {
-    if (!searchInput.current) return;
-
-    const autocomplete = new window.google.maps.places.Autocomplete(searchInput.current);
-    autocomplete.setFields(['address_component', 'geometry']);
-    autocomplete.addListener('place_changed', () => onChangeAddress(autocomplete));
-  };
+  useEffect(() => loadTrails(), []);
 
   useEffect(() => {
-    initMapScript().then(() => {
-      console.log('map loaded', window.google);
-    });
-  }, []);
+    loadTrails();
+  }, [bounds]);
 
-  initAutocomplete(); */
-  // getGeo();
+  const handleSearch = (latLng) => {
+    const event = new CustomEvent('locSearch', { detail: latLng });
+    document.dispatchEvent(event);
+  };
 
+  document.addEventListener('newBounds', (e) => {
+    const newBounds = e.detail;
+    setBounds(newBounds);
+  });
   return (
     <div style={containerStyle}>
       <div className="search">
-        {/* <input ref={searchInput} type="text" placeholder="Search location..." /> */}
-        <Search />
+        <Search handleSearch={handleSearch} />
       </div>
       <GoogleMapReact
         bootstrapURLKeys={{ key: MAPSAPIKEY }}
-        defaultCenter={defaultCenter}
-        defaultZoom={10}
+        center={defaultCenter}
+        zoom={12}
         yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => mapQuadrants(map, maps, trails)}
+        onGoogleApiLoaded={({ map, maps }) => apiLoaded(map, maps, trails)}
       >
         {trails.map((trail) => {
-          const { lat, lng } = trail;
+          const { id, lat, lng } = trail;
           return (
             <Marker
+              key={id}
               lat={lat}
               lng={lng}
               trail={trail}
