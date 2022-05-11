@@ -1,6 +1,3 @@
-import axios from 'axios';
-import MAPSAPIKEY from '../../config';
-
 /* eslint-disable no-param-reassign */
 const getBounds = (map, maps) => {
   const { Ab, Va } = map.getBounds();
@@ -54,8 +51,8 @@ const calculateDist = (origin, point) => {
   const toRad = (deg) => ((deg * Math.PI) / 180);
   lat1 = toRad(lat1);
   lng1 = toRad(lng1);
-  lat2 = toRad(lat2);
-  lng2 = toRad(lng2);
+  lat2 = toRad(Number(lat2));
+  lng2 = toRad(Number(lng2));
 
   const dlat = lat2 - lat1;
   const dlng = lng2 - lng1;
@@ -74,44 +71,62 @@ const locSearch = (map, maps) => {
     map.panTo(origin);
     map.setZoom(11);
 
-    const { north: nelat, south: swlat, east: nelng, west: swlng } = getBounds(map);
-    // FETCH TO /api/trails/map as QUERY
+    const {
+      north: nelat, south: swlat, east: nelng, west: swlng,
+    } = getBounds(map);
+    const event = new CustomEvent('newBounds', {
+      detail: {
+        nelat, swlat, nelng, swlng,
+      },
+    });
+    document.dispatchEvent(event);
   });
 };
 
-const updateClosestTrails = (map, maps, trails) => {
+const updateClosestTrails = (map, maps) => {
   // CHANGE SEARCHLIMIT TO CHANGE NUMBER OF RESULTS
   const searchLimit = 5;
-  const rangeLimit = 30;
-  maps.event.addDomListener(document, 'locSearch', (e) => {
-    const origin = e.detail;
-    map.panTo(origin);
-    map.setZoom(11);
-
+  const rangeLimit = 45;
+  maps.event.addDomListener(document, 'newTrails', (e) => {
+    const trails = e.detail;
+    const origin = {
+      lat: map.getCenter().lat(),
+      lng: map.getCenter().lng(),
+    };
     const bounds = map.getBounds();
-    console.log(origin)
-    console.log(getBounds(map))
     const sortedTrails = trails.sort((a, b) => {
-      if (calculateDist(origin, a) < calculateDist(origin, b)) {
+      if (calculateDist(origin, { lat: a.lat, lng: a.lng })
+      < calculateDist(origin, { lat: b.lat, lng: b.lng })) {
         return -1;
       }
-      if (calculateDist(origin, a) > calculateDist(origin, b)) {
+      if (calculateDist(origin, { lat: a.lat, lng: a.lng })
+      > calculateDist(origin, { lat: b.lat, lng: b.lng })) {
         return 1;
       }
       return 0;
     });
 
     let foundResults = false;
-    for (let i = 0; i < searchLimit; i += 1) {
-      const { lat, lng } = sortedTrails[i];
-      if (calculateDist(origin, { lat, lng }) > rangeLimit) {
-        break;
+    if (sortedTrails.length) {
+      let length = searchLimit;
+      if (sortedTrails.length < searchLimit) {
+        length = sortedTrails.length;
       }
-      bounds.extend({ lat, lng });
-      foundResults = true;
+      for (let i = 0; i < length; i += 1) {
+        const point = {
+          lat: Number(sortedTrails[i].lat),
+          lng: Number(sortedTrails[i].lng),
+        };
+        if (calculateDist(origin, point) > rangeLimit) {
+          break;
+        }
+        bounds.extend(point);
+        foundResults = true;
+      }
     }
-    map.fitBounds(bounds);
-    if (!foundResults) {
+    if (foundResults) {
+      map.fitBounds(bounds);
+    } else {
       alert(`No trails found within ${rangeLimit}km!`);
     }
   });
@@ -119,6 +134,7 @@ const updateClosestTrails = (map, maps, trails) => {
 
 const apiLoaded = (map, maps, trails) => {
   mapQuadrants(map, maps, trails);
+  locSearch(map, maps);
   updateClosestTrails(map, maps, trails);
 };
 
