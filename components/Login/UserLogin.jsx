@@ -8,7 +8,6 @@ export default function UserLogin({ setNewUser }) {
   const router = useRouter();
   const { signInUser, setCurrentUser, currentUser } = useAuth();
 
-  // switch newUser to true in here on failed post
   async function handleLogin() {
     // sign in through Google Auth and store user result
     const user = await signInUser();
@@ -49,20 +48,6 @@ export default function UserLogin({ setNewUser }) {
       // flip newUser to true
       setNewUser((prevState) => !prevState);
     }
-
-    // .then((result) => {
-    //   // pull email and photoUrl from the Google result
-    //   const { user } = result;
-    //   setCurrentUser({
-    //     email: user.email,
-    //     photo: user.photoURL,
-    //   });
-
-    //   // construct return url - default to /map
-    //   const returnUrl = router.query.returnUrl || '/map';
-    //   router.push(returnUrl);
-    // })
-    // .catch((err) => console.log('error signing in with Google auth: ', err));
   }
 
   return (

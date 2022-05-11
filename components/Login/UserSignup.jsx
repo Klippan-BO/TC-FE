@@ -69,6 +69,7 @@ export default function UserSignup({ setNewUser }) {
           label="Username"
           variant="filled"
           value={username}
+          required
           onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
@@ -78,6 +79,7 @@ export default function UserSignup({ setNewUser }) {
           rows={4}
           variant="filled"
           value={bio}
+          required
           onChange={(e) => setBio(e.target.value)}
         />
       </Box>
