@@ -16,7 +16,7 @@ function TrailInfo({
       sx={{
         backgroundColor: '#EEE2DC',
         padding: 2,
-        borderRadius: '10px',
+        borderRadius: '8px',
       }}
     >
       <Stack

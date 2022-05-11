@@ -49,6 +49,8 @@ function TrailDescription({
           width: '960x',
           backgroundColor: '#123C69',
           color: '#EEE2DC',
+          borderBottomLeftRadius: '15px',
+          borderTopLeftRadius: '15px',
         }}
       >
         <Stack
@@ -63,6 +65,9 @@ function TrailDescription({
             sx={{
               fontSize: 30,
               margin: 1,
+              borderBottom: '5px solid #EEE2DC',
+              ml: '3vh',
+              mt: 'vh',
             }}
           >
             {name}
@@ -94,6 +99,9 @@ function TrailDescription({
           sx={{
             fontSize: 16,
             margin: 1,
+            width: '60%',
+            wordWrap: 'break-word',
+            ml: '3vh',
           }}
         >
           {description}

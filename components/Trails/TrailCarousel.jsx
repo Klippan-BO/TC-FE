@@ -17,6 +17,7 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import ImageGallery from './ImageGallery';
 import Typography from '@mui/material/Typography';
+import BookmarksIcon from '@mui/icons-material/Bookmarks';
 
 const sample_data = require('./sampleData');
 
@@ -170,7 +171,7 @@ function TrailCarousel(props) {
           zIndex: 2,
         }}
       >
-        <StarRateIcon
+        <BookmarksIcon
           sx={{
             fontSize: '60px',
             color: '#EEE2DC',

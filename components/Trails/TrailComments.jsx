@@ -6,6 +6,7 @@ import { Stack, ListItem, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 function TrailComments({ comments }) {
   const [trailComments, setComments] = useState(comments);
@@ -22,6 +23,10 @@ function TrailComments({ comments }) {
     setComments(comments.concat({ username: 'User', body: newComment, timestamp: Date.now()}));
     setNewComment('');
   };
+
+  const handleSubmit = () => {
+    
+  }
 
   return (
     <Stack
