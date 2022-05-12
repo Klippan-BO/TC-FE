@@ -22,10 +22,10 @@ import MiniMap from '../maps/MiniMap';
 // import { createEvent } from './createEvent';
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
-    color: '#ff6d75',
+    color: '#EDC7B7',
   },
-  '& .MuiRating-iconHover': {
-    color: '#ff3d47',
+  '& .MuiRating-iconEmpty': {
+    color: 'white',
   },
 });
 
@@ -47,13 +47,18 @@ function TrailDescription({
           width: '960x',
           backgroundColor: '#123C69',
           color: '#EEE2DC',
+          borderRadius: '15px',
         }}
       >
         <Stack
           direction="row"
           sx={{
             justifyContent: 'space-between',
+            display: 'flex',
             alignItems: 'center',
+            borderTop: '20px solid #AC3B61',
+            borderTopLeftRadius: '15px',
+            borderTopRightRadius: '15px',
           }}
         >
           <Stack
@@ -63,7 +68,11 @@ function TrailDescription({
               onClick={() => console.log('yo')}
               sx={{
                 fontSize: 30,
-                margin: 1,
+                fontWeight: 500,
+                borderBottom: '5px solid #EDC7B7',
+                ml: '3vh',
+                mt: '3vh',
+                fontFamily: 'inherit',
               }}
             >
               {name}
@@ -73,6 +82,7 @@ function TrailDescription({
                 sx={{
                   fontSize: 24,
                   margin: 1,
+                  ml: '3vh',
                 }}
               >
                 {`${length} miles`}
@@ -80,12 +90,11 @@ function TrailDescription({
               <StyledRating
                 name="read-only"
                 readOnly
-                value={length}
+                value={length / 2}
                 size="large"
-                max={Math.ceil(length)}
                 precision={0.25}
-                icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
-                emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
+                icon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
+                emptyIcon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
               />
             </Stack>
           </Stack>
@@ -103,6 +112,8 @@ function TrailDescription({
                   color: 'primary.main',
                   background: '#EEE2DC',
                   borderRadius: '10px',
+                  marginRight: '20px',
+                  marginTop: '15px',
                 }}
               />
             </IconButton>
@@ -112,6 +123,17 @@ function TrailDescription({
           sx={{
             fontSize: 16,
             margin: 1,
+            width: '60%',
+            wordWrap: 'break-word',
+            ml: '3vh',
+            mt: '30px',
+            backgroundColor: '#EEE2DC',
+            color: '#123C69',
+            padding: '8px',
+            fontWeight: '700',
+            border: '3px solid #BAB2B5',
+            borderRadius: '10px',
+            fontFamily: 'inherit',
           }}
         >
           {description}
@@ -131,7 +153,7 @@ function TrailDescription({
               padding: 1,
             }}
           >
-            <Typography sx={{ fontSize: '24px', color: '#EEE2DC' }}>Show Map</Typography>
+            <Typography sx={{ fontSize: '24px', color: '#EEE2DC', fontFamily: 'inherit', ml: '3vh' }}>Show Map</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <MiniMap
