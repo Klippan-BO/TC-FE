@@ -49,7 +49,7 @@ export default function MainMap() {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => loadTrails(), []);
+  // useEffect(() => loadTrails(), []);
 
   useEffect(() => {
     loadTrails();
@@ -60,6 +60,7 @@ export default function MainMap() {
     document.dispatchEvent(event);
   };
 
+  // document.removeEventListener('newBounds');
   document.addEventListener('newBounds', (e) => {
     const newBounds = e.detail;
     setBounds(newBounds);

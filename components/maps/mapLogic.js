@@ -87,6 +87,7 @@ const updateClosestTrails = (map, maps) => {
   // CHANGE SEARCHLIMIT TO CHANGE NUMBER OF RESULTS
   const searchLimit = 5;
   const rangeLimit = 45;
+  // document.removeEventListener('newTrails');
   maps.event.addDomListener(document, 'newTrails', (e) => {
     const trails = e.detail;
     const origin = {
