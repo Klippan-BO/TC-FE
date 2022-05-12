@@ -11,14 +11,7 @@ import Rating from '@mui/material/Rating';
 import HikingIcon from '@mui/icons-material/Hiking';
 import TrailAddEvent from './TrailAddEvent';
 // import { createEvent } from './createEvent';
-const StyledRating = styled(Rating)({
-  '& .MuiRating-iconFilled': {
-    color: '#ff6d75',
-  },
-  '& .MuiRating-iconHover': {
-    color: '#ff3d47',
-  },
-});
+
 const labels = {
   0.5: 'The DriveWay Incline',
   1: 'a steeper driveway?',
@@ -37,9 +30,14 @@ function TrailDescription({
   length, lat, lng, id, elevation,
 }) {
   const [eventModal, setEventModal] = useState(false);
-  // const handleClick = () => {
-
-  // };
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: '#EDC7B7',
+    },
+    '& .MuiRating-iconEmpty': {
+      color: 'white',
+    },
+  });
 
   return (
     <>
@@ -49,20 +47,33 @@ function TrailDescription({
           width: '960x',
           backgroundColor: '#123C69',
           color: '#EEE2DC',
+          borderBottomLeftRadius: '15px',
+          borderTopLeftRadius: '15px',
+          borderTopRightRadius: '15px',
+          borderBottomRightRadius: '15px',
+
         }}
       >
         <Stack
           direction="row"
           sx={{
             justifyContent: 'space-between',
+            display: 'flex',
             alignItems: 'center',
+            borderTop: '20px solid #AC3B61',
+            borderTopLeftRadius: '15px',
+            borderTopRightRadius: '15px',
           }}
         >
           <Typography
             onClick={() => console.log('yo')}
             sx={{
               fontSize: 30,
-              margin: 1,
+              fontWeight: 500,
+              borderBottom: '5px solid #EDC7B7',
+              ml: '3vh',
+              mt: '3vh',
+              fontFamily: 'inherit',
             }}
           >
             {name}
@@ -70,11 +81,11 @@ function TrailDescription({
           <StyledRating
             name="read-only"
             readOnly
-            value={length}
+            value={length / 2}
             size="large"
             precision={0.25}
-            icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
-            emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
+            icon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
+            emptyIcon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
           />
           <Typography sx={{ ml: 2, fontSize: 24 }}>{labels[length]}</Typography>
           <IconButton
@@ -86,6 +97,8 @@ function TrailDescription({
                 color: 'primary.main',
                 background: '#EEE2DC',
                 borderRadius: '10px',
+                marginRight: '20px',
+                marginTop: '15px',
               }}
             />
           </IconButton>
@@ -94,6 +107,17 @@ function TrailDescription({
           sx={{
             fontSize: 16,
             margin: 1,
+            width: '60%',
+            wordWrap: 'break-word',
+            ml: '3vh',
+            mt: '30px',
+            backgroundColor: '#EEE2DC',
+            color: '#123C69',
+            padding: '8px',
+            fontWeight: '700',
+            border: '3px solid #BAB2B5',
+            borderRadius: '10px',
+            fontFamily: 'inherit',
           }}
         >
           {description}
