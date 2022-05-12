@@ -24,6 +24,17 @@ function TrailComments({ comments }) {
     setNewComment('');
   };
 
+  const uploadPhoto = async (photo) => {
+    const results = await fetch('/api/photos/', {
+      method: 'POST',
+      body: JSON.stringify({ photo }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return results;
+  };
+
   return (
     <Stack
       sx={{
