@@ -5,25 +5,15 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import GoogleMapReact from 'google-map-react';
 import LandscapeIcon from '@mui/icons-material/Landscape';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-// import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import Select from '@mui/material/Select';
 import IconButton from '@mui/material/IconButton';
 import HikingIcon from '@mui/icons-material/Hiking';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import mapQuadrants from '../maps/mapLogic';
-import Marker from '../maps/Marker';
 import { InitGoogleCal, createCalendarEvent, handleAuthClick } from '../../hooks/useGoogleCal';
-
-// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-// import TimePicker from '@mui/x-date-pickers/TimePicker';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import MAPSAPIKEY from '../../config';
+import MiniMap from '../maps/MiniMap';
+import GoogleIcon from '@mui/icons-material/Google';
 
 const style = {
   position: 'absolute',
@@ -40,22 +30,21 @@ const style = {
 function TrailAddEvent(props) {
   const {
     name, description,
-    elevation, id,
+    // elevation, id,
     lat, lng,
-    trail,
+    setEventModal,
+    // trail,
   } = props;
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [startTime, setStartTime] = useState(Date.now());
-  const [endTime, setEndTime] = useState(Date.now());
-  const [friendsInvite, setFriendsInvite] = useState([]);
+  const [endTime, setEndTime] = useState();
+  // const [friendsInvite, setFriendsInvite] = useState([]);
   const [auth, setAuth] = useState(false);
   const handleTimeChange = (value) => { setStartTime(value); };
   const handleEndTimeChange = (value) => { setEndTime(value); };
   const handleSummary = (e) => { setSummary(e.target.value); };
   const handleBody = (e) => { setBody(e.target.value); };
-
-
   // const selectFriendsChange = (value) => {
   //   console.log(value);
   //   const updatedList = friendsInvite.push(value);
@@ -82,19 +71,20 @@ function TrailAddEvent(props) {
         reminders: {
           useDefault: false,
           overrides: [
-            {method: 'email', 'minutes': 24 * 60},
-            {method: 'popup', 'minutes': 30}
-          ]
+            { method: 'email', minutes: 24 * 60 },
+            { method: 'popup', minutes: 30 },
+          ],
         },
       };
-      console.log(event);
-      createCalendarEvent(event);
+      createCalendarEvent(event)
+        .then((result) => {
+          console.log(result);
+          setEventModal(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  };
-
-  const defaultCenter = {
-    lat: Number(lat),
-    lng: Number(lng),
   };
   return (
     <>
@@ -103,16 +93,14 @@ function TrailAddEvent(props) {
         <Typography id="modal-modal-title" variant="h4">
           {`Plan your next hike to - ${name}`}
         </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2, }}>
           {`Trail description - ${description}`}
         </Typography>
         <Stack>
-
           <Box
             direction="column"
             component="form"
             sx={{
-              '& > :not(style)': { m: 1 },
             }}
             noValidate
             autoComplete="off"
@@ -124,6 +112,7 @@ function TrailAddEvent(props) {
                   label="Summary"
                   variant="outlined"
                   fullWidth
+                  required
                   value={summary}
                   onChange={handleSummary}
                 />
@@ -132,30 +121,23 @@ function TrailAddEvent(props) {
                   label="Description"
                   fullWidth="true"
                   value={body}
+                  required
                   onChange={handleBody}
                   rows={12}
                   multiline
                 />
               </Stack>
               <Box sx={{ width: '55%', height: '400px' }}>
-                <GoogleMapReact
-                  bootstrapURLKeys={{ key: MAPSAPIKEY }}
-                  defaultCenter={defaultCenter}
-                  defaultZoom={12}
-                  yesIWantToUseGoogleMapApiInternals
-                  onGoogleApiLoaded={({ map, maps }) => mapQuadrants(map, maps, [trail])}
-                >
-                  {[trail].map((t) => (
-                    <Marker
-                      lat={Number(t.lat)}
-                      lng={Number(t.lng)}
-                      trail={t}
-                    />
-                  ))}
-                </GoogleMapReact>
+                <MiniMap
+                  lat={Number(lat)}
+                  lng={Number(lng)}
+                  zoom={13}
+                  height="100%"
+                  width="auto"
+                />
               </Box>
             </Stack>
-            <Stack direction="row" sx={{justifyContent: 'space-between'}} >
+            <Stack direction="row" sx={{ justifyContent: 'space-between', mt: 3 }}>
 
               <LocalizationProvider dateAdapter={AdapterDateFns}>
 
@@ -172,35 +154,30 @@ function TrailAddEvent(props) {
                   value={endTime}
                   onChange={handleEndTimeChange}
                   renderInput={(params) => <TextField {...params} />}
-                  />
+                />
               </LocalizationProvider>
-              {/* <LocalizationProvider dateAdapter={AdapterMoment}>
-              </LocalizationProvider> */}
-              {/* <FormHelperText>Gather your companions</FormHelperText> */}
-              {/* <Select
-                labelId="demo-simple-select-label"
-                label="invite your friends"
-                id="demo-simple-select"
-                onChange={selectFriendsChange}
-                >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select> */}
               <Box>
                 <IconButton
+                  type="submit"
                   onClick={handleAddEvent}
                 >
-                  <HikingIcon sx={{
-                    fontSize: '48px',
-                    color: 'primary.main',
-                  }}
-                  />
-                  <LandscapeIcon sx={{
-                    fontSize: '48px',
-                    color: 'primary.main',
-                  }}
-                  />
+                  {auth
+                    ? (
+                      <HikingIcon
+                        sx={{
+                          fontSize: '48px',
+                          color: 'primary.main',
+                        }}
+                      />
+                    )
+                    : (
+                      <GoogleIcon
+                        sx={{
+                          fontSize: '48px',
+                          color: 'primary.main',
+                        }}
+                      />
+                    )}
                 </IconButton>
               </Box>
             </Stack>
@@ -218,6 +195,7 @@ TrailAddEvent.propTypes = {
   id: PropTypes.number.isRequired,
   lat: PropTypes.string.isRequired,
   lng: PropTypes.string.isRequired,
+  setEventModal: PropTypes.func.isRequired,
 };
 
 export default TrailAddEvent;

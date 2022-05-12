@@ -14,7 +14,8 @@ export default function RouteGuard({children}) {
     const path = url.split('?')[0];
 
     onAuthStateChanged(auth, (user) => {
-      if (!user && !publicPaths.includes(path)) {
+      if (!currentUser?.id && !publicPaths.includes(path)) {
+        console.log('this is hit?')
         setAuthorized(false);
         setTimeout(() => {
           router.push({
@@ -22,7 +23,7 @@ export default function RouteGuard({children}) {
             query: { returnUrl: router.asPath },
           });
         }, 500);
-      } else if (user && publicPaths.includes(path)) {
+      } else if (currentUser?.id && publicPaths.includes(path)) {
         setAuthorized(true);
         router.push({
           pathname: '/map',

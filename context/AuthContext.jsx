@@ -12,7 +12,6 @@ import {
 // create context
 const AuthContext = React.createContext();
 
-
 // function to use context elsewhere in app
 export function useAuth() {
   return useContext(AuthContext);
@@ -25,8 +24,14 @@ export function AuthProvider({ children }) {
     email: null,
   });
 
-  function signInUser() {
-    return signInWithPopup(auth, provider);
+  async function signInUser() {
+    try {
+      const { user } = await signInWithPopup(auth, provider);
+      return user;
+    } catch (err) {
+      console.log('Error signing in with google aith: ', err);
+      return null;
+    }
   }
 
   function signOutUser() {

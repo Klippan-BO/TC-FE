@@ -3,12 +3,6 @@ import Head from 'next/head';
 import TrailPage from '../components/Trails';
 
 
-
-
-
-
-
-
 function trail() {
 
 

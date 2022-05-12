@@ -4,22 +4,53 @@ import Button from '@mui/material/Button';
 import styles from '../../styles/Login.module.css';
 import { useAuth } from '../../context/AuthContext';
 
-export default function UserLogin() {
+export default function UserLogin({ setNewUser }) {
   const router = useRouter();
-  const { signInUser, setCurrentUser } = useAuth();
+  const { signInUser, setCurrentUser, currentUser } = useAuth();
 
-  function handleLogin() {
-    signInUser()
-      .then((result) => {
-        const { user } = result;
+  async function handleLogin() {
+    // sign in through Google Auth and store user result
+    const user = await signInUser();
+    const { photoURL, email } = user;
+
+    try {
+      // POST to server to check if user exists
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        const { id } = data;
         setCurrentUser({
-          displayName: user.displayName,
-          email: user.email,
+          ...currentUser,
+          id,
+          photo: photoURL,
+          email,
         });
+
+        // construct return url to redirect user after login
         const returnUrl = router.query.returnUrl || '/map';
         router.push(returnUrl);
-      })
-      .catch((err) => console.log('error signing in: ', err));
+      } else {
+        // hit here when the user does not exist in the db
+        setCurrentUser({
+          ...currentUser,
+          photo: photoURL,
+          email,
+        });
+
+        // flip newUser to true
+        setNewUser((prevState) => !prevState);
+      }
+    } catch (error) {
+      console.log('Error posting to db in login: ', error);
+    }
   }
 
   return (
@@ -42,7 +73,7 @@ export default function UserLogin() {
         }}
         onClick={() => handleLogin()}
       >
-        Login
+        <span className={styles.buttonText}>Login</span>
       </Button>
     </div>
   );
