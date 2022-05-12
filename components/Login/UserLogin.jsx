@@ -35,7 +35,7 @@ export default function UserLogin({ setNewUser }) {
         });
 
         // construct return url to redirect user after login
-        const returnUrl = router.query.returnUrl || '/map';
+        const returnUrl = '/map';
         router.push(returnUrl);
       } else {
         // hit here when the user does not exist in the db
