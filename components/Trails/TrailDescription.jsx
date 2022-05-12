@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
@@ -13,9 +13,12 @@ import MapIcon from '@mui/icons-material/Map';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import Slide from '@mui/material/Slide';
+import Zoom from '@mui/material/Zoom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TrailAddEvent from './TrailAddEvent';
 import MiniMap from '../maps/MiniMap';
+
 // import { createEvent } from './createEvent';
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -32,10 +35,10 @@ function TrailDescription({
   setMiniMapChecked,
 }) {
   const [eventModal, setEventModal] = useState(false);
-  // const handleClick = () => {
-
-  // };
-
+  const miniMapRef = useRef();
+  const scrollIntoView = () => {
+    miniMapRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
     <>
       <Stack
@@ -92,7 +95,7 @@ function TrailDescription({
             sx={{ justifyContent: 'space-between'}}
           >
             <IconButton
-              onClick={() => setEventModal(true)}
+              onClick={(e) => { e.preventDefault(); setEventModal(true); }}
             >
               <InsertInvitationIcon
                 sx={{
@@ -114,11 +117,13 @@ function TrailDescription({
           {description}
         </Typography>
         <Accordion
+          ref={miniMapRef}
           sx={{
             backgroundColor: '#123C69',
           }}
         >
           <AccordionSummary
+            onClick={scrollIntoView}
             expandIcon={<MapIcon sx={{ fontSize: '38px', color: '#EEE2DC' }} />}
             aria-controls="panel1a-content"
             id="panel1a-header"
@@ -126,7 +131,7 @@ function TrailDescription({
               padding: 1,
             }}
           >
-            <Typography sx={{ fontSize: '24px',  color: '#EEE2DC' }}>Show Map</Typography>
+            <Typography sx={{ fontSize: '24px', color: '#EEE2DC' }}>Show Map</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <MiniMap
@@ -143,6 +148,7 @@ function TrailDescription({
         </Accordion>
 
       </Stack>
+      {/* <Zoom in={!eventModal}> */}
       <Modal
         open={eventModal}
         onClose={() => { setEventModal(false); }}
@@ -160,6 +166,7 @@ function TrailDescription({
           trail={trail}
         />
       </Modal>
+      {/* </Zoom> */}
     </>
   );
 }

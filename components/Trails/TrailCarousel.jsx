@@ -74,7 +74,7 @@ function TrailCarousel(props) {
   const galleryClose = () => setImageGallery(false);
 
   const handleSelect = (selectedIndex, e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setIndex(selectedIndex);
   };
   const handleInterval = () => {

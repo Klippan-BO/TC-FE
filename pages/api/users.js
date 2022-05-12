@@ -5,7 +5,7 @@ export default function handler(req, res) {
     console.log("🚀 ~ file: users.js ~ line 7 ~ handler ~ req.body", JSON.parse(req.body))
     axios.patch('http://localhost:3005/users/connection',JSON.parse(req.body))
     .then(response=>{
-      
+
     console.log("🚀 ~ file: users.js ~ line 8 ~ handler ~ response", response.data)
       res.status(200).send(response.data)
     })
@@ -17,7 +17,7 @@ export default function handler(req, res) {
   const userId= req.query.userId
 
   axios.get(`http://localhost:3005/users/${userId}`)
-    .then((response) => { 
+    .then((response) => {
 console.log(response.data)
    res.status(200).send(response.data)
     })
@@ -25,15 +25,5 @@ console.log(response.data)
       console.log(err);
     });
   }
-      
+
 }
-
-
-
-
-
-
-
-
-
-

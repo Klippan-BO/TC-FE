@@ -112,6 +112,7 @@ function TrailAddEvent(props) {
                   label="Summary"
                   variant="outlined"
                   fullWidth
+                  required
                   value={summary}
                   onChange={handleSummary}
                 />
@@ -120,6 +121,7 @@ function TrailAddEvent(props) {
                   label="Description"
                   fullWidth="true"
                   value={body}
+                  required
                   onChange={handleBody}
                   rows={12}
                   multiline
@@ -135,7 +137,7 @@ function TrailAddEvent(props) {
                 />
               </Box>
             </Stack>
-            <Stack direction="row" sx={{ justifyContent: 'space-between', mt: 3, }}>
+            <Stack direction="row" sx={{ justifyContent: 'space-between', mt: 3 }}>
 
               <LocalizationProvider dateAdapter={AdapterDateFns}>
 
@@ -156,6 +158,7 @@ function TrailAddEvent(props) {
               </LocalizationProvider>
               <Box>
                 <IconButton
+                  type="submit"
                   onClick={handleAddEvent}
                 >
                   {auth
