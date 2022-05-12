@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import HikingIcon from '@mui/icons-material/Hiking';
 import { InitGoogleCal, createCalendarEvent, handleAuthClick } from '../../hooks/useGoogleCal';
 import MiniMap from '../maps/MiniMap';
+import GoogleIcon from '@mui/icons-material/Google';
 
 const style = {
   position: 'absolute',
@@ -29,22 +30,21 @@ const style = {
 function TrailAddEvent(props) {
   const {
     name, description,
-    elevation, id,
+    // elevation, id,
     lat, lng,
-    trail,
+    setEventModal,
+    // trail,
   } = props;
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [startTime, setStartTime] = useState(Date.now());
-  const [endTime, setEndTime] = useState(Date.now());
-  const [friendsInvite, setFriendsInvite] = useState([]);
+  const [endTime, setEndTime] = useState();
+  // const [friendsInvite, setFriendsInvite] = useState([]);
   const [auth, setAuth] = useState(false);
   const handleTimeChange = (value) => { setStartTime(value); };
   const handleEndTimeChange = (value) => { setEndTime(value); };
   const handleSummary = (e) => { setSummary(e.target.value); };
   const handleBody = (e) => { setBody(e.target.value); };
-
-
   // const selectFriendsChange = (value) => {
   //   console.log(value);
   //   const updatedList = friendsInvite.push(value);
@@ -73,10 +73,17 @@ function TrailAddEvent(props) {
           overrides: [
             { method: 'email', minutes: 24 * 60 },
             { method: 'popup', minutes: 30 },
-          ]
+          ],
         },
       };
-      createCalendarEvent(event);
+      createCalendarEvent(event)
+        .then((result) => {
+          console.log(result);
+          setEventModal(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
   return (
@@ -86,7 +93,7 @@ function TrailAddEvent(props) {
         <Typography id="modal-modal-title" variant="h4">
           {`Plan your next hike to - ${name}`}
         </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2, }}>
           {`Trail description - ${description}`}
         </Typography>
         <Stack>
@@ -94,7 +101,6 @@ function TrailAddEvent(props) {
             direction="column"
             component="form"
             sx={{
-              '& > :not(style)': { m: 1 },
             }}
             noValidate
             autoComplete="off"
@@ -124,12 +130,12 @@ function TrailAddEvent(props) {
                   lat={Number(lat)}
                   lng={Number(lng)}
                   zoom={13}
-                  height={'30vh'}
-                  width={'auto'}
+                  height="100%"
+                  width="auto"
                 />
               </Box>
             </Stack>
-            <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
+            <Stack direction="row" sx={{ justifyContent: 'space-between', mt: 3, }}>
 
               <LocalizationProvider dateAdapter={AdapterDateFns}>
 
@@ -146,7 +152,7 @@ function TrailAddEvent(props) {
                   value={endTime}
                   onChange={handleEndTimeChange}
                   renderInput={(params) => <TextField {...params} />}
-                  />
+                />
               </LocalizationProvider>
               {/* <LocalizationProvider dateAdapter={AdapterMoment}>
               </LocalizationProvider> */}
@@ -165,16 +171,23 @@ function TrailAddEvent(props) {
                 <IconButton
                   onClick={handleAddEvent}
                 >
-                  <HikingIcon sx={{
-                    fontSize: '48px',
-                    color: 'primary.main',
-                  }}
-                  />
-                  <LandscapeIcon sx={{
-                    fontSize: '48px',
-                    color: 'primary.main',
-                  }}
-                  />
+                  {auth
+                    ? (
+                      <HikingIcon
+                        sx={{
+                          fontSize: '48px',
+                          color: 'primary.main',
+                        }}
+                      />
+                    )
+                    : (
+                      <GoogleIcon
+                        sx={{
+                          fontSize: '48px',
+                          color: 'primary.main',
+                        }}
+                      />
+                    )}
                 </IconButton>
               </Box>
             </Stack>
@@ -192,6 +205,7 @@ TrailAddEvent.propTypes = {
   id: PropTypes.number.isRequired,
   lat: PropTypes.string.isRequired,
   lng: PropTypes.string.isRequired,
+  setEventModal: PropTypes.func.isRequired,
 };
 
 export default TrailAddEvent;

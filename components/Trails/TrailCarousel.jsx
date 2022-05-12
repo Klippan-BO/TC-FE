@@ -16,7 +16,6 @@ import Modal from '@mui/material/Modal';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import ImageGallery from './ImageGallery';
-import Typography from '@mui/material/Typography';
 import { upvotePhoto, uploadPhoto } from './TrailPhotosController';
 import { useAuth } from '../../context/AuthContext';
 
@@ -75,6 +74,7 @@ function TrailCarousel(props) {
   const galleryClose = () => setImageGallery(false);
 
   const handleSelect = (selectedIndex, e) => {
+    e.preventDefault();
     setIndex(selectedIndex);
   };
   const handleInterval = () => {
@@ -89,25 +89,24 @@ function TrailCarousel(props) {
     upvotePhoto(photos[index].id);
   };
 
-  const uploadImage = (files) => {
-    //console.log(files[0]);
+  const uploadImage = () => {
+    // console.log(files[0]);
     const formData = new FormData();
     formData.append('file', imageSelected);
-    formData.append('upload_preset', "cazizno0");
-    //cazizno0
+    formData.append('upload_preset', 'cazizno0');
+    // cazizno0
     axios.post('https://api.cloudinary.com/v1_1/dwjit4s8l/image/upload', formData)
       .then((result) => {
-        console.log(JSON.parse(result.request.response).url);
         // <-- cloudinary link to post to database
         // need trail id and then can send to the database and post
-        console.log(currentUser.displayName);
         const cloudPhoto = JSON.parse(result.request.response).url;
         const photoUpload = {
           trail_id: id,
           username: currentUser.displayName,
           url: cloudPhoto,
           thumb: cloudPhoto,
-          //user_id: need this to be in auth provider
+          user_id: currentUser.id,
+          // user_id: need this to be in auth provider
         };
         uploadPhoto(photoUpload);
       })
@@ -291,7 +290,9 @@ function TrailCarousel(props) {
 TrailCarousel.propTypes = {
   photos: PropTypes.arrayOf(PropTypes.shape({
     url: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   })).isRequired,
+  id: PropTypes.number.isRequired,
 
 };
 

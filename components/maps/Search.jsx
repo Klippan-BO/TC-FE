@@ -1,8 +1,8 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import axios from 'axios';
-
 import PropTypes from 'prop-types';
-
+import Style from '../../styles/Home.module.css';
 import MAPSAPIKEY from '../../config';
 
 export default function Search({ handleSearch }) {
@@ -25,8 +25,8 @@ export default function Search({ handleSearch }) {
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => getGeo(e)}>
+    <div className={Style.search}>
+      <form className={Style.search_btn} onSubmit={(e) => getGeo(e)}>
         <input
           type="text"
           placeholder="Enter zipcode"
@@ -38,7 +38,7 @@ export default function Search({ handleSearch }) {
             }
           }}
         />
-        <button type="submit"> Find </button>
+        <button className={Style.searchButton} type="submit"> Find </button>
       </form>
     </div>
   );

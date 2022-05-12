@@ -53,6 +53,10 @@ TrailInfo.propTypes = {
   lat: PropTypes.string.isRequired,
   lng: PropTypes.string.isRequired,
   setMiniMapChecked: PropTypes.func.isRequired,
+  ratings: PropTypes.shape({
+    difficulty: PropTypes.number.isRequired,
+  }).isRequired,
+  trail: PropTypes.object.isRequired,
 };
 
 export default TrailInfo;

@@ -66,7 +66,7 @@ export async function createCalendarEvent(eventToCreate) {
   });
 
   request.execute((event) => {
-    console.log('Event created!, ', event);
+    console.log(event);
   });
 }
 

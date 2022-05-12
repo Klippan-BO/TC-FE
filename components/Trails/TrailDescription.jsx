@@ -60,33 +60,38 @@ function TrailDescription({
             alignItems: 'center',
           }}
         >
-          <Typography
-            onClick={() => console.log('yo')}
-            sx={{
-              fontSize: 30,
-              margin: 1,
-            }}
+          <Stack
+            direction="column"
           >
-            {name}
-          </Typography>
-          <Stack direction="row" sx={{alignItems: 'center',}}>
             <Typography
+              onClick={() => console.log('yo')}
               sx={{
-                fontSize: 24,
+                fontSize: 30,
                 margin: 1,
               }}
             >
-              Difficulty
+              {name}
             </Typography>
-            <StyledRating
-              name="read-only"
-              readOnly
-              value={difficulty}
-              size="large"
-              precision={0.25}
-              icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
-              emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
-            />
+            <Stack direction="row" sx={{ alignItems: 'center' }}>
+              <Typography
+                sx={{
+                  fontSize: 24,
+                  margin: 1,
+                }}
+              >
+                {`${length} miles`}
+              </Typography>
+              <StyledRating
+                name="read-only"
+                readOnly
+                value={length}
+                size="large"
+                max={10}
+                precision={0.25}
+                icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
+                emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
+              />
+            </Stack>
           </Stack>
 
           <Typography sx={{ ml: 2, fontSize: 24 }}>{labels[length]}</Typography>
@@ -136,6 +141,7 @@ function TrailDescription({
         aria-describedby="modal-modal-description"
       >
         <TrailAddEvent
+          setEventModal={setEventModal}
           name={name}
           lat={lat}
           lng={lng}

@@ -5,6 +5,9 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import ParkIcon from '@mui/icons-material/Park';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import LandscapeIcon from '@mui/icons-material/Landscape';
 
 function AddTrailRatings() {
   const [modal, setModal] = useState(false);
@@ -58,7 +61,7 @@ function AddTrailRatings() {
               precision={1}
               sx={{
                 justifyContent: 'center',
-                color: 'gray',
+                color: '#F6CC66',
                 fontSize: 64,
                 marginBottom: 1,
               }}
@@ -83,8 +86,10 @@ function AddTrailRatings() {
               <Rating
                 defaultValue={0}
                 precision={1}
+                icon={<ParkIcon fontSize="inherit" />}
+                emptyIcon={<ParkIcon fontSize="inherit" />}
                 sx={{
-                  color: 'gray',
+                  color: '#97C1A9',
                   fontSize: 48,
                 }}
               />
@@ -104,13 +109,15 @@ function AddTrailRatings() {
                   margin: 2,
                 }}
               >
-                Nature
+                Sunlight
               </Typography>
               <Rating
                 defaultValue={0}
                 precision={1}
+                icon={<WbSunnyIcon fontSize="inherit" />}
+                emptyIcon={<WbSunnyIcon fontSize="inherit" />}
                 sx={{
-                  color: 'gray',
+                  color: '#FFFFB5',
                   fontSize: 48,
                 }}
               />
@@ -137,8 +144,10 @@ function AddTrailRatings() {
                 defaultValue={0}
                 size="small"
                 precision={1}
+                icon={<LandscapeIcon fontSize="inherit" />}
+                emptyIcon={<LandscapeIcon fontSize="inherit" />}
                 sx={{
-                  color: 'gray',
+                  color: '#FFC7A2',
                   fontSize: 48,
                 }}
               />

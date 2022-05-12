@@ -10,8 +10,9 @@ import MyConnections from "./myConnections";
 import style from "../../styles/user.module.css";
 import Badge from "@mui/material/Badge";
 import sampleData from "./sampleData";
+import Link from "next/link";
 
-function UserPage({ userData }) {
+function UserPage({ userData,loggedInUserData }) {
   const [openNotif, setOpenNotif] = useState(false);
   const [openTrails, setOpenTrails] = useState(false);
   const [openFriends, setOpenFriends] = useState(false);
@@ -44,6 +45,7 @@ function UserPage({ userData }) {
   };
 
   return (
+    
     <div>
       <Head>
         <title>TC - User</title>
@@ -51,7 +53,7 @@ function UserPage({ userData }) {
       <Container>
         <div className={style.container}>
           <div className={style.parentCont}>
-            <img src={userData.userProfile.photo} className={style.userImg} />
+            <img src={loggedInUserData.profile_image} className={style.userImg} />
 
             <CircleNotificationsIcon
               style={{ fontSize: 50 }}
@@ -70,44 +72,49 @@ function UserPage({ userData }) {
               closeNotif={closeNotif}
             />
           </div>
-          <div className={style.userName}>{userData.userProfile.username}</div>
+          <div className={style.userName}>{loggedInUserData.username}</div>
           {/* <div className={style.userCity}>{userData.userProfile.city}</div> 
           <div className={style.userFriends}>
             I HAVE {userData.userProfile.friends} FRIENDS
           </div> */}
           <div className={style.description}>
-            {userData.userProfile.description}
+            {loggedInUserData.bio}
           </div>
           <MyTrails
             openTrails={openTrails}
             closeTrails={closeTrails}
-            my_trails={sampleData.userProfile.my_trails}
+            my_trails={loggedInUserData.trails}
           />
           <div className={style.trailText}>Recently Visited Trails</div>
           <div className={style.trailsCont}>
-            {sampleData.userProfile.my_trails &&
-              sampleData.userProfile.my_trails.map((trail, index) => {
+            {loggedInUserData.trails &&
+              loggedInUserData.trails.map((trail, index) => {
                 if (index < 4) {
                   return (
+                    <Link href={{pathname:'/trails/[id]',query:{id:trail.id} }} >
                     <div className={style.imgBox} key={index}>
-                      <img className={style.myTrailImg} src={trail.photos[0]} />
-                      <span>{trail.trail_name}</span>
+                      <img className={style.myTrailImg} src={trail.photos[0].url} />
+                      <span>{trail.name}</span>
                     </div>
+                    </Link>
                   );
                 }
               })}
-            {sampleData.userProfile.my_trails.length > 4 ? (
+            {
+            loggedInUserData.trails.length > 4  ? 
+            (
               <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
                 <p>
                   See
                   <br />
-                  More <br />
+                  More <br/>
                   Trails
                 </p>
               </div>
-            ) : (
-              <div />
-            )}
+            ) 
+            : (
+              <div />)
+              }
           </div>
           <div className={style.friendsText}>My Friends</div>
           <div className={style.friendsCont}>
@@ -142,6 +149,7 @@ function UserPage({ userData }) {
       </Container>
     </div>
   );
+  
 }
 
 export default UserPage;
