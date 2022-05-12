@@ -19,6 +19,7 @@ function TrailRatings({ ratings }) {
         backgroundColor: '#123C69',
         color: '#EEE2DC',
         padding: 3,
+        borderRadius: '15px',
       }}
     >
       {/* Ratings */}

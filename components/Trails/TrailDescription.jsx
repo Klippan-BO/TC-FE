@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
@@ -9,7 +9,16 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Rating from '@mui/material/Rating';
 import HikingIcon from '@mui/icons-material/Hiking';
+import MapIcon from '@mui/icons-material/Map';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Slide from '@mui/material/Slide';
+import Zoom from '@mui/material/Zoom';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TrailAddEvent from './TrailAddEvent';
+import MiniMap from '../maps/MiniMap';
+
 // import { createEvent } from './createEvent';
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -19,28 +28,17 @@ const StyledRating = styled(Rating)({
     color: '#ff3d47',
   },
 });
-const labels = {
-  0.5: 'The DriveWay Incline',
-  1: 'a steeper driveway?',
-  1.5: 'Poor',
-  2: 'Poor+',
-  2.5: 'Ok',
-  3: 'Matterhorn',
-  3.5: 'Fuji',
-  4: 'K2',
-  4.5: 'Mount Kilimanjaro',
-  5: 'Everest',
-};
 
 function TrailDescription({
-  name, description, trail,
+  name, description, trail, difficulty,
   length, lat, lng, id, elevation,
+  setMiniMapChecked,
 }) {
   const [eventModal, setEventModal] = useState(false);
-  // const handleClick = () => {
-
-  // };
-
+  const miniMapRef = useRef();
+  const scrollIntoView = () => {
+    miniMapRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
     <>
       <Stack
@@ -58,37 +56,57 @@ function TrailDescription({
             alignItems: 'center',
           }}
         >
-          <Typography
-            onClick={() => console.log('yo')}
-            sx={{
-              fontSize: 30,
-              margin: 1,
-            }}
+          <Stack
+            direction="column"
           >
-            {name}
-          </Typography>
-          <StyledRating
-            name="read-only"
-            readOnly
-            value={length}
-            size="large"
-            precision={0.25}
-            icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
-            emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
-          />
-          <Typography sx={{ ml: 2, fontSize: 24 }}>{labels[length]}</Typography>
-          <IconButton
-            onClick={() => setEventModal(true)}
-          >
-            <InsertInvitationIcon
+            <Typography
+              onClick={() => console.log('yo')}
               sx={{
-                fontSize: '48px',
-                color: 'primary.main',
-                background: '#EEE2DC',
-                borderRadius: '10px',
+                fontSize: 30,
+                margin: 1,
               }}
-            />
-          </IconButton>
+            >
+              {name}
+            </Typography>
+            <Stack direction="row" sx={{ alignItems: 'center' }}>
+              <Typography
+                sx={{
+                  fontSize: 24,
+                  margin: 1,
+                }}
+              >
+                {`${length} miles`}
+              </Typography>
+              <StyledRating
+                name="read-only"
+                readOnly
+                value={length}
+                size="large"
+                max={Math.ceil(length)}
+                precision={0.25}
+                icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
+                emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
+              />
+            </Stack>
+          </Stack>
+
+          <Stack
+            direction="row"
+            sx={{ justifyContent: 'space-between'}}
+          >
+            <IconButton
+              onClick={(e) => { e.preventDefault(); setEventModal(true); }}
+            >
+              <InsertInvitationIcon
+                sx={{
+                  fontSize: '48px',
+                  color: 'primary.main',
+                  background: '#EEE2DC',
+                  borderRadius: '10px',
+                }}
+              />
+            </IconButton>
+          </Stack>
         </Stack>
         <Typography
           sx={{
@@ -98,7 +116,39 @@ function TrailDescription({
         >
           {description}
         </Typography>
+        <Accordion
+          ref={miniMapRef}
+          sx={{
+            backgroundColor: '#123C69',
+          }}
+        >
+          <AccordionSummary
+            onClick={scrollIntoView}
+            expandIcon={<MapIcon sx={{ fontSize: '38px', color: '#EEE2DC' }} />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{
+              padding: 1,
+            }}
+          >
+            <Typography sx={{ fontSize: '24px', color: '#EEE2DC' }}>Show Map</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <MiniMap
+              lat={Number(lat)}
+              lng={Number(lng)}
+              zoom={11}
+              sx={{
+                color: '#123C69',
+              }}
+              height="400px"
+              width="100%"
+            />
+          </AccordionDetails>
+        </Accordion>
+
       </Stack>
+      {/* <Zoom in={!eventModal}> */}
       <Modal
         open={eventModal}
         onClose={() => { setEventModal(false); }}
@@ -106,6 +156,7 @@ function TrailDescription({
         aria-describedby="modal-modal-description"
       >
         <TrailAddEvent
+          setEventModal={setEventModal}
           name={name}
           lat={lat}
           lng={lng}
@@ -115,6 +166,7 @@ function TrailDescription({
           trail={trail}
         />
       </Modal>
+      {/* </Zoom> */}
     </>
   );
 }
@@ -127,6 +179,7 @@ TrailDescription.propTypes = {
   lng: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   elevation: PropTypes.string.isRequired,
+  setMiniMapChecked: PropTypes.func.isRequired,
 };
 
 export default TrailDescription;
