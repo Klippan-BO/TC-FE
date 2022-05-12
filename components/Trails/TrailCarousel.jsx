@@ -8,16 +8,17 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Stack from '@mui/material/Stack';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import BorderAllIcon from '@mui/icons-material/BorderAll';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import ImageGallery from './ImageGallery';
 import { upvotePhoto, uploadPhoto } from './TrailPhotosController';
 import { useAuth } from '../../context/AuthContext';
+import Typography from '@mui/material/Typography';
 
 const style = {
   position: 'absolute',
@@ -189,7 +190,7 @@ function TrailCarousel(props) {
           zIndex: 2,
         }}
       >
-        <FavoriteIcon
+        <BookmarksIcon
           sx={{
             fontSize: '36px',
             color: '#EEE2DC',

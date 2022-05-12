@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    await axios.post('http://localhost:3005/photos/', req.body.photo)
+    axios.post('http://localhost:3005/photos/', req.body.photo)
       .then((result) => {
         res.status(202).json({ message: 'photo posted', result });
       })
