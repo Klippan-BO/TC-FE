@@ -4,15 +4,14 @@ import Head from 'next/head';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import PropTypes from 'prop-types';
-import TrailInfo from './TrailInfo';
 import TrailComments from './TrailComments';
 import TrailCarousel from './TrailCarousel';
-import EventRoundedIcon from '@mui/icons-material/EventRounded';
-import IconButton from '@mui/material/IconButton';
+import TrailInfo from './TrailInfo';
 
 function TrailPage({ id }) {
   const [trail, setTrail] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const [miniMapChecked, setMiniMapChecked] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -35,6 +34,7 @@ function TrailPage({ id }) {
         sx={{
           minWidth: '63vw',
           backgroundColor: '#123C69',
+          mt: 2,
         }}
       >
         <Stack
@@ -46,8 +46,13 @@ function TrailPage({ id }) {
             height: '200vh',
           }}
         >
-          <TrailCarousel photos={trail.photos} />
+          <TrailCarousel
+            photos={trail.photos}
+            id={trail.id}
+            setTrail={setTrail}
+          />
           <TrailInfo
+            setMiniMapChecked={setMiniMapChecked}
             name={trail.name}
             id={trail.id}
             length={trail.length}

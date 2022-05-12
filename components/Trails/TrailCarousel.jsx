@@ -8,19 +8,17 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Stack from '@mui/material/Stack';
-import StarRateIcon from '@mui/icons-material/StarRate';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import BorderAllIcon from '@mui/icons-material/BorderAll';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import ImageGallery from './ImageGallery';
+import { upvotePhoto, uploadPhoto } from './TrailPhotosController';
+import { useAuth } from '../../context/AuthContext';
 import Typography from '@mui/material/Typography';
-import BookmarksIcon from '@mui/icons-material/Bookmarks';
-import { test, upvotePhoto } from './TrailPhotosController';
-
-const sample_data = require('./sampleData');
 
 const style = {
   position: 'absolute',
@@ -62,7 +60,8 @@ const modalPictureStyle = {
 };
 
 function TrailCarousel(props) {
-  const { photos } = props;
+  const { currentUser } = useAuth();
+  const { photos, id } = props;
   // const [photos] = useState(sample_data.trail1.photos); // is this sorted by upvotes already?
   const [index, setIndex] = useState(0);
   const [interval, setInterval] = useState(false);
@@ -76,6 +75,7 @@ function TrailCarousel(props) {
   const galleryClose = () => setImageGallery(false);
 
   const handleSelect = (selectedIndex, e) => {
+    // e.preventDefault();
     setIndex(selectedIndex);
   };
   const handleInterval = () => {
@@ -88,19 +88,31 @@ function TrailCarousel(props) {
 
   const handleUpvoteTest = () => {
     upvotePhoto(photos[index].id);
-  }
+  };
 
-  const uploadImage = (files) => {
-    //console.log(files[0]);
+  const uploadImage = () => {
+    // console.log(files[0]);
     const formData = new FormData();
     formData.append('file', imageSelected);
-    formData.append('upload_preset', "cazizno0");
-    //cazizno0
+    formData.append('upload_preset', 'cazizno0');
+    // cazizno0
     axios.post('https://api.cloudinary.com/v1_1/dwjit4s8l/image/upload', formData)
       .then((result) => {
-        // console.log(JSON.parse(result.request.response).url);
-        // <-- cloudinary link to post to database
-        // need trail id and then can send to the database and post
+        const cloudPhoto = JSON.parse(result.request.response).url;
+        const photoUpload = {
+          trail_id: id,
+          username: currentUser.displayName,
+          url: cloudPhoto,
+          thumb: cloudPhoto,
+          user_id: currentUser.id,
+        };
+        uploadPhoto(photoUpload)
+          .then(() => {
+            setPhotoModal(false);
+          })
+          .catch(() => {
+            console.log('nope');
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -110,7 +122,7 @@ function TrailCarousel(props) {
     <Box
       sx={{
         border: 4,
-        borderColor: 'warning.light',
+        borderColor: '#EEE2DC',
         borderRadius: '10px',
         position: 'relative',
       }}
@@ -180,7 +192,7 @@ function TrailCarousel(props) {
       >
         <BookmarksIcon
           sx={{
-            fontSize: '60px',
+            fontSize: '36px',
             color: '#EEE2DC',
             opacity: 0.6,
             '&:hover': {
@@ -193,7 +205,7 @@ function TrailCarousel(props) {
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}
-        interval={interval ? 5000 : null}
+        interval={interval ? 3000 : null}
         style={{
           position: 'relative',
           height: '60vh',
@@ -270,7 +282,7 @@ function TrailCarousel(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         sx={{
-          background: '#0000007f ',
+          backgroundColor: '#0000007f ',
         }}
       >
         <ImageGallery photos={photos} />
@@ -282,7 +294,9 @@ function TrailCarousel(props) {
 TrailCarousel.propTypes = {
   photos: PropTypes.arrayOf(PropTypes.shape({
     url: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   })).isRequired,
+  id: PropTypes.number.isRequired,
 
 };
 

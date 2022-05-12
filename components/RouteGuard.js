@@ -15,6 +15,7 @@ export default function RouteGuard({children}) {
 
     onAuthStateChanged(auth, (user) => {
       if (!currentUser?.id && !publicPaths.includes(path)) {
+        console.log('this is hit?')
         setAuthorized(false);
         setTimeout(() => {
           router.push({
