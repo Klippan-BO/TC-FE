@@ -4,18 +4,28 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Container from "@mui/material/Container";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
+import Badge from "@mui/material/Badge";
+import Link from "next/link";
 import MyNotification from "./MyNotification";
 import MyTrails from "./MyTrails";
 import MyConnections from "./myConnections";
 import style from "../../styles/user.module.css";
-import Badge from "@mui/material/Badge";
 import sampleData from "./sampleData";
-import Link from "next/link";
 
-function UserPage({ userData,loggedInUserData }) {
+function UserPage({
+  userData,
+  loggedInUserData,
+  userPhoto,
+  displayName,
+  backEndUser,
+}) {
   const [openNotif, setOpenNotif] = useState(false);
   const [openTrails, setOpenTrails] = useState(false);
   const [openFriends, setOpenFriends] = useState(false);
+  const myFriends =
+    backEndUser.friends.filter((friend) => friend.status === "accepted") || [];
+
+  //
 
   const handleNotificationClick = () => {
     setOpenNotif(true);
@@ -45,7 +55,6 @@ function UserPage({ userData,loggedInUserData }) {
   };
 
   return (
-    
     <div>
       <Head>
         <title>TC - User</title>
@@ -53,7 +62,7 @@ function UserPage({ userData,loggedInUserData }) {
       <Container>
         <div className={style.container}>
           <div className={style.parentCont}>
-            <img src={loggedInUserData.profile_image} className={style.userImg} />
+            <img src={userPhoto} className={style.userImg} />
 
             <CircleNotificationsIcon
               style={{ fontSize: 50 }}
@@ -72,14 +81,12 @@ function UserPage({ userData,loggedInUserData }) {
               closeNotif={closeNotif}
             />
           </div>
-          <div className={style.userName}>{loggedInUserData.username}</div>
-          {/* <div className={style.userCity}>{userData.userProfile.city}</div> 
+          <div className={style.userName}>{displayName}</div>
+          {/* <div className={style.userCity}>{userData.userProfile.city}</div>
           <div className={style.userFriends}>
             I HAVE {userData.userProfile.friends} FRIENDS
           </div> */}
-          <div className={style.description}>
-            {loggedInUserData.bio}
-          </div>
+          <div className={style.description}>{loggedInUserData.bio}</div>
           <MyTrails
             openTrails={openTrails}
             closeTrails={closeTrails}
@@ -91,65 +98,76 @@ function UserPage({ userData,loggedInUserData }) {
               loggedInUserData.trails.map((trail, index) => {
                 if (index < 4) {
                   return (
-                    <Link href={{pathname:'/trails/[id]',query:{id:trail.id} }} >
-                    <div className={style.imgBox} key={index}>
-                      <img className={style.myTrailImg} src={trail.photos[0].url} />
-                      <span>{trail.name}</span>
-                    </div>
+                    <Link
+                      href={{
+                        pathname: "/trails/[id]",
+                        query: { id: trail.id },
+                      }}
+                    >
+                      <div className={style.imgBox} key={index}>
+                        <img
+                          className={style.myTrailImg}
+                          src={trail.photos[0].url}
+                        />
+                        <span>{trail.name}</span>
+                      </div>
                     </Link>
                   );
                 }
               })}
-            {
-            loggedInUserData.trails.length > 4  ? 
-            (
+            {loggedInUserData.trails && loggedInUserData.trails.length > 4 ? (
               <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
                 <p>
                   See
                   <br />
-                  More <br/>
+                  More <br />
                   Trails
                 </p>
               </div>
-            ) 
-            : (
-              <div />)
-              }
+            ) : (
+              <div />
+            )}
           </div>
           <div className={style.friendsText}>My Friends</div>
           <div className={style.friendsCont}>
-            {sampleData.userProfile.friendsList &&
-              sampleData.userProfile.friendsList.map((friend, index) => {
+            {myFriends &&
+              myFriends.map((friend, index) => {
                 if (index < 4) {
                   return (
                     <div className={style.nameBox} key={index}>
-                      <img className={style.friendImg} src={friend.photo} />
+                      <img
+                        className={style.friendImg}
+                        src={friend.profile_image}
+                      />
                       <span>{friend.username}</span>
                     </div>
                   );
                 }
               })}
-            <div
-              className={style.moreFriendsBtn}
-              onClick={handleMyFriendsClick}
-            >
-              <p>
-                See
-                <br />
-                Friends
-              </p>
-            </div>
+            {myFriends && myFriends.length > 4 ? (
+              <div
+                className={style.moreFriendsBtn}
+                onClick={handleMyFriendsClick}
+              >
+                <p>
+                  See
+                  <br />
+                  Friends
+                </p>
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
           <MyConnections
             openFriends={openFriends}
             closeFriends={closeFriends}
-            myFriends={sampleData.userProfile.friendsList}
+            myFriends={myFriends}
           />
         </div>
       </Container>
     </div>
   );
-  
 }
 
 export default UserPage;

@@ -129,7 +129,7 @@ const updateClosestTrails = (map, maps) => {
       map.fitBounds(bounds);
     } else {
       // eslint-disable-next-line no-alert
-      alert(`No trails found within ${rangeLimit}km!`);
+      //alert(`No trails found within ${rangeLimit}km!`);
     }
   });
 };
