@@ -19,7 +19,7 @@ import Link from 'next/link';
 
 
 function Leaderboard() {
-  const [leaderboard, setLeaderboard] = useState(dummyTrails);
+  const [leaderboard, setLeaderboard] = useState([]);
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -31,9 +31,13 @@ function Leaderboard() {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
+
+  document.addEventListener('updateTrail', (e) => {
+    const newBounds = e.detail;
+    setLeaderboard(newBounds);
+  });
 
   return (
     <div>

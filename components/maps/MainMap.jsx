@@ -63,6 +63,11 @@ export default function MainMap(props) {
     document.dispatchEvent(event);
   };
 
+  useEffect(() => {
+    const event = new CustomEvent('updateTrail', { detail: trails });
+    document.dispatchEvent(event);
+  }, [trails]);
+
   document.addEventListener('newBounds', (e) => {
     const newBounds = e.detail;
     setBounds(newBounds);
