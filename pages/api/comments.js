@@ -2,13 +2,13 @@ import axios from 'axios';
 
 export default function handler(req, res) {
   if (req.method === 'POST') {
-    axios.post('http://localhost:3005/comments/add', {})
-      .then(() => {
-        res.status(204)
+    axios.post('http://localhost:3005/comments/add', req.body)
+      .then((data) => {
+        console.log(data);
+        res.status(201).json({ data });
       })
-      .catch(() => {
-        res.status(500)
+      .catch((err) => {
+        res.status(404).send(err);
       });
-    res.send('im back');
   }
 }

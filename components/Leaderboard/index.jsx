@@ -34,10 +34,12 @@ function Leaderboard() {
     setOpen(false);
   };
 
-  document.addEventListener('updateTrail', (e) => {
-    const newBounds = e.detail;
-    setLeaderboard(newBounds);
-  });
+  if (typeof window !== 'undefined') {
+    document.addEventListener('updateTrail', (e) => {
+      const new5 = e.detail;
+      setLeaderboard(new5);
+    });
+  }
 
   return (
     <div>
