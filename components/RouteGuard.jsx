@@ -4,9 +4,9 @@ import { useAuth } from '../context/AuthContext';
 import { onAuthStateChanged, auth } from '../firebase';
 import RedirectPage from './Login/RedirectPage';
 
-export default function RouteGuard({children}) {
+export default function RouteGuard({ children }) {
   const router = useRouter();
-  const [authorized, setAuthorized] = useState(false);
+  const [authorized, setAuthorized] = useState(true);
   const { currentUser } = useAuth();
 
   function authCheck(url) {
@@ -14,16 +14,15 @@ export default function RouteGuard({children}) {
     const path = url.split('?')[0];
 
     onAuthStateChanged(auth, (user) => {
-      if (!currentUser?.id && !publicPaths.includes(path)) {
-        console.log('this is hit?')
-        setAuthorized(false);
+      if (!user && !publicPaths.includes(path)) {
         setTimeout(() => {
+          setAuthorized(false);
           router.push({
             pathname: '/login',
             query: { returnUrl: router.asPath },
           });
         }, 500);
-      } else if (currentUser?.id && publicPaths.includes(path)) {
+      } else if (user && publicPaths.includes(path)) {
         setAuthorized(true);
         router.push({
           pathname: '/map',
@@ -42,7 +41,8 @@ export default function RouteGuard({children}) {
     return () => {
       router.events.off('routeChangeComplete', authCheck);
     };
-  }, [currentUser]);
+    // currentUser
+  }, []);
 
   return (
     authorized
