@@ -97,6 +97,8 @@ function TrailDescription({
                 color: 'primary.main',
                 background: '#EEE2DC',
                 borderRadius: '10px',
+                marginRight: '20px',
+                marginTop: '15px',
               }}
             />
           </IconButton>
