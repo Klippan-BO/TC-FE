@@ -5,25 +5,14 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import GoogleMapReact from 'google-map-react';
 import LandscapeIcon from '@mui/icons-material/Landscape';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-// import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import Select from '@mui/material/Select';
 import IconButton from '@mui/material/IconButton';
 import HikingIcon from '@mui/icons-material/Hiking';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import mapQuadrants from '../maps/mapLogic';
-import Marker from '../maps/Marker';
 import { InitGoogleCal, createCalendarEvent, handleAuthClick } from '../../hooks/useGoogleCal';
-
-// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-// import TimePicker from '@mui/x-date-pickers/TimePicker';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import MAPSAPIKEY from '../../config';
+import MiniMap from '../maps/MiniMap';
 
 const style = {
   position: 'absolute',
@@ -82,19 +71,13 @@ function TrailAddEvent(props) {
         reminders: {
           useDefault: false,
           overrides: [
-            {method: 'email', 'minutes': 24 * 60},
-            {method: 'popup', 'minutes': 30}
+            { method: 'email', minutes: 24 * 60 },
+            { method: 'popup', minutes: 30 },
           ]
         },
       };
-      console.log(event);
       createCalendarEvent(event);
     }
-  };
-
-  const defaultCenter = {
-    lat: Number(lat),
-    lng: Number(lng),
   };
   return (
     <>
@@ -137,24 +120,16 @@ function TrailAddEvent(props) {
                 />
               </Stack>
               <Box sx={{ width: '55%', height: '400px' }}>
-                <GoogleMapReact
-                  bootstrapURLKeys={{ key: MAPSAPIKEY }}
-                  defaultCenter={defaultCenter}
-                  defaultZoom={12}
-                  yesIWantToUseGoogleMapApiInternals
-                  onGoogleApiLoaded={({ map, maps }) => mapQuadrants(map, maps, [trail])}
-                >
-                  {[trail].map((t) => (
-                    <Marker
-                      lat={Number(t.lat)}
-                      lng={Number(t.lng)}
-                      trail={t}
-                    />
-                  ))}
-                </GoogleMapReact>
+                <MiniMap
+                  lat={Number(lat)}
+                  lng={Number(lng)}
+                  zoom={13}
+                  height={'30vh'}
+                  width={'auto'}
+                />
               </Box>
             </Stack>
-            <Stack direction="row" sx={{justifyContent: 'space-between'}} >
+            <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
 
               <LocalizationProvider dateAdapter={AdapterDateFns}>
 

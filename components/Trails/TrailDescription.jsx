@@ -10,6 +10,7 @@ import Modal from '@mui/material/Modal';
 import Rating from '@mui/material/Rating';
 import HikingIcon from '@mui/icons-material/Hiking';
 import TrailAddEvent from './TrailAddEvent';
+import MapIcon from '@mui/icons-material/Map';
 // import { createEvent } from './createEvent';
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -33,8 +34,9 @@ const labels = {
 };
 
 function TrailDescription({
-  name, description, trail,
+  name, description, trail, difficulty,
   length, lat, lng, id, elevation,
+  setMiniMapChecked,
 }) {
   const [eventModal, setEventModal] = useState(false);
   // const handleClick = () => {
@@ -67,28 +69,56 @@ function TrailDescription({
           >
             {name}
           </Typography>
-          <StyledRating
-            name="read-only"
-            readOnly
-            value={length}
-            size="large"
-            precision={0.25}
-            icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
-            emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
-          />
-          <Typography sx={{ ml: 2, fontSize: 24 }}>{labels[length]}</Typography>
-          <IconButton
-            onClick={() => setEventModal(true)}
-          >
-            <InsertInvitationIcon
+          <Stack direction="row" sx={{alignItems: 'center',}}>
+            <Typography
               sx={{
-                fontSize: '48px',
-                color: 'primary.main',
-                background: '#EEE2DC',
-                borderRadius: '10px',
+                fontSize: 24,
+                margin: 1,
               }}
+            >
+              Difficulty
+            </Typography>
+            <StyledRating
+              name="read-only"
+              readOnly
+              value={difficulty}
+              size="large"
+              precision={0.25}
+              icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
+              emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
             />
-          </IconButton>
+          </Stack>
+
+          <Typography sx={{ ml: 2, fontSize: 24 }}>{labels[length]}</Typography>
+          <Stack
+            direction="row"
+            sx={{ justifyContent: 'space-between'}}
+          >
+            <IconButton
+              onClick={() => { setMiniMapChecked((prev) => !prev); }}
+            >
+              <MapIcon
+                sx={{
+                  fontSize: '48px',
+                  color: 'primary.main',
+                  background: '#EEE2DC',
+                  borderRadius: '10px',
+                }}
+              />
+            </IconButton>
+            <IconButton
+              onClick={() => setEventModal(true)}
+            >
+              <InsertInvitationIcon
+                sx={{
+                  fontSize: '48px',
+                  color: 'primary.main',
+                  background: '#EEE2DC',
+                  borderRadius: '10px',
+                }}
+              />
+            </IconButton>
+          </Stack>
         </Stack>
         <Typography
           sx={{
@@ -127,6 +157,7 @@ TrailDescription.propTypes = {
   lng: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   elevation: PropTypes.string.isRequired,
+  setMiniMapChecked: PropTypes.func.isRequired,
 };
 
 export default TrailDescription;

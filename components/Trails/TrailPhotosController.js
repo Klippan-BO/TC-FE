@@ -16,7 +16,13 @@ const upvotePhoto = (id) => {
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  })
+    .then((result) => {
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const uploadPhoto = (photo) => {

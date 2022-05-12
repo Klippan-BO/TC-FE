@@ -8,7 +8,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Stack from '@mui/material/Stack';
-import StarRateIcon from '@mui/icons-material/StarRate';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import BorderAllIcon from '@mui/icons-material/BorderAll';
 import Button from '@mui/material/Button';
@@ -119,7 +119,7 @@ function TrailCarousel(props) {
     <Box
       sx={{
         border: 4,
-        borderColor: 'warning.light',
+        borderColor: '#EEE2DC',
         borderRadius: '10px',
         position: 'relative',
       }}
@@ -187,7 +187,7 @@ function TrailCarousel(props) {
           zIndex: 2,
         }}
       >
-        <StarRateIcon
+        <FavoriteIcon
           sx={{
             fontSize: '60px',
             color: '#EEE2DC',
@@ -202,7 +202,7 @@ function TrailCarousel(props) {
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}
-        interval={interval ? 5000 : null}
+        interval={interval ? 3000 : null}
         style={{
           position: 'relative',
           height: '60vh',
@@ -279,7 +279,7 @@ function TrailCarousel(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         sx={{
-          background: '#0000007f ',
+          backgroundColor: '#0000007f ',
         }}
       >
         <ImageGallery photos={photos} />
