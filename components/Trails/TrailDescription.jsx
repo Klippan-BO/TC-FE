@@ -70,7 +70,7 @@ function TrailDescription({
             sx={{
               fontSize: 30,
               fontWeight: 500,
-              borderBottom: '5px solid #EEE2DC',
+              borderBottom: '5px solid #EDC7B7',
               ml: '3vh',
               mt: '3vh',
               fontFamily: 'inherit',
