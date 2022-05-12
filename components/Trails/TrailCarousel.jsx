@@ -97,8 +97,6 @@ function TrailCarousel(props) {
     // cazizno0
     axios.post('https://api.cloudinary.com/v1_1/dwjit4s8l/image/upload', formData)
       .then((result) => {
-        // <-- cloudinary link to post to database
-        // need trail id and then can send to the database and post
         const cloudPhoto = JSON.parse(result.request.response).url;
         const photoUpload = {
           trail_id: id,
@@ -106,9 +104,14 @@ function TrailCarousel(props) {
           url: cloudPhoto,
           thumb: cloudPhoto,
           user_id: currentUser.id,
-          // user_id: need this to be in auth provider
         };
-        uploadPhoto(photoUpload);
+        uploadPhoto(photoUpload)
+          .then(() => {
+            setPhotoModal(false);
+          })
+          .catch(() => {
+            console.log('nope');
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -188,7 +191,7 @@ function TrailCarousel(props) {
       >
         <FavoriteIcon
           sx={{
-            fontSize: '60px',
+            fontSize: '36px',
             color: '#EEE2DC',
             opacity: 0.6,
             '&:hover': {

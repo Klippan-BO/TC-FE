@@ -8,10 +8,9 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    res.send('hello from posting photos');
     await axios.post('http://localhost:3005/photos/', req.body.photo)
-      .then(() => {
-        res.status(202).json({ message: 'photo posted' });
+      .then((result) => {
+        res.status(202).json({ message: 'photo posted', result });
       })
       .catch(() => {
         res.status(500).json({ message: 'photo not posted' });

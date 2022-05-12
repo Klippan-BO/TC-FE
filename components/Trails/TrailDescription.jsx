@@ -9,8 +9,13 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Rating from '@mui/material/Rating';
 import HikingIcon from '@mui/icons-material/Hiking';
-import TrailAddEvent from './TrailAddEvent';
 import MapIcon from '@mui/icons-material/Map';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TrailAddEvent from './TrailAddEvent';
+import MiniMap from '../maps/MiniMap';
 // import { createEvent } from './createEvent';
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -20,18 +25,6 @@ const StyledRating = styled(Rating)({
     color: '#ff3d47',
   },
 });
-const labels = {
-  0.5: 'The DriveWay Incline',
-  1: 'a steeper driveway?',
-  1.5: 'Mild Sweat',
-  2: 'Moderate',
-  2.5: 'Ok',
-  3: 'Matterhorn',
-  3.5: 'Fuji',
-  4: 'K2',
-  4.5: 'Mount Kilimanjaro',
-  5: 'Everest',
-};
 
 function TrailDescription({
   name, description, trail, difficulty,
@@ -86,7 +79,7 @@ function TrailDescription({
                 readOnly
                 value={length}
                 size="large"
-                max={10}
+                max={Math.ceil(length)}
                 precision={0.25}
                 icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
                 emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
@@ -94,23 +87,10 @@ function TrailDescription({
             </Stack>
           </Stack>
 
-          <Typography sx={{ ml: 2, fontSize: 24 }}>{labels[length]}</Typography>
           <Stack
             direction="row"
             sx={{ justifyContent: 'space-between'}}
           >
-            <IconButton
-              onClick={() => { setMiniMapChecked((prev) => !prev); }}
-            >
-              <MapIcon
-                sx={{
-                  fontSize: '48px',
-                  color: 'primary.main',
-                  background: '#EEE2DC',
-                  borderRadius: '10px',
-                }}
-              />
-            </IconButton>
             <IconButton
               onClick={() => setEventModal(true)}
             >
@@ -133,6 +113,35 @@ function TrailDescription({
         >
           {description}
         </Typography>
+        <Accordion
+          sx={{
+            backgroundColor: '#123C69',
+          }}
+        >
+          <AccordionSummary
+            expandIcon={<MapIcon sx={{ fontSize: '38px', color: '#EEE2DC' }} />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{
+              padding: 1,
+            }}
+          >
+            <Typography sx={{ fontSize: '24px',  color: '#EEE2DC' }}>Show Map</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <MiniMap
+              lat={Number(lat)}
+              lng={Number(lng)}
+              zoom={11}
+              sx={{
+                color: '#123C69',
+              }}
+              height="400px"
+              width="100%"
+            />
+          </AccordionDetails>
+        </Accordion>
+
       </Stack>
       <Modal
         open={eventModal}

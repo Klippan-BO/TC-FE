@@ -154,19 +154,6 @@ function TrailAddEvent(props) {
                   renderInput={(params) => <TextField {...params} />}
                 />
               </LocalizationProvider>
-              {/* <LocalizationProvider dateAdapter={AdapterMoment}>
-              </LocalizationProvider> */}
-              {/* <FormHelperText>Gather your companions</FormHelperText> */}
-              {/* <Select
-                labelId="demo-simple-select-label"
-                label="invite your friends"
-                id="demo-simple-select"
-                onChange={selectFriendsChange}
-                >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select> */}
               <Box>
                 <IconButton
                   onClick={handleAddEvent}
