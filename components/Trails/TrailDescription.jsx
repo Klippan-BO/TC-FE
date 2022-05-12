@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
@@ -9,36 +9,36 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Rating from '@mui/material/Rating';
 import HikingIcon from '@mui/icons-material/Hiking';
+import MapIcon from '@mui/icons-material/Map';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Slide from '@mui/material/Slide';
+import Zoom from '@mui/material/Zoom';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TrailAddEvent from './TrailAddEvent';
-// import { createEvent } from './createEvent';
+import MiniMap from '../maps/MiniMap';
 
-const labels = {
-  0.5: 'The DriveWay Incline',
-  1: 'a steeper driveway?',
-  1.5: 'Poor',
-  2: 'Poor+',
-  2.5: 'Ok',
-  3: 'Matterhorn',
-  3.5: 'Fuji',
-  4: 'K2',
-  4.5: 'Mount Kilimanjaro',
-  5: 'Everest',
-};
+// import { createEvent } from './createEvent';
+const StyledRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
+    color: '#ff6d75',
+  },
+  '& .MuiRating-iconHover': {
+    color: '#ff3d47',
+  },
+});
 
 function TrailDescription({
-  name, description, trail,
+  name, description, trail, difficulty,
   length, lat, lng, id, elevation,
+  setMiniMapChecked,
 }) {
   const [eventModal, setEventModal] = useState(false);
-  const StyledRating = styled(Rating)({
-    '& .MuiRating-iconFilled': {
-      color: '#EDC7B7',
-    },
-    '& .MuiRating-iconEmpty': {
-      color: 'white',
-    },
-  });
-
+  const miniMapRef = useRef();
+  const scrollIntoView = () => {
+    miniMapRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
     <>
       <Stack
@@ -47,82 +47,108 @@ function TrailDescription({
           width: '960x',
           backgroundColor: '#123C69',
           color: '#EEE2DC',
-          borderBottomLeftRadius: '15px',
-          borderTopLeftRadius: '15px',
-          borderTopRightRadius: '15px',
-          borderBottomRightRadius: '15px',
-
         }}
       >
         <Stack
           direction="row"
           sx={{
             justifyContent: 'space-between',
-            display: 'flex',
             alignItems: 'center',
-            borderTop: '20px solid #AC3B61',
-            borderTopLeftRadius: '15px',
-            borderTopRightRadius: '15px',
           }}
         >
-          <Typography
-            onClick={() => console.log('yo')}
-            sx={{
-              fontSize: 30,
-              fontWeight: 500,
-              borderBottom: '5px solid #EDC7B7',
-              ml: '3vh',
-              mt: '3vh',
-              fontFamily: 'inherit',
-            }}
+          <Stack
+            direction="column"
           >
-            {name}
-          </Typography>
-          <StyledRating
-            name="read-only"
-            readOnly
-            value={length / 2}
-            size="large"
-            precision={0.25}
-            icon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
-            emptyIcon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
-          />
-          <Typography sx={{ ml: 2, fontSize: 24 }}>{labels[length]}</Typography>
-          <IconButton
-            onClick={() => setEventModal(true)}
-          >
-            <InsertInvitationIcon
+            <Typography
+              onClick={() => console.log('yo')}
               sx={{
-                fontSize: '48px',
-                color: 'primary.main',
-                background: '#EEE2DC',
-                borderRadius: '10px',
-                marginRight: '20px',
-                marginTop: '15px',
+                fontSize: 30,
+                margin: 1,
               }}
-            />
-          </IconButton>
+            >
+              {name}
+            </Typography>
+            <Stack direction="row" sx={{ alignItems: 'center' }}>
+              <Typography
+                sx={{
+                  fontSize: 24,
+                  margin: 1,
+                }}
+              >
+                {`${length} miles`}
+              </Typography>
+              <StyledRating
+                name="read-only"
+                readOnly
+                value={length}
+                size="large"
+                max={Math.ceil(length)}
+                precision={0.25}
+                icon={<HikingIcon fontSize="inherit" sx={{ color: 'warning.main' }} />}
+                emptyIcon={<HikingIcon fontSize="inherit" sx={{ color: 'yellow' }} />}
+              />
+            </Stack>
+          </Stack>
+
+          <Stack
+            direction="row"
+            sx={{ justifyContent: 'space-between'}}
+          >
+            <IconButton
+              onClick={(e) => { e.preventDefault(); setEventModal(true); }}
+            >
+              <InsertInvitationIcon
+                sx={{
+                  fontSize: '48px',
+                  color: 'primary.main',
+                  background: '#EEE2DC',
+                  borderRadius: '10px',
+                }}
+              />
+            </IconButton>
+          </Stack>
         </Stack>
         <Typography
           sx={{
             fontSize: 16,
             margin: 1,
-            width: '60%',
-            wordWrap: 'break-word',
-            ml: '3vh',
-            mt: '30px',
-            backgroundColor: '#EEE2DC',
-            color: '#123C69',
-            padding: '8px',
-            fontWeight: '700',
-            border: '3px solid #BAB2B5',
-            borderRadius: '10px',
-            fontFamily: 'inherit',
           }}
         >
           {description}
         </Typography>
+        <Accordion
+          ref={miniMapRef}
+          sx={{
+            backgroundColor: '#123C69',
+          }}
+        >
+          <AccordionSummary
+            onClick={scrollIntoView}
+            expandIcon={<MapIcon sx={{ fontSize: '38px', color: '#EEE2DC' }} />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{
+              padding: 1,
+            }}
+          >
+            <Typography sx={{ fontSize: '24px', color: '#EEE2DC' }}>Show Map</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <MiniMap
+              lat={Number(lat)}
+              lng={Number(lng)}
+              zoom={11}
+              sx={{
+                color: '#123C69',
+              }}
+              height="400px"
+              width="100%"
+            />
+          </AccordionDetails>
+        </Accordion>
+
       </Stack>
+      {/* <Zoom in={!eventModal}> */}
       <Modal
         open={eventModal}
         onClose={() => { setEventModal(false); }}
@@ -130,6 +156,7 @@ function TrailDescription({
         aria-describedby="modal-modal-description"
       >
         <TrailAddEvent
+          setEventModal={setEventModal}
           name={name}
           lat={lat}
           lng={lng}
@@ -139,6 +166,7 @@ function TrailDescription({
           trail={trail}
         />
       </Modal>
+      {/* </Zoom> */}
     </>
   );
 }
@@ -151,6 +179,7 @@ TrailDescription.propTypes = {
   lng: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   elevation: PropTypes.string.isRequired,
+  setMiniMapChecked: PropTypes.func.isRequired,
 };
 
 export default TrailDescription;

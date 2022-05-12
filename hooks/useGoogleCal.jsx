@@ -66,7 +66,7 @@ export async function createCalendarEvent(eventToCreate) {
   });
 
   request.execute((event) => {
-    console.log('Event created!, ', event);
+    console.log(event);
   });
 }
 
@@ -86,6 +86,36 @@ export function handleAuthClick() {
     // Skip display of account chooser and consent dialog for an existing session.
     tokenClient.requestAccessToken({ prompt: '' });
   }
+}
+
+export async function listUpcomingEvents() {
+  console.log('im being hit??');
+  let response;
+  try {
+    const request = {
+      calendar: 'primary',
+      timeMin: (new Date()).toISOString(),
+      showDeleted: false,
+      singleEvents: true,
+      maxResults: 10,
+    };
+    console.log('im in the middle')
+    response = await gapi.client.calendar.events.list(request);
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+  const events = response.result.items;
+  if (!events || events.length === 0) {
+    alert('no events found');
+    return;
+  }
+  const output = events.reduce(
+    (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
+    'Events:\n',
+  );
+  document.getElementById('content').innerText = output;
+  console.log('im done');
 }
 
 export function InitGoogleCal() {

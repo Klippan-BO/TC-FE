@@ -8,7 +8,7 @@ function TrailInfo({
   name, description,
   ratings, length,
   elevation, id,
-  lat, lng, trail,
+  lat, lng, trail, setMiniMapChecked,
 }) {
   return (
     <Stack
@@ -31,11 +31,13 @@ function TrailInfo({
           name={name}
           description={description}
           length={length}
+          difficulty={ratings.difficulty}
           elevation={elevation}
           id={id}
           lat={lat}
           lng={lng}
           trail={trail}
+          setMiniMapChecked={setMiniMapChecked}
         />
         <TrailRatings ratings={ratings} />
       </Stack>
@@ -51,6 +53,11 @@ TrailInfo.propTypes = {
   id: PropTypes.number.isRequired,
   lat: PropTypes.string.isRequired,
   lng: PropTypes.string.isRequired,
+  setMiniMapChecked: PropTypes.func.isRequired,
+  ratings: PropTypes.shape({
+    difficulty: PropTypes.number.isRequired,
+  }).isRequired,
+  trail: PropTypes.object.isRequired,
 };
 
 export default TrailInfo;
