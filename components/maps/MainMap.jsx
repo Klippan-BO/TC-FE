@@ -63,11 +63,12 @@ export default function MainMap(props) {
     document.dispatchEvent(event);
   };
 
-  // document.removeEventListener('newBounds');
-  document.addEventListener('newBounds', (e) => {
-    const newBounds = e.detail;
-    setBounds(newBounds);
-  });
+  useEffect(() => {
+    const eventListener = (event) => setBounds(event.detail);
+    document.addEventListener('newBounds', eventListener);
+    return document.removeEventListener('newBounds', eventListener);
+  }, []);
+
   return (
     <div style={containerStyle}>
       <div className={Styles.map} style={{ height: `${height}%`, width: `${width}%` }}>
