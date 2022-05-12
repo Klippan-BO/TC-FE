@@ -11,7 +11,7 @@ export default function UserLogin({ setNewUser }) {
   async function handleLogin() {
     // sign in through Google Auth and store user result
     const user = await signInUser();
-    const { photoURL, email } = user;
+    const { photoURL, email, displayName } = user;
 
     try {
       // POST to server to check if user exists
@@ -32,6 +32,7 @@ export default function UserLogin({ setNewUser }) {
           id,
           photo: photoURL,
           email,
+          displayName,
         });
 
         // construct return url to redirect user after login
@@ -43,6 +44,7 @@ export default function UserLogin({ setNewUser }) {
           ...currentUser,
           photo: photoURL,
           email,
+          displayName,
         });
 
         // flip newUser to true
