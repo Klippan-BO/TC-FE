@@ -58,7 +58,7 @@ function TrailComments({ comments }) {
           (
             <ListItem
               sx={{
-                wordWrap: 'break-word', backgroundColor: '#123C69', color: '#EEE2DC', m: 'auto', padding: '15px', borderRadius: '8px', borderTop: '15px solid #AC3B61', borderLeft: '3px solid #BAB2B5', borderBottom: '3px solid #BAB2B5', borderRight: '3px solid #BAB2B5', ':hover': {
+                wordWrap: 'break-word', backgroundColor: '#123C69', color: '#EEE2DC', m: 'auto', padding: '15px', borderRadius: '8px', borderTop: '15px solid #AC3B61', borderLeft: '3px solid #BAB2B5', borderBottom: '3px solid #BAB2B5', borderRight: '3px solid #BAB2B5', fontFamily: 'inherit', ':hover': {
                   transform: 'scale(1.01)', cursor: 'pointer',
                 },
               }}
