@@ -20,7 +20,6 @@ function AddTrailRatings({ trail, id }) {
     difficulty: null,
   });
 
-
   const addRatings = (ratings) => {
     fetch('/api/rate', {
       method: 'POST',
@@ -30,7 +29,6 @@ function AddTrailRatings({ trail, id }) {
       },
     });
   };
-
 
   const handleClick = (boolean) => {
     setModal(boolean);
