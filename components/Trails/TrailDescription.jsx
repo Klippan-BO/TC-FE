@@ -118,10 +118,7 @@ function TrailDescription({
                 name="read-only"
                 readOnly
                 value={length}
-<<<<<<< HEAD
-=======
                 max={Math.ceil(length)}
->>>>>>> ce710cc79ebe24eb479303164ec7d1c862685ee8
                 size="large"
                 precision={0.25}
                 icon={<HikingIcon sx={{ fontSize: '30px' }} />}
