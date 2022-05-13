@@ -14,7 +14,6 @@ import sampleData from "./sampleData";
 
 function UserPage({
   userData,
-  loggedInUserData,
   userPhoto,
   displayName,
   backEndUser,
@@ -22,10 +21,7 @@ function UserPage({
   const [openNotif, setOpenNotif] = useState(false);
   const [openTrails, setOpenTrails] = useState(false);
   const [openFriends, setOpenFriends] = useState(false);
-  const myFriends =
-    backEndUser.friends.filter((friend) => friend.status === "accepted") || [];
-
-  //
+  const myFriends = backEndUser.friends.filter((friend) => friend.status === "accepted") || [];
 
   const handleNotificationClick = () => {
     setOpenNotif(true);
@@ -86,16 +82,16 @@ function UserPage({
           <div className={style.userFriends}>
             I HAVE {userData.userProfile.friends} FRIENDS
           </div> */}
-          <div className={style.description}>{loggedInUserData.bio}</div>
+          <div className={style.description}>{backEndUser.bio}</div>
           <MyTrails
             openTrails={openTrails}
             closeTrails={closeTrails}
-            my_trails={loggedInUserData.trails}
+            my_trails={backEndUser.trails}
           />
           <div className={style.trailText}>Recently Visited Trails</div>
           <div className={style.trailsCont}>
-            {loggedInUserData.trails &&
-              loggedInUserData.trails.map((trail, index) => {
+            {backEndUser.trails &&
+              backEndUser.trails.map((trail, index) => {
                 if (index < 4) {
                   return (
                     <Link
@@ -115,7 +111,7 @@ function UserPage({
                   );
                 }
               })}
-            {loggedInUserData.trails && loggedInUserData.trails.length > 4 ? (
+            {backEndUser.trails && backEndUser.trails.length > 4 ? (
               <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
                 <p>
                   See

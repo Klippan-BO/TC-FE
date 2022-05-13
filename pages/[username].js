@@ -9,32 +9,21 @@ import UserPage from '../components/User/UserPage.js';
 
 function User() {
   const [isLoading, setLoading] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState('');
   const { currentUser } = useAuth();
-  const [backEndUser, setBackEndUser] = useState({});
+  const [backEndUser, setBackEndUser] = useState();
+  const userId = currentUser?.id || 1;
 
-  const userId = currentUser.id || 1;
   const userPhoto = currentUser.photo;
   const { displayName } = currentUser;
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3000/api/users?userId=${userId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setLoggedInUser(data);
-        setLoading(false);
-      })
-      .catch((err) => { console.log('🚀 ~ file: trail.js ~ line 27 ~ err', err); });
-  }, []);
-
-  useEffect(() => {
     fetch(`http://localhost:3000/api/users/me?userId=${userId}`)
       .then((res) => res.json())
       .then((data) => {
+        data.friends = data.friends || [];
+        setLoading(false);
         setBackEndUser(data);
-  
-      
       })
       .catch((err) => { console.log(err); });
   }, []);
@@ -43,8 +32,16 @@ function User() {
 
   return (
     <div>
-      { (loggedInUser && backEndUser) && (<UserPage userData={sampleData} displayName={displayName} userPhoto={userPhoto} loggedInUserData={loggedInUser} backEndUser={backEndUser} />)}
+      { backEndUser && (
+        <UserPage
+          userData={sampleData}
+          displayName={displayName}
+          userPhoto={userPhoto}
+          backEndUser={backEndUser}
+        />
+      )}
     </div>
   );
 }
+
 export default User;
