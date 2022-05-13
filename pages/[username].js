@@ -12,15 +12,14 @@ function User() {
   const [isLoading, setLoading] = useState(false);
   const { currentUser } = useAuth();
   const [backEndUser, setBackEndUser] = useState();
-  const userId = 5;
-
+  const userId = currentUser?.id;
 
   useEffect(() => {
     setLoading(true);
     fetch(`http://localhost:3000/api/users/me?userId=${userId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("🚀 ~ file: [username].js ~ line 22 ~ .then ~ data", data)
+        console.log("🚀 ~ file: [username].js ~ line 22 ~ .then ~ data", data);
         data.friends = data.friends || [];
         setTimeout(() => {
           setLoading(false);
