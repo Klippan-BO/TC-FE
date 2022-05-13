@@ -8,7 +8,7 @@ import ParkIcon from '@mui/icons-material/Park';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import LandscapeIcon from '@mui/icons-material/Landscape';
 
-function TrailRatings({ ratings }) {
+function TrailRatings({ ratings, id, trail }) {
 //console.log("trails props",ratings)
   return (
     <Stack
@@ -127,7 +127,7 @@ function TrailRatings({ ratings }) {
           }}
         />
       </Stack>
-      <TrailAddRatings />
+      <TrailAddRatings id={id} trail={trail} />
     </Stack>
   );
 }

@@ -39,7 +39,7 @@ function TrailInfo({
           trail={trail}
           setMiniMapChecked={setMiniMapChecked}
         />
-        <TrailRatings ratings={ratings} />
+        <TrailRatings ratings={ratings} id={id} trail={trail} />
       </Stack>
     </Stack>
   );
