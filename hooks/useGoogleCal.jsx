@@ -66,7 +66,7 @@ export async function createCalendarEvent(eventToCreate) {
   });
 
   request.execute((event) => {
-    console.log(event);
+    alert(event.htmlLink)
   });
 }
 

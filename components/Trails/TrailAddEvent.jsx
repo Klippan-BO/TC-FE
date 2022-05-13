@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -30,31 +30,23 @@ const style = {
 function TrailAddEvent(props) {
   const {
     name, description,
-    // elevation, id,
     lat, lng,
     setEventModal,
-    // trail,
   } = props;
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [startTime, setStartTime] = useState(Date.now());
   const [endTime, setEndTime] = useState();
-  // const [friendsInvite, setFriendsInvite] = useState([]);
-  const [auth, setAuth] = useState(false);
   const handleTimeChange = (value) => { setStartTime(value); };
   const handleEndTimeChange = (value) => { setEndTime(value); };
   const handleSummary = (e) => { setSummary(e.target.value); };
   const handleBody = (e) => { setBody(e.target.value); };
-  // const selectFriendsChange = (value) => {
-  //   console.log(value);
-  //   const updatedList = friendsInvite.push(value);
-  //   setFriendsInvite([updatedList]);
-  // };
+  const calAuth = useRef(false);
 
   const handleAddEvent = () => {
-    if (!auth) {
+    if (!calAuth.current) {
       handleAuthClick();
-      setAuth(true);
+      calAuth.current = true;
     } else {
       const event = {
         summary,
@@ -77,8 +69,7 @@ function TrailAddEvent(props) {
         },
       };
       createCalendarEvent(event)
-        .then((result) => {
-          console.log(result);
+        .then(() => {
           setEventModal(false);
         })
         .catch((err) => {
@@ -161,23 +152,12 @@ function TrailAddEvent(props) {
                   type="submit"
                   onClick={(e) => { e.preventDefault(); handleAddEvent(); }}
                 >
-                  {auth
-                    ? (
-                      <HikingIcon
-                        sx={{
-                          fontSize: '48px',
-                          color: 'primary.main',
-                        }}
-                      />
-                    )
-                    : (
-                      <GoogleIcon
-                        sx={{
-                          fontSize: '48px',
-                          color: 'primary.main',
-                        }}
-                      />
-                    )}
+                  <HikingIcon
+                    sx={{
+                      fontSize: '48px',
+                      color: 'primary.main',
+                    }}
+                  />
                 </IconButton>
               </Box>
             </Stack>
