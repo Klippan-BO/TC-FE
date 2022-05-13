@@ -5,7 +5,7 @@ console.log("🚀 ~ file: friends.js ~ line 4 ~ handler ~ req", JSON.parse(req.b
 // res.status(201).send(req.body)
     
   axios
-    .post("http://localhost:3005/friends/add", JSON.parses(req.body))
+    .post("http://localhost:3005/friends/add", JSON.parse(req.body))
     .then((response) => {
       console.log(
         "🚀 ~ file: users.js ~ line 8 ~ handler ~ response",

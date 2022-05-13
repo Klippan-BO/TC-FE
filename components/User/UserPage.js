@@ -13,16 +13,17 @@ import style from "../../styles/user.module.css";
 import sampleData from "./sampleData";
 
 function UserPage({
-  userData,
   backEndUser,
 }) {
   const [openNotif, setOpenNotif] = useState(false);
   const [openTrails, setOpenTrails] = useState(false);
   const [openFriends, setOpenFriends] = useState(false);
-  const myFriends = backEndUser.friends || [];
+  const [updatedUser, setUpdatedUser] =useState(backEndUser)
+  const [value, setValue] = useState(1);
+  const myFriends = updatedUser.friends || [];
 
   const handleNotificationClick = () => {
-    if(backEndUser.outgoing_requests ||backEndUser.outgoing_requests ) {
+    if(updatedUser.incoming_requests ||updatedUser.outgoing_requests ) {
     setOpenNotif(true);}
   };
 
@@ -31,7 +32,7 @@ function UserPage({
   };
   const handleMyTrailsClick = (e) => {
     e.preventDefault();
-    if (userData.userProfile.my_trails.length > 4) {
+    if (updatedUser.trails.length > 4) {
       setOpenTrails(true);
     }
   };
@@ -41,13 +42,24 @@ function UserPage({
   };
 
   const handleMyFriendsClick = () => {
-    if (userData.userProfile.friendsList.length > 4) {
+    if (updatedUser.friends.length > 4) {
       setOpenFriends(true);
     }
   };
   const closeFriends = () => {
     setOpenFriends(false);
   };
+
+  const updateMyNotif=()=>{
+    fetch(`http://localhost:3000/api/users/me?userId=${updatedUser.id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      data.friends = data.friends || [];
+      setUpdatedUser(data);
+    })
+    .catch((err) => { console.log(err); });
+    setValue(value+1)
+  }
 
   return (
     <div>
@@ -57,40 +69,42 @@ function UserPage({
       <Container>
         <div className={style.container}>
           <div className={style.parentCont}>
-            <img src={backEndUser.profile_image} className={style.userImg} />
+            <img src={updatedUser.profile_image} className={style.userImg} />
 
             <CircleNotificationsIcon
               style={{ fontSize: 50 }}
               onClick={handleNotificationClick}
               className={
-                (backEndUser.incoming_requests || backEndUser.outgoing_requests)
+                (updatedUser.incoming_requests || updatedUser.outgoing_requests)
                   ? style.notificationBtnActive
                   : style.notificationBtnNoneActive
               }
             />
 
             <MyNotification
-              requests={backEndUser.incoming_requests}
-              requesting={backEndUser.outgoing_requests}
+              requests={updatedUser.incoming_requests}
+              requesting={updatedUser.outgoing_requests}
               openNotif={openNotif}
               closeNotif={closeNotif}
+              updateMyNotif={updateMyNotif}
+              value={value}
             />
           </div>
-          <div className={style.userName}>{backEndUser.username}</div>
+          <div className={style.userName}>{updatedUser.username}</div>
           {/* <div className={style.userCity}>{userData.userProfile.city}</div>
           <div className={style.userFriends}>
             I HAVE {userData.userProfile.friends} FRIENDS
           </div> */}
-          <div className={style.description}>{backEndUser.bio}</div>
+          <div className={style.description}>{updatedUser.bio}</div>
           <MyTrails
             openTrails={openTrails}
             closeTrails={closeTrails}
-            my_trails={backEndUser.trails}
+            my_trails={updatedUser.trails}
           />
           <div className={style.trailText}>Recently Visited Trails</div>
           <div className={style.trailsCont}>
-            {backEndUser.trails &&
-              backEndUser.trails.map((trail, index) => {
+            {updatedUser.trails &&
+              updatedUser.trails.map((trail, index) => {
                 if (index < 4) {
                   return (
                     <Link
@@ -110,7 +124,7 @@ function UserPage({
                   );
                 }
               })}
-            {backEndUser.trails && backEndUser.trails.length > 4 ? (
+            {updatedUser.trails && updatedUser.trails.length > 4 ? (
               <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
                 <p>
                   See
