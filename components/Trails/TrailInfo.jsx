@@ -13,19 +13,9 @@ function TrailInfo({
   return (
     <Stack
       direction="row"
-      sx={{
-        backgroundColor: '#EEE2DC',
-        padding: 2,
-        borderRadius: '15px',
-      }}
     >
       <Stack
         direction="row"
-        sx={{
-          borderColor: 'black',
-          justifyContent: 'space-between',
-          gap: '15px',
-        }}
       >
         <TrailDescription
           name={name}

@@ -14,13 +14,11 @@ function TrailRatings({ ratings, id, trail }) {
     <Stack
       direction="column"
       sx={{
-        borderLeft: 2,
-        borderColor: '#EEE2DC',
         backgroundColor: '#123C69',
-        color: '#EEE2DC',
+        color: '#fff',
         padding: 3,
-        borderRadius: '15px',
       }}
+      justifyContent="center"
     >
       {/* Ratings */}
       <Rating

@@ -40,7 +40,7 @@ const backgroundStyle = {
   right: 0,
 };
 const iconStyles = {
-  fontSize: '48px',
+  fontSize: '35px',
   color: 'primary.light',
 };
 const modalStyle = {
@@ -121,8 +121,6 @@ function TrailCarousel(props) {
   return (
     <Box
       sx={{
-        border: 4,
-        borderColor: '#EEE2DC',
         borderRadius: '10px',
         position: 'relative',
       }}
@@ -131,17 +129,16 @@ function TrailCarousel(props) {
         direction="row"
         sx={{
           backgroundColor: '#EEE2DC',
-          margin: 1,
-          borderRadius: '10px',
+          borderRadius: '5px',
           position: 'absolute',
-          right: 20,
-          bottom: 0,
+          right: 7,
+          bottom: 7,
           zIndex: 2,
           opacity: 0.6,
           '&:hover': {
             opacity: 1,
           },
-          transition: 'opacity 0.4s linear',
+          transition: 'opacity 200ms linear',
           fontSize: '60px',
         }}
       >
@@ -185,8 +182,8 @@ function TrailCarousel(props) {
       <Button
         style={{
           position: 'absolute',
-          right: 10,
-          top: 0,
+          right: 7,
+          top: 7,
           zIndex: 2,
         }}
       >
@@ -208,7 +205,7 @@ function TrailCarousel(props) {
         interval={interval ? 3000 : null}
         style={{
           position: 'relative',
-          height: '60vh',
+          height: '50vh',
         }}
       >
         {photos.map((photo, i) => {
@@ -222,9 +219,10 @@ function TrailCarousel(props) {
                   style={{
                     position: 'relative',
                     width: '100%',
-                    height: '60vh',
+                    height: '50vh',
                     objectFit: 'cover',
                     filter: 'blur(8px)',
+                    borderRadius: '10px',
                   }}
                 />
                 <img

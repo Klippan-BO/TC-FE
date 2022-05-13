@@ -40,10 +40,8 @@ function TrailPage({ id }) {
         <Stack
           direction="column"
           sx={{
-            rowGap: '10px',
-            border: 0,
-            borderColor: 'red',
-            height: '200vh',
+            rowGap: '20px',
+            height: '150vh',
           }}
         >
           <TrailCarousel
