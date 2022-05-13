@@ -1,3 +1,4 @@
+import React from 'react';
 import { Dialog, DialogTitle, stepLabelClasses } from "@mui/material";
 import style from "../../styles/user.module.css";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -32,7 +33,9 @@ export default function MyConnections({
           <div className={style.popUpTitle}>My Friends</div>
         </div>
       </DialogTitle>
-      <div className={style.popUpInnerCont}>
+      <div
+        className={style.popUpInnerCont + " removeScrollBar"}
+      >
         {myFriends &&
           myFriends.map((friend) => (
             <div className={style.popUpRowCont} key={friend.username}>
@@ -47,4 +50,3 @@ export default function MyConnections({
     </Dialog>
   );
 }
-

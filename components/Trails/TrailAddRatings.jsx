@@ -48,6 +48,10 @@ function AddTrailRatings({ trail, id }) {
         variant="contained"
         sx={{
           color: 'white',
+          backgroundColor: '#AC3B61',
+          ':hover': {
+            backgroundColor: '#8D3150',
+          },
         }}
         onClick={() => handleClick(true)}
       >
@@ -63,9 +67,8 @@ function AddTrailRatings({ trail, id }) {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            height: 410,
-            bgcolor: '#123C68 ',
-            borderTop: '15px solid #AC3A60',
+            height: 390,
+            bgcolor: '#123C68',
             borderRadius: 2,
             boxShadow: 24,
             p: 4,
@@ -190,6 +193,12 @@ function AddTrailRatings({ trail, id }) {
             <Button
               variant="contained"
               onClick={() => handleSubmit(false)}
+              sx={{
+                backgroundColor: '#AC3B61',
+                ':hover': {
+                  backgroundColor: '#8D3150',
+                },
+              }}
             >
               Submit
             </Button>

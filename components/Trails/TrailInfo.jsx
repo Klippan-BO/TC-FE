@@ -13,34 +13,21 @@ function TrailInfo({
   return (
     <Stack
       direction="row"
-      sx={{
-        backgroundColor: '#EEE2DC',
-        padding: 2,
-        borderRadius: '15px',
-      }}
+      justifyContent="space-between"
     >
-      <Stack
-        direction="row"
-        sx={{
-          borderColor: 'black',
-          justifyContent: 'space-between',
-          gap: '15px',
-        }}
-      >
-        <TrailDescription
-          name={name}
-          description={description}
-          length={length}
-          difficulty={ratings.difficulty}
-          elevation={elevation}
-          id={id}
-          lat={lat}
-          lng={lng}
-          trail={trail}
-          setMiniMapChecked={setMiniMapChecked}
-        />
-        <TrailRatings ratings={ratings} id={id} trail={trail} />
-      </Stack>
+      <TrailDescription
+        name={name}
+        description={description}
+        length={length}
+        difficulty={ratings.difficulty}
+        elevation={elevation}
+        id={id}
+        lat={lat}
+        lng={lng}
+        trail={trail}
+        setMiniMapChecked={setMiniMapChecked}
+      />
+      <TrailRatings ratings={ratings} id={id} trail={trail} />
     </Stack>
   );
 }
