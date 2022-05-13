@@ -12,7 +12,7 @@ export default function UserSignup({ setNewUser }) {
   const [username, setUsername] = useState('');
   const router = useRouter();
 
-  const { photo, email } = currentUser;
+  const { photo, email, displayName } = currentUser;
   async function handleSignUp() {
     const userDetails = {
       photo,
@@ -41,6 +41,7 @@ export default function UserSignup({ setNewUser }) {
           photo,
           email,
           id,
+          displayName,
         });
 
         const returnUrl = router.query.returnUrl || '/map';

@@ -66,78 +66,76 @@ const calculateDist = (origin, point) => {
   return (c * r);
 };
 
-const locSearch = (map, maps) => {
-  maps.event.addDomListener(document, 'locSearch', (e) => {
-    const origin = e.detail;
-    map.panTo(origin);
-    map.setZoom(11);
+const locSearch = (map, maps, e) => {
+  const origin = e.detail;
+  map.panTo(origin);
+  map.setZoom(11);
 
-    const {
-      north: nelat, south: swlat, east: nelng, west: swlng,
-    } = getBounds(map);
-    const event = new CustomEvent('newBounds', {
-      detail: {
-        nelat, swlat, nelng, swlng,
-      },
-    });
-    document.dispatchEvent(event);
+  const {
+    north: nelat, south: swlat, east: nelng, west: swlng,
+  } = getBounds(map);
+  const event = new CustomEvent('newBounds', {
+    detail: {
+      nelat, swlat, nelng, swlng,
+    },
   });
+  document.dispatchEvent(event);
 };
 
-const updateClosestTrails = (map, maps) => {
+const updateClosestTrails = (map, maps, e) => {
   // CHANGE SEARCHLIMIT TO CHANGE NUMBER OF RESULTS
   const searchLimit = 5;
   const rangeLimit = 45;
-  maps.event.addDomListener(document, 'newTrails', (e) => {
-    const trails = e.detail;
-    const origin = {
-      lat: map.getCenter().lat(),
-      lng: map.getCenter().lng(),
-    };
-    const bounds = map.getBounds();
-    const sortedTrails = trails.sort((a, b) => {
-      if (calculateDist(origin, { lat: a.lat, lng: a.lng })
-      < calculateDist(origin, { lat: b.lat, lng: b.lng })) {
-        return -1;
-      }
-      if (calculateDist(origin, { lat: a.lat, lng: a.lng })
-      > calculateDist(origin, { lat: b.lat, lng: b.lng })) {
-        return 1;
-      }
-      return 0;
-    });
-
-    let foundResults = false;
-    if (sortedTrails.length) {
-      let length = searchLimit;
-      if (sortedTrails.length < searchLimit) {
-        length = sortedTrails.length;
-      }
-      for (let i = 0; i < length; i += 1) {
-        const point = {
-          lat: Number(sortedTrails[i].lat),
-          lng: Number(sortedTrails[i].lng),
-        };
-        if (calculateDist(origin, point) > rangeLimit) {
-          break;
-        }
-        bounds.extend(point);
-        foundResults = true;
-      }
+  const trails = e.detail;
+  const origin = {
+    lat: map.getCenter().lat(),
+    lng: map.getCenter().lng(),
+  };
+  const bounds = map.getBounds();
+  const sortedTrails = trails.sort((a, b) => {
+    if (calculateDist(origin, { lat: a.lat, lng: a.lng })
+    < calculateDist(origin, { lat: b.lat, lng: b.lng })) {
+      return -1;
     }
-    if (foundResults) {
-      map.fitBounds(bounds);
-    } else {
-      // eslint-disable-next-line no-alert
-      alert(`No trails found within ${rangeLimit}km!`);
+    if (calculateDist(origin, { lat: a.lat, lng: a.lng })
+    > calculateDist(origin, { lat: b.lat, lng: b.lng })) {
+      return 1;
     }
+    return 0;
   });
+
+  let foundResults = false;
+  if (sortedTrails.length) {
+    let length = searchLimit;
+    if (sortedTrails.length < searchLimit) {
+      length = sortedTrails.length;
+    }
+    for (let i = 0; i < length; i += 1) {
+      const point = {
+        lat: Number(sortedTrails[i].lat),
+        lng: Number(sortedTrails[i].lng),
+      };
+      if (calculateDist(origin, point) > rangeLimit) {
+        break;
+      }
+      bounds.extend(point);
+      foundResults = true;
+    }
+  }
+  if (foundResults) {
+    map.fitBounds(bounds);
+  } else {
+    // eslint-disable-next-line no-alert
+    alert(`No trails found within ${rangeLimit}km!`);
+  }
 };
 
 const apiLoaded = (map, maps, trails) => {
   mapQuadrants(map, maps, trails);
-  locSearch(map, maps);
-  updateClosestTrails(map, maps, trails);
+  document.removeEventListener('locSearch', (e) => locSearch(map, maps, e));
+  document.addEventListener('locSearch', (e) => locSearch(map, maps, e));
+  document.removeEventListener('newTrails', (e) => updateClosestTrails(map, maps, e));
+  document.addEventListener('newTrails', (e) => updateClosestTrails(map, maps, e));
 };
 
 /*
