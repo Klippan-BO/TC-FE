@@ -64,7 +64,7 @@ function TrailPage({ id }) {
             ratings={trail.ratings}
             trail={trail}
           />
-          <TrailComments comments={trail.comments} />
+          <TrailComments comments={trail.comments} id={trail.id} />
         </Stack>
       </Container>
     </div>
