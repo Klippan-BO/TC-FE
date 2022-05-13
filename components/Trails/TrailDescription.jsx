@@ -87,34 +87,48 @@ function TrailDescription({
             >
               {description}
             </Typography>
+
+
             <Stack
               direction="row"
               sx={{
-                justifyContent: 'flex-end',
+                justifyContent: 'left',
                 alignItems: 'flex-end',
                 gap: 1,
+                position: "relative",
               }}
             >
+            <Typography
+                sx={{
+                  fontSize: 16,
+                  mr: 2,
+                }}
+              >
+                {`Elevation: ${elevation} ft`}
+              </Typography>
               <Typography
                 sx={{
                   fontSize: 16,
                   mr: 2,
                 }}
               >
-                {`${length} miles`}
+                {`Distance: ${length} mi`}
               </Typography>
               <StyledRating
                 name="read-only"
                 readOnly
-                value={length / 2}
+                value={length}
+                max={Math.ceil(length)}
                 size="large"
                 precision={0.25}
                 icon={<HikingIcon sx={{ fontSize: '30px' }} />}
                 emptyIcon={<HikingIcon sx={{ fontSize: '30px' }} />}
               />
+
+
               <IconButton
                 sx={{
-                  padding: 0,
+                  padding: 0, position: 'absolute', right: 0
                 }}
                 onClick={(e) => { e.preventDefault(); setEventModal(true); }}
               >
@@ -127,47 +141,11 @@ function TrailDescription({
                   }}
                 />
               </IconButton>
+
+
             </Stack>
           </Stack>
         </Stack>
-        <Accordion
-          ref={miniMapRef}
-          sx={{
-            backgroundColor: '#123C69',
-            width: '90%',
-            maxWidth: '1200px',
-          }}
-        >
-          <AccordionSummary
-            expandIcon={<MapIcon sx={{ fontSize: '38px', color: '#fff' }} />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            sx={{
-              paddingTop: 1,
-            }}
-          >
-            <Typography sx={{
-              fontSize: '24px',
-              color: '#fff',
-              fontFamily: 'inherit',
-            }}
-            >
-              Show Map
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <MiniMap
-              lat={Number(lat)}
-              lng={Number(lng)}
-              zoom={11}
-              sx={{
-                color: '#123C69',
-              }}
-              height="400px"
-              width="100%"
-            />
-          </AccordionDetails>
-        </Accordion>
 
       </Stack>
       {/* <Zoom in={!eventModal}> */}

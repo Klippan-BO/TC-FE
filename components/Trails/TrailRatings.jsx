@@ -29,7 +29,6 @@ function TrailRatings({ ratings, id, trail }) {
           color: '#F6CC66',
           fontSize: 48,
           mb: 1,
-          mt: '1em',
           justifyContent: 'center',
         }}
       />
@@ -56,7 +55,7 @@ function TrailRatings({ ratings, id, trail }) {
           precision={0.25}
           readOnly
           icon={<ParkIcon fontSize="inherit" />}
-          emptyIcon={<ParkIcon fontSize="inherit" />}
+          emptyIcon={<ParkIcon fontSize="inherit" sx={{stroke: 1}}/>}
           sx={{
             color: '#97C1A9',
             fontSize: 30,
