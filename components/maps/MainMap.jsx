@@ -64,11 +64,14 @@ export default function MainMap(props) {
   };
 
   useEffect(() => {
-    const eventListener = (event) => setBounds(event.detail);
-    document.addEventListener('newBounds', eventListener);
-    return document.removeEventListener('newBounds', eventListener);
-  }, []);
+    const event = new CustomEvent('updateTrail', { detail: trails });
+    document.dispatchEvent(event);
+  }, [trails]);
 
+  document.addEventListener('newBounds', (e) => {
+    const newBounds = e.detail;
+    setBounds(newBounds);
+  });
   return (
     <div style={containerStyle}>
       <div className={Styles.map} style={{ height: `${height}%`, width: `${width}%` }}>

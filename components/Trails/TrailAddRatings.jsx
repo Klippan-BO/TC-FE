@@ -9,13 +9,38 @@ import ParkIcon from '@mui/icons-material/Park';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import LandscapeIcon from '@mui/icons-material/Landscape';
 
-function AddTrailRatings() {
+function AddTrailRatings({ trail, id }) {
   const [modal, setModal] = useState(false);
+  const [ratings, setRatings] = useState({
+    user_id: id,
+    trail_id: trail.id,
+    stars: null,
+    beauty: null,
+    nature: null,
+    difficulty: null,
+  });
+
+
+  const addRatings = (ratings) => {
+    fetch('/api/rate', {
+      method: 'POST',
+      body: JSON.stringify(ratings),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  };
+
 
   const handleClick = (boolean) => {
     setModal(boolean);
   };
 
+  const handleSubmit = (boolean) => {
+    console.log(ratings)
+    setModal(boolean);
+    addRatings(ratings);
+  };
 
   return (
     <>
@@ -61,6 +86,7 @@ function AddTrailRatings() {
             <Rating
               defaultValue={0}
               precision={1}
+              onChange={(event, newValue)=>{ratings.stars = newValue}}
               sx={{
                 justifyContent: 'center',
                 color: '#F6CC66',
@@ -89,6 +115,7 @@ function AddTrailRatings() {
               <Rating
                 defaultValue={0}
                 precision={1}
+                onChange={(event, newValue)=>{ratings.beauty = newValue}}
                 icon={<ParkIcon fontSize="inherit" />}
                 emptyIcon={<ParkIcon fontSize="inherit" />}
                 sx={{
@@ -118,6 +145,7 @@ function AddTrailRatings() {
               <Rating
                 defaultValue={0}
                 precision={1}
+                onChange={(event, newValue)=>{ratings.nature = newValue}}
                 icon={<WbSunnyIcon fontSize="inherit" />}
                 emptyIcon={<WbSunnyIcon fontSize="inherit" />}
                 sx={{
@@ -149,6 +177,7 @@ function AddTrailRatings() {
                 defaultValue={0}
                 size="small"
                 precision={1}
+                onChange={(event, newValue)=>{ratings.difficulty = newValue}}
                 icon={<LandscapeIcon fontSize="inherit" />}
                 emptyIcon={<LandscapeIcon fontSize="inherit" />}
                 sx={{
@@ -160,7 +189,7 @@ function AddTrailRatings() {
 
             <Button
               variant="contained"
-              onClick={() => handleClick(false)}
+              onClick={() => handleSubmit(false)}
             >
               Submit
             </Button>

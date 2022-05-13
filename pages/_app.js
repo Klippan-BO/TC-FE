@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
         <RouteGuard>
         <div className='page_container'>
           <Layout>
-            <Component {...pageProps} />
+            <Component {...pageProps}/>
           </Layout>
         </div>
         </RouteGuard>

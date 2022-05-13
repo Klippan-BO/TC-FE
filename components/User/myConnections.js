@@ -36,10 +36,10 @@ export default function MyConnections({
         {myFriends &&
           myFriends.map((friend) => (
             <div className={style.popUpRowCont} key={friend.username}>
-              <img src={friend.photo} className={style.popUpImg} />
+              <img src={friend.profile_image} className={style.popUpImg} />
               <span className={style.darkName}>
                 <strong>{friend.username} </strong><br /> <br/>
-                {friend.description}
+                {friend.bio}
               </span>
             </div>
           ))}
@@ -47,3 +47,4 @@ export default function MyConnections({
     </Dialog>
   );
 }
+
