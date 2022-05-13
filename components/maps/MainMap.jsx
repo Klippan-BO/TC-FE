@@ -52,7 +52,7 @@ export default function MainMap(props) {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => loadTrails(), []);
+  // useEffect(() => loadTrails(), []);
 
   useEffect(() => {
     loadTrails();

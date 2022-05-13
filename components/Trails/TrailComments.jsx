@@ -13,7 +13,7 @@ function TrailComments({ comments, id }) {
   const [trailComments, setComments] = useState(comments);
   const [newComment, setNewComment] = useState('');
   const { currentUser } = useAuth();
-
+  console.log(useAuth())
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       setComments(comments.concat({ username: 'User', body: newComment, timestamp: Date.now()}));
@@ -23,8 +23,7 @@ function TrailComments({ comments, id }) {
 
   const handleClick = () => {
     const uploadComment = async (comment) => {
-      // `/api/trails?id=${id}`
-      const results = await fetch(`/api/trails?id=${id}`, {
+      const results = await fetch('/api/comments', {
         method: 'POST',
         body: JSON.stringify({ comment }),
         headers: {
@@ -35,7 +34,7 @@ function TrailComments({ comments, id }) {
     };
     console.log(currentUser)
     const commentUpload = {
-      user_id: currentUser.id,
+      user_id: 112,
       trail_id: id,
       body: newComment,
       username: currentUser.displayName,
