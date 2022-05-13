@@ -59,7 +59,7 @@ function Leaderboard() {
         role={undefined}
         placement="bottom-end"
         transition
-        sx={{ zIndex: 4, width: '40%' }}
+        sx={{ zIndex: 1000, width: '40%' }}
       >
         {({ TransitionProps }) => (
           <Grow

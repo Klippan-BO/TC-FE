@@ -60,6 +60,8 @@ function TrailDescription({
         >
           <Stack
             direction="column"
+            width="90%"
+            maxWidth="1200px"
           >
             <Typography
               onClick={() => console.log('yo')}
@@ -132,6 +134,8 @@ function TrailDescription({
           ref={miniMapRef}
           sx={{
             backgroundColor: '#123C69',
+            width: '90%',
+            maxWidth: '1200px',
           }}
         >
           <AccordionSummary

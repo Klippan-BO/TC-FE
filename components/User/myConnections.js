@@ -26,7 +26,6 @@ export default function MyConnections({
           backgroundColor: "#eee2dc",
         },
       }}
-      className="removeScrollBar"
     >
       <DialogTitle>
         <div className={style.popUpBtnWrapper}>
@@ -34,7 +33,9 @@ export default function MyConnections({
           <div className={style.popUpTitle}>My Friends</div>
         </div>
       </DialogTitle>
-      <div className={style.popUpInnerCont}>
+      <div
+        className={style.popUpInnerCont + " removeScrollBar"}
+      >
         {myFriends &&
           myFriends.map((friend) => (
             <div className={style.popUpRowCont} key={friend.username}>

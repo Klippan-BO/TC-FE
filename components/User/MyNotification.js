@@ -67,7 +67,7 @@ export default function MyNotification({
             <CancelIcon className={style.close} onClick={closePopUp} />
           </div>
         </DialogTitle>
-        <div className={style.popUpCont}>
+        <div className={style.popUpCont + " removeScrollBar"}>
           {requests &&
             requests.map((person) => (
               <div className={style.popUpRowCont} key={person.username}>
