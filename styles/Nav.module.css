@@ -28,6 +28,7 @@
 
 .nav li:hover {
   color: #68253b;
+  cursor: pointer;
 }
 
 .navContainer {
