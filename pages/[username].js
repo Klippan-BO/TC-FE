@@ -4,6 +4,7 @@ import sampleData from '../components/User/sampleData.js';
 import { useAuth } from '../context/AuthContext';
 // eslint-disable-next-line import/extensions
 import UserPage from '../components/User/UserPage.js';
+import LoadingScreen from '../components/LoadingScreen';
 
 // getting userId from useAuth()
 
@@ -11,7 +12,7 @@ function User() {
   const [isLoading, setLoading] = useState(false);
   const { currentUser } = useAuth();
   const [backEndUser, setBackEndUser] = useState();
-  const userId = currentUser?.id;
+  const userId = 5;
 
 
   useEffect(() => {
@@ -21,13 +22,15 @@ function User() {
       .then((data) => {
         console.log("🚀 ~ file: [username].js ~ line 22 ~ .then ~ data", data)
         data.friends = data.friends || [];
-        setLoading(false);
-        setBackEndUser(data);
+        setTimeout(() => {
+          setLoading(false);
+          setBackEndUser(data);
+        }, 75);
       })
       .catch((err) => { console.log(err); });
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingScreen />;
 
   return (
     <div>

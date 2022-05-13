@@ -1,3 +1,4 @@
+import React from 'react';
 import { Dialog, DialogTitle, stepLabelClasses } from "@mui/material";
 import style from "../../styles/user.module.css";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -25,6 +26,7 @@ export default function MyConnections({
           backgroundColor: "#eee2dc",
         },
       }}
+      className="removeScrollBar"
     >
       <DialogTitle>
         <div className={style.popUpBtnWrapper}>
@@ -47,4 +49,3 @@ export default function MyConnections({
     </Dialog>
   );
 }
-

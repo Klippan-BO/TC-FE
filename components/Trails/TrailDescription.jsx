@@ -90,6 +90,7 @@ function TrailDescription({
               sx={{
                 justifyContent: 'flex-end',
                 alignItems: 'flex-end',
+                gap: 1,
               }}
             >
               <Typography
@@ -110,6 +111,9 @@ function TrailDescription({
                 emptyIcon={<HikingIcon sx={{ fontSize: '30px' }} />}
               />
               <IconButton
+                sx={{
+                  padding: 0,
+                }}
                 onClick={(e) => { e.preventDefault(); setEventModal(true); }}
               >
                 <InsertInvitationIcon

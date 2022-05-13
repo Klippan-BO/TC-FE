@@ -37,7 +37,7 @@ function Top({ trail }) {
           backgroundColor: '#123C69',
           height: '12vh',
           borderRadius: '20px',
-          border: '3px solid #bab2b5',
+          boxShadow: '2px 2px 2px rgba(0,0,0,.55)',
           transition: '200ms all linear',
           ':hover': {
             backgroundColor: '#0A2452',
@@ -46,12 +46,12 @@ function Top({ trail }) {
       >
         <CardContent sx={{ cursor: 'pointer', display: 'flex', gap: '1.125em' }}>
           <CardMedia
-              component="img"
-              src={preview}
-              style={{
-                width: '125px', height: '125px', borderRadius: '100%', border: '2px solid #BAB2B5',
-              }}
-            />
+            component="img"
+            src={preview}
+            style={{
+              width: '125px', height: '125px', borderRadius: '100%', border: '2px solid #BAB2B5',
+            }}
+          />
           <div>
             <Typography
               sx={{

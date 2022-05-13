@@ -18,13 +18,14 @@ function UserPage({
   const [openNotif, setOpenNotif] = useState(false);
   const [openTrails, setOpenTrails] = useState(false);
   const [openFriends, setOpenFriends] = useState(false);
-  const [updatedUser, setUpdatedUser] =useState(backEndUser)
+  const [updatedUser, setUpdatedUser] = useState(backEndUser);
   const [value, setValue] = useState(1);
   const myFriends = updatedUser.friends || [];
 
   const handleNotificationClick = () => {
-    if(updatedUser.incoming_requests ||updatedUser.outgoing_requests ) {
-    setOpenNotif(true);}
+    if (updatedUser.incoming_requests || updatedUser.outgoing_requests) {
+      setOpenNotif(true);
+    }
   };
 
   const closeNotif = () => {
@@ -50,16 +51,16 @@ function UserPage({
     setOpenFriends(false);
   };
 
-  const updateMyNotif=()=>{
+  const updateMyNotif= () => {
     fetch(`http://localhost:3000/api/users/me?userId=${updatedUser.id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      data.friends = data.friends || [];
-      setUpdatedUser(data);
-    })
-    .catch((err) => { console.log(err); });
-    setValue(value+1)
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        data.friends = data.friends || [];
+        setUpdatedUser(data);
+      })
+      .catch((err) => { console.log(err); });
+    setValue(value + 1);
+  };
 
   return (
     <div>
@@ -69,7 +70,11 @@ function UserPage({
       <Container>
         <div className={style.container}>
           <div className={style.parentCont}>
-            <img src={updatedUser.profile_image} className={style.userImg} />
+            <img
+              src={updatedUser.profile_image}
+              className={style.userImg}
+              alt="User profile"
+            />
 
             <CircleNotificationsIcon
               style={{ fontSize: 50 }}
@@ -101,72 +106,70 @@ function UserPage({
             closeTrails={closeTrails}
             my_trails={updatedUser.trails}
           />
-          <div className={style.trailText}>Recently Visited Trails</div>
-          <div className={style.trailsCont}>
-            {updatedUser.trails &&
-              updatedUser.trails.map((trail, index) => {
-                if (index < 4) {
-                  return (
-                    <Link
-                      href={{
-                        pathname: "/trails/[id]",
-                        query: { id: trail.id },
-                      }}
-                    >
-                      <div className={style.imgBox} key={index}>
-                        <img
-                          className={style.myTrailImg}
-                          src={trail.photos[0].url}
-                        />
-                        <span>{trail.name}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-              })}
-            {updatedUser.trails && updatedUser.trails.length > 4 ? (
-              <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
-                <p>
-                  See
-                  <br />
-                  More <br />
-                  Trails
-                </p>
-              </div>
-            ) : (
-              <div />
-            )}
+          <div style={{ minHeight: '200px' }}>
+            <div className={style.trailText}>Recently Visited Trails</div>
+            <div className={style.trailsCont}>
+              {updatedUser.trails &&
+                updatedUser.trails.map((trail, index) => {
+                  if (index < 4) {
+                    return (
+                      <Link
+                        href={{
+                          pathname: "/trails/[id]",
+                          query: { id: trail.id },
+                        }}
+                      >
+                        <div className={style.imgBox} key={index}>
+                          <img
+                            className={style.myTrailImg}
+                            src={trail.photos[0].url}
+                          />
+                          <span className={style.avatarText}>{trail.name}</span>
+                        </div>
+                      </Link>
+                    );
+                  }
+                })}
+              {updatedUser.trails && updatedUser.trails.length > 4 ? (
+                <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
+                  <span>See</span>
+                  <span>More</span>
+                  <span>Trails</span>
+                </div>
+              ) : (
+                <div />
+              )}
+            </div>
           </div>
-          <div className={style.friendsText}>My Friends</div>
-          <div className={style.friendsCont}>
-            {myFriends &&
-              myFriends.map((friend, index) => {
-                if (index < 4) {
-                  return (
-                    <div className={style.nameBox} key={index}>
-                      <img
-                        className={style.friendImg}
-                        src={friend.profile_image}
-                      />
-                      <span>{friend.username}</span>
-                    </div>
-                  );
-                }
-              })}
-            {myFriends && myFriends.length > 4 ? (
-              <div
-                className={style.moreFriendsBtn}
-                onClick={handleMyFriendsClick}
-              >
-                <p>
-                  See
-                  <br />
-                  Friends
-                </p>
-              </div>
-            ) : (
-              <div />
-            )}
+          <div style={{ minHeight: '200px' }}>
+            <div className={style.friendsText}>My Friends</div>
+            <div className={style.friendsCont} style={{ paddingLeft: '1em'}}>
+              {myFriends &&
+                myFriends.map((friend, index) => {
+                  if (index < 4) {
+                    return (
+                      <div className={style.nameBox} key={index}>
+                        <img
+                          className={style.friendImg}
+                          src={friend.profile_image}
+                        />
+                        <span className={style.avatarText}>{friend.username}</span>
+                      </div>
+                    );
+                  }
+                })}
+              {myFriends && myFriends.length > 4 ? (
+                <div
+                  className={style.moreFriendsBtn}
+                  onClick={handleMyFriendsClick}
+                >
+                  <span>See</span>
+                  <span>Friends</span>
+                </div>
+              ) : (
+                <div />
+              )}
+            </div>
           </div>
           <MyConnections
             openFriends={openFriends}
