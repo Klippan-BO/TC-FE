@@ -69,20 +69,22 @@ function Leaderboard() {
                 'right top',
             }}
           >
-            <Paper sx={{
-              width: '80vh', backgroundColor: '#EEE2DC', borderRadius: '6px', borderTop: '18px solid #AC3B61', borderLeft: '0.5px solid #AC3B61', borderRight: '0.5px solid #AC3B61', borderBottom: '0.5px solid #AC3B61', marginTop: '5px', paddingTop: '10px', overflow: 'auto', minHeight: '10vh', maxHeight: '60vh', height: 'auto', textAlign: 'center', boxShadow: '3px 3px 3px #BAB2B5',
-            }}
+            <Paper
+              sx={{
+                width: '70vw', maxWidth: '700px', backgroundColor: '#EEE2DC', borderRadius: '6px', borderTop: '18px solid #AC3B61', marginTop: '5px', paddingTop: '1.2em', overflow: 'auto', minHeight: '10vh', maxHeight: '60vh', height: 'auto', textAlign: 'center', boxShadow: '2px 1px 5px rgba(186, 178, 181, .55)',
+              }}
+              className="removeScrollBar"
             >
               {(leaderboard.length >= 1)
                 ? <>
                   <Typography style={{
-                    display: 'inline', fontFamily: 'inherit', fontWeight: '450', backgroundColor: '#EDC7B7', border: '4px solid #BAB2B5', borderRadius: '15px', padding: '4.5px', color: '#123C69',
+                    display: 'inline', fontFamily: 'inherit', fontWeight: '500', backgroundColor: '#EDC7B7', border: '2px solid #BAB2B5', borderRadius: '8px', padding: '.35em .75em', color: '#123C69',
                   }}
                   >
                     Top 5 Trails in Your Area
                   </Typography>
                   <br />
-                  <small style={{ fontFamily: 'inherit', fontSize: '10px' }}> Click a Trail to View Details & Ratings</small>
+                  <small style={{ fontFamily: 'inherit', fontSize: '10px', color: '#123C69' }}> Click a Trail to View Details & Ratings</small>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList
                       autoFocusItem={open}
