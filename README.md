@@ -9,7 +9,6 @@ Click [here](https://github.com/Klippan-BO/TC-API) to view the comprehensive rea
 <li>Experienced hikers</li>
 <li>Beginners</li>
 <li>Parents</li>
-<li>Seniors</li>
 <li>Hike/event planners</li>
 
 <h2>Features</h2>
