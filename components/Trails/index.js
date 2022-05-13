@@ -44,7 +44,8 @@ function TrailPage({ id }) {
           direction="column"
           sx={{
             rowGap: '20px',
-            height: '150vh',
+            // height: '150vh',
+            flex: 1,
           }}
         >
           <TrailCarousel
