@@ -32,9 +32,9 @@ function TrailComments({ comments, id }) {
       });
       return results;
     };
-    console.log(currentUser)
+    console.log(currentUser);
     const commentUpload = {
-      user_id: 112,
+      user_id: currentUser.id,
       trail_id: id,
       body: newComment,
       username: currentUser.displayName,
