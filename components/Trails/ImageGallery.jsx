@@ -57,6 +57,7 @@ export default function ImageGallery(props) {
             key={photo.id}
           >
             <img
+              alt={photo.url}
               src={photo.url}
               width='900px'
               objectFit="contain"
@@ -82,7 +83,7 @@ export default function ImageGallery(props) {
               <ThumbUpIcon />
             </Button>
           </Box>
-          ))}
+        ))}
       </Stack>
     </Box>
     // <Box sx={{
