@@ -30,14 +30,9 @@ function UserPage({
   };
 
   const handleNotificationClick = () => {
-<<<<<<< HEAD
-    if(updatedUser.incoming_requests ||updatedUser.outgoing_requests ) {
-      setOpenNotif(true);}
-=======
     if (updatedUser.incoming_requests || updatedUser.outgoing_requests) {
       setOpenNotif(true);
     }
->>>>>>> c9c2b0b6bcf0a0d36de7af7debba0ebba45ec417
   };
 
   const closeNotif = () => {
@@ -72,13 +67,8 @@ function UserPage({
         setUpdatedUser(data);
       })
       .catch((err) => { console.log(err); });
-<<<<<<< HEAD
-      setValue(value+1)
-  }
-=======
     setValue(value + 1);
   };
->>>>>>> c9c2b0b6bcf0a0d36de7af7debba0ebba45ec417
 
   return (
     <div>
@@ -173,54 +163,6 @@ function UserPage({
                         />
                         <span className={style.avatarText}>{friend.username}</span>
                       </div>
-<<<<<<< HEAD
-                    </Link>
-                  );
-                }
-              })}
-            {/* {updatedUser.trails && updatedUser.trails.length > 4 ?
-              ( <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
-                  <p>
-                    See
-                    <br />
-                    More <br>
-                    Trails
-                  </p>
-                </div> )
-              : null
-            } */}
-          </div>
-          <div className={style.friendsText}>My Friends</div>
-          <div className={style.friendsCont}>
-            {myFriends &&
-              myFriends.map((friend, index) => {
-                if (index < 4) {
-                  return (
-                    <div className={style.nameBox} key={index}>
-                      <img
-                        className={style.friendImg}
-                        src={friend.profile_image}
-                      />
-                      <span>{friend.username}</span>
-                    </div>
-                  );
-                }
-              })}
-            {myFriends && myFriends.length > 4 ? (
-              <div
-                className={style.moreFriendsBtn}
-                onClick={handleMyFriendsClick}
-              >
-                <p>
-                  See
-                  <br />
-                  Friends
-                </p>
-              </div>
-            ) : (
-              <div />
-            )}
-=======
                     );
                   }
                 })}
@@ -236,7 +178,6 @@ function UserPage({
                 <div />
               )}
             </div>
->>>>>>> c9c2b0b6bcf0a0d36de7af7debba0ebba45ec417
           </div>
           <MyConnections
             openFriends={openFriends}

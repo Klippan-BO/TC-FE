@@ -109,14 +109,8 @@ function TrailDescription({
                 value={length}
                 size="large"
                 precision={0.25}
-<<<<<<< HEAD
-                max={Math.ceil(length)}
-                icon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
-                emptyIcon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
-=======
                 icon={<HikingIcon sx={{ fontSize: '30px' }} />}
                 emptyIcon={<HikingIcon sx={{ fontSize: '30px' }} />}
->>>>>>> c9c2b0b6bcf0a0d36de7af7debba0ebba45ec417
               />
               <IconButton
                 sx={{

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/extensions
 import sampleData from '../components/User/sampleData.js';
 import { useAuth } from '../context/AuthContext';
@@ -9,11 +9,13 @@ import LoadingScreen from '../components/LoadingScreen';
 // getting userId from useAuth()
 
 function User() {
+  const [isLoading, setLoading] = useState(false);
   const { currentUser } = useAuth();
   const [backEndUser, setBackEndUser] = useState();
   const userId = currentUser?.id;
 
   useEffect(() => {
+    setLoading(true);
     fetch(`http://localhost:3000/api/users/me?userId=${userId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -29,6 +31,16 @@ function User() {
 
   if (isLoading) return <LoadingScreen />;
 
+  return (
+    <div>
+      { backEndUser && (
+        <UserPage
+          userData={sampleData}
+          backEndUser={backEndUser}
+        />
+      )}
+    </div>
+  );
 }
 
 export default User;
