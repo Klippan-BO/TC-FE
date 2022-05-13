@@ -89,7 +89,6 @@ export function handleAuthClick() {
 }
 
 export async function listUpcomingEvents() {
-  console.log('im being hit??');
   let response;
   try {
     const request = {
@@ -99,7 +98,6 @@ export async function listUpcomingEvents() {
       singleEvents: true,
       maxResults: 10,
     };
-    console.log('im in the middle')
     response = await gapi.client.calendar.events.list(request);
   } catch (err) {
     console.log(err);
@@ -115,7 +113,6 @@ export async function listUpcomingEvents() {
     'Events:\n',
   );
   document.getElementById('content').innerText = output;
-  console.log('im done');
 }
 
 export function InitGoogleCal() {

@@ -1,15 +1,17 @@
 /* eslint-disable react/jsx-filename-extension */
-import { SvgIcon } from "@mui/material";
-import React, { useState } from "react";
-import Head from "next/head";
-import Container from "@mui/material/Container";
-import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
-import Badge from "@mui/material/Badge";
-import Link from "next/link";
-import MyNotification from "./MyNotification";
-import MyTrails from "./MyTrails";
+import { SvgIcon } from '@mui/material';
+import React, { useState } from 'react';
+import Head from 'next/head';
+import Container from '@mui/material/Container';
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import Badge from '@mui/material/Badge';
+import Link from 'next/link';
+import MyNotification from './MyNotification';
+import MyTrails from './MyTrails';
 import MyConnections from "./myConnections";
-import style from "../../styles/user.module.css";
+import style from '../../styles/user.module.css';
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
 import sampleData from "./sampleData";
 
 function UserPage({
@@ -21,15 +23,21 @@ function UserPage({
   const [updatedUser, setUpdatedUser] =useState(backEndUser)
   const [value, setValue] = useState(1);
   const myFriends = updatedUser.friends || [];
+  const [calendarDrawer, setCalendarDrawer] = useState(false)
+
+  const toggleDrawer = () => {
+    setCalendarDrawer((prev) => !prev);
+  };
 
   const handleNotificationClick = () => {
     if(updatedUser.incoming_requests ||updatedUser.outgoing_requests ) {
-    setOpenNotif(true);}
+      setOpenNotif(true);}
   };
 
   const closeNotif = () => {
     setOpenNotif(false);
   };
+
   const handleMyTrailsClick = (e) => {
     e.preventDefault();
     if (updatedUser.trails.length > 4) {
@@ -52,13 +60,13 @@ function UserPage({
 
   const updateMyNotif=()=>{
     fetch(`http://localhost:3000/api/users/me?userId=${updatedUser.id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      data.friends = data.friends || [];
-      setUpdatedUser(data);
-    })
-    .catch((err) => { console.log(err); });
-    setValue(value+1)
+      .then((res) => res.json())
+      .then((data) => {
+        data.friends = data.friends || [];
+        setUpdatedUser(data);
+      })
+      .catch((err) => { console.log(err); });
+      setValue(value+1)
   }
 
   return (
@@ -124,18 +132,17 @@ function UserPage({
                   );
                 }
               })}
-            {updatedUser.trails && updatedUser.trails.length > 4 ? (
-              <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
-                <p>
-                  See
-                  <br />
-                  More <br />
-                  Trails
-                </p>
-              </div>
-            ) : (
-              <div />
-            )}
+            {/* {updatedUser.trails && updatedUser.trails.length > 4 ?
+              ( <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
+                  <p>
+                    See
+                    <br />
+                    More <br>
+                    Trails
+                  </p>
+                </div> )
+              : null
+            } */}
           </div>
           <div className={style.friendsText}>My Friends</div>
           <div className={style.friendsCont}>
@@ -175,6 +182,13 @@ function UserPage({
           />
         </div>
       </Container>
+      <Drawer
+        anchor='bottom'
+        open={calendarDrawer}
+        onClose={toggleDrawer(false)}
+      >
+        <Box sx={{width: '400px', height: '400px', bgColor: 'red' }} />
+    </Drawer>
     </div>
   );
 }

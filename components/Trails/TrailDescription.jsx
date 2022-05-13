@@ -90,9 +90,10 @@ function TrailDescription({
               <StyledRating
                 name="read-only"
                 readOnly
-                value={length / 2}
+                value={length}
                 size="large"
                 precision={0.25}
+                max={Math.ceil(length)}
                 icon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
                 emptyIcon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
               />
