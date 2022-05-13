@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import TrailComments from './TrailComments';
 import TrailCarousel from './TrailCarousel';
 import TrailInfo from './TrailInfo';
+import LoadingScreen from '../../components/LoadingScreen';
 
 function TrailPage({ id }) {
   const [trail, setTrail] = useState(null);
@@ -18,12 +19,14 @@ function TrailPage({ id }) {
     fetch(`http://localhost:3000/api/trails?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
-        setTrail(data);
-        setLoading(false);
+        setTimeout(() => {
+          setTrail(data);
+          setLoading(false);
+        }, 200);
       });
   }, [id]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingScreen />;
   if (!trail) return <p>No profile data</p>;
   return (
     <div>
@@ -40,10 +43,8 @@ function TrailPage({ id }) {
         <Stack
           direction="column"
           sx={{
-            rowGap: '10px',
-            border: 0,
-            borderColor: 'red',
-            height: '200vh',
+            rowGap: '20px',
+            height: '150vh',
           }}
         >
           <TrailCarousel

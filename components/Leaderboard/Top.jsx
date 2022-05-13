@@ -35,43 +35,44 @@ function Top({ trail }) {
         sx={{
           m: 1,
           backgroundColor: '#123C69',
-          height: '18vh',
+          height: '12vh',
           borderRadius: '20px',
-          border: '3px solid #bab2b5',
+          boxShadow: '2px 2px 2px rgba(0,0,0,.55)',
+          transition: '200ms all linear',
           ':hover': {
-            transform: 'scale(1.03)',
+            backgroundColor: '#0A2452',
           },
         }}
       >
-        <CardContent sx={{ cursor: 'pointer' }}>
-          <Typography
-            sx={{
-              fontSize: 12, fontFamily: 'inherit', color: '#EEE2DC', display: 'flex', alignItems: 'center', borderBottom: '1px solid #BAB2B5', width: '60%',
+        <CardContent sx={{ cursor: 'pointer', display: 'flex', gap: '1.125em' }}>
+          <CardMedia
+            component="img"
+            src={preview}
+            style={{
+              width: '125px', height: '125px', borderRadius: '100%', border: '2px solid #BAB2B5',
             }}
-            display="inline"
-            gutterBottom
-          >
-            {trail.name}
-            <StyledRating sx={{ ml: 1 }} precision={0.25} emptyIcon={<HikingIcon style={{ fontSize: '14px' }} />} icon={<HikingIcon style={{ fontSize: '14px' }} />} value={trail.ratings.average} readOnly />
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: 15, fontFamily: 'inherit', color: '#EEE2DC', width: '60%', wordWrap: 'break-word', marginTop: '2vh', height: '2vh',
-            }}
-            align="left"
-          >
-            {trail.short_description.length > 150
-              ? `${trail.short_description.substring(0, 150)}...`
-              : trail.short_description}
-          </Typography>
-          <div style={{ position: 'relative', width: '0', height: '0', float: 'right' }}>
-            <CardMedia
-              component="img"
-              src={preview}
-              style={{
-                width: '14vh', height: '14vh', borderRadius: '50%', border: '2px solid #BAB2B5', left: '-18vh', top: '-50px', position: 'absolute', marginBottom: 'auto', marginTop: 'auto', marginLeft: 'auto', marginRight: 'auto',
+          />
+          <div>
+            <Typography
+              sx={{
+                fontSize: 22, fontFamily: 'inherit', color: '#EEE2DC', display: 'flex', alignItems: 'center', borderBottom: '1px solid #BAB2B5',
               }}
-            />
+              display="inline"
+              gutterBottom
+            >
+              {trail.name}
+              <StyledRating sx={{ ml: 1 }} precision={0.25} emptyIcon={<HikingIcon style={{ fontSize: '17px' }} />} icon={<HikingIcon style={{ fontSize: '17px' }} />} value={trail.ratings.average} readOnly />
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: 15, fontFamily: 'inherit', color: '#EEE2DC', wordWrap: 'break-word', marginTop: '.125em', maxWidth: '50ch',
+              }}
+              align="left"
+            >
+              {trail.short_description.length > 150
+                ? `${trail.short_description.substring(0, 150)}...`
+                : trail.short_description}
+            </Typography>
           </div>
         </CardContent>
       </Card>

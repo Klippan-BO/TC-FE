@@ -22,10 +22,10 @@ import MiniMap from '../maps/MiniMap';
 // import { createEvent } from './createEvent';
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
-    color: '#EDC7B7',
+    color: '#fff',
   },
   '& .MuiRating-iconEmpty': {
-    color: 'white',
+    color: '#EDC7B7',
   },
 });
 
@@ -36,9 +36,6 @@ function TrailDescription({
 }) {
   const [eventModal, setEventModal] = useState(false);
   const miniMapRef = useRef();
-  const scrollIntoView = () => {
-    miniMapRef.current.scrollIntoView({ behavior: 'smooth' });
-  };
   return (
     <>
       <Stack
@@ -46,7 +43,7 @@ function TrailDescription({
         sx={{
           width: '960x',
           backgroundColor: '#123C69',
-          color: '#EEE2DC',
+          color: '#fff',
           borderRadius: '15px',
         }}
       >
@@ -56,33 +53,52 @@ function TrailDescription({
             justifyContent: 'space-between',
             display: 'flex',
             alignItems: 'center',
-            borderTop: '20px solid #AC3B61',
             borderTopLeftRadius: '15px',
             borderTopRightRadius: '15px',
+            marginBottom: '1em',
           }}
         >
           <Stack
             direction="column"
+            width="90%"
+            maxWidth="1200px"
           >
             <Typography
               onClick={() => console.log('yo')}
               sx={{
                 fontSize: 30,
                 fontWeight: 500,
-                borderBottom: '5px solid #EDC7B7',
-                ml: '3vh',
+                borderBottom: '2px solid #EDC7B7',
                 mt: '3vh',
                 fontFamily: 'inherit',
               }}
             >
               {name}
             </Typography>
-            <Stack direction="row" sx={{ alignItems: 'center' }}>
+            <Typography
+              sx={{
+                fontSize: 16,
+                mt: 1,
+                mb: 3,
+                wordWrap: 'break-word',
+                color: '#fff',
+                fontFamily: 'inherit',
+              }}
+            >
+              {description}
+            </Typography>
+            <Stack
+              direction="row"
+              sx={{
+                justifyContent: 'flex-end',
+                alignItems: 'flex-end',
+                gap: 1,
+              }}
+            >
               <Typography
                 sx={{
-                  fontSize: 24,
-                  margin: 1,
-                  ml: '3vh',
+                  fontSize: 16,
+                  mr: 2,
                 }}
               >
                 {`${length} miles`}
@@ -93,67 +109,51 @@ function TrailDescription({
                 value={length / 2}
                 size="large"
                 precision={0.25}
-                icon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
-                emptyIcon={<HikingIcon sx={{ marginTop: '30px', fontSize: '45px' }} />}
+                icon={<HikingIcon sx={{ fontSize: '30px' }} />}
+                emptyIcon={<HikingIcon sx={{ fontSize: '30px' }} />}
               />
+              <IconButton
+                sx={{
+                  padding: 0,
+                }}
+                onClick={(e) => { e.preventDefault(); setEventModal(true); }}
+              >
+                <InsertInvitationIcon
+                  sx={{
+                    fontSize: '38px',
+                    color: '#fff',
+                    padding: 0,
+                    mb: '-.5',
+                  }}
+                />
+              </IconButton>
             </Stack>
           </Stack>
-
-          <Stack
-            direction="row"
-            sx={{ justifyContent: 'space-between'}}
-          >
-            <IconButton
-              onClick={(e) => { e.preventDefault(); setEventModal(true); }}
-            >
-              <InsertInvitationIcon
-                sx={{
-                  fontSize: '48px',
-                  color: 'primary.main',
-                  background: '#EEE2DC',
-                  borderRadius: '10px',
-                  marginRight: '20px',
-                  marginTop: '15px',
-                }}
-              />
-            </IconButton>
-          </Stack>
         </Stack>
-        <Typography
-          sx={{
-            fontSize: 16,
-            margin: 1,
-            width: '60%',
-            wordWrap: 'break-word',
-            ml: '3vh',
-            mt: '30px',
-            backgroundColor: '#EEE2DC',
-            color: '#123C69',
-            padding: '8px',
-            fontWeight: '700',
-            border: '3px solid #BAB2B5',
-            borderRadius: '10px',
-            fontFamily: 'inherit',
-          }}
-        >
-          {description}
-        </Typography>
         <Accordion
           ref={miniMapRef}
           sx={{
             backgroundColor: '#123C69',
+            width: '90%',
+            maxWidth: '1200px',
           }}
         >
           <AccordionSummary
-            onClick={scrollIntoView}
-            expandIcon={<MapIcon sx={{ fontSize: '38px', color: '#EEE2DC' }} />}
+            expandIcon={<MapIcon sx={{ fontSize: '38px', color: '#fff' }} />}
             aria-controls="panel1a-content"
             id="panel1a-header"
             sx={{
-              padding: 1,
+              paddingTop: 1,
             }}
           >
-            <Typography sx={{ fontSize: '24px', color: '#EEE2DC', fontFamily: 'inherit', ml: '3vh' }}>Show Map</Typography>
+            <Typography sx={{
+              fontSize: '24px',
+              color: '#fff',
+              fontFamily: 'inherit',
+            }}
+            >
+              Show Map
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <MiniMap
