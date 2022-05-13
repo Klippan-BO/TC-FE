@@ -159,7 +159,7 @@ function TrailAddEvent(props) {
               <Box>
                 <IconButton
                   type="submit"
-                  onClick={handleAddEvent}
+                  onClick={(e) => { e.preventDefault(); handleAddEvent(); }}
                 >
                   {auth
                     ? (

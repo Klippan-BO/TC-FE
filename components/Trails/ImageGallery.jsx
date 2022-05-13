@@ -53,8 +53,8 @@ export default function ImageGallery(props) {
               justifyContent: 'center',
               position: 'relative',
               margin: '5px',
-
             }}
+            key={photo.id}
           >
             <img
               src={photo.url}
