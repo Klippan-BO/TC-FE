@@ -138,36 +138,7 @@ function TrailDescription({
         >
           {description}
         </Typography>
-        <Accordion
-          ref={miniMapRef}
-          sx={{
-            backgroundColor: '#123C69',
-          }}
-        >
-          <AccordionSummary
-            onClick={scrollIntoView}
-            expandIcon={<MapIcon sx={{ fontSize: '38px', color: '#EEE2DC' }} />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            sx={{
-              padding: 1,
-            }}
-          >
-            <Typography sx={{ fontSize: '24px', color: '#EEE2DC', fontFamily: 'inherit', ml: '3vh' }}>Show Map</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <MiniMap
-              lat={Number(lat)}
-              lng={Number(lng)}
-              zoom={11}
-              sx={{
-                color: '#123C69',
-              }}
-              height="400px"
-              width="100%"
-            />
-          </AccordionDetails>
-        </Accordion>
+
 
       </Stack>
       {/* <Zoom in={!eventModal}> */}
