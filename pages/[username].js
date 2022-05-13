@@ -11,16 +11,17 @@ function User() {
   const [isLoading, setLoading] = useState(false);
   const { currentUser } = useAuth();
   const [backEndUser, setBackEndUser] = useState();
-  const userId = currentUser?.id || 1;
+  const userId = 
+  //currentUser?.id ||
+   21;
 
-  const userPhoto = currentUser.photo;
-  const { displayName } = currentUser;
 
   useEffect(() => {
     setLoading(true);
     fetch(`http://localhost:3000/api/users/me?userId=${userId}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log("🚀 ~ file: [username].js ~ line 22 ~ .then ~ data", data)
         data.friends = data.friends || [];
         setLoading(false);
         setBackEndUser(data);
@@ -35,8 +36,6 @@ function User() {
       { backEndUser && (
         <UserPage
           userData={sampleData}
-          displayName={displayName}
-          userPhoto={userPhoto}
           backEndUser={backEndUser}
         />
       )}

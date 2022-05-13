@@ -14,22 +14,26 @@ export default function MyNotification({
     closeNotif();
   };
   const handleAccept = (e) => {
-    fetch('api/users',{
-      method:'PATCH',
-      body:JSON.stringify({userId:e.userID,
-        action:"accept"
-      })
-    })
+    alert("handle accept")
+  let body={userId:e.user_id,friendId:e.friend_id}
+  addfriend(body)
   };
+
+const addfriend=(body)=>{
+  fetch('api/friends',{
+    method:'POST',
+    body:JSON.stringify(body)
+  })
+};
 
 
   const handleReject = (e) => {
-    fetch('api/users',{
-      method:'PATCH',
-      body:JSON.stringify({userId:e.userID,
-        action:"deny"
-      })
-    })
+    // fetch('api/users',{
+    //   method:'PATCH',
+    //   body:JSON.stringify({userId:e.userID,friendId:e.friend_id
+    //     action:"deny"
+    //   })
+    // })
   };
 
   return (
@@ -54,15 +58,15 @@ export default function MyNotification({
         </div>
       </DialogTitle>
       <div className={style.popUpCont}>
-        {requests.map((person) => (
+        {requests && requests.map((person) => (
           <div className={style.popUpRowCont} key={person.username}>
-            <img src={person.photo} className={style.popUpImg} />
+            <img src={person.profile_image} className={style.popUpImg} />
             <div className={style.popUpRowMidCont}>
               {' '}
               <h4>
                 <span>{person.username}</span>
                 <br />
-                {person.description}
+                {person.bio}
               </h4>
               {' '}
 
@@ -83,9 +87,9 @@ export default function MyNotification({
         <div className={style.popUpTitle}>My Requests to Other Hikers</div>
       </DialogTitle>
       <div className={style.imgRow}>
-        {requesting.map((person) => (
+        {requesting && requesting.map((person) => (
           <div className={style.darkImgBox} key={person.username}>
-            <img src={person.photo} className={style.popUpImg} />
+            <img src={person.profile_image} className={style.popUpImg} />
             <span className={style.darkName}>{person.username}</span>
           </div>
         ))}

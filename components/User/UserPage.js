@@ -14,17 +14,16 @@ import sampleData from "./sampleData";
 
 function UserPage({
   userData,
-  userPhoto,
-  displayName,
   backEndUser,
 }) {
   const [openNotif, setOpenNotif] = useState(false);
   const [openTrails, setOpenTrails] = useState(false);
   const [openFriends, setOpenFriends] = useState(false);
-  const myFriends = backEndUser.friends.filter((friend) => friend.status === "accepted") || [];
+  const myFriends = backEndUser.friends || [];
 
   const handleNotificationClick = () => {
-    setOpenNotif(true);
+    if(backEndUser.outgoing_requests ||backEndUser.outgoing_requests ) {
+    setOpenNotif(true);}
   };
 
   const closeNotif = () => {
@@ -58,26 +57,26 @@ function UserPage({
       <Container>
         <div className={style.container}>
           <div className={style.parentCont}>
-            <img src={userPhoto} className={style.userImg} />
+            <img src={backEndUser.profile_image} className={style.userImg} />
 
             <CircleNotificationsIcon
               style={{ fontSize: 50 }}
               onClick={handleNotificationClick}
               className={
-                userData.userProfile.friends
+                (backEndUser.incoming_requests || backEndUser.outgoing_requests)
                   ? style.notificationBtnActive
                   : style.notificationBtnNoneActive
               }
             />
 
             <MyNotification
-              requests={userData.userProfile.friendsRequestData}
-              requesting={userData.userProfile.requestingFriendData}
+              requests={backEndUser.incoming_requests}
+              requesting={backEndUser.outgoing_requests}
               openNotif={openNotif}
               closeNotif={closeNotif}
             />
           </div>
-          <div className={style.userName}>{displayName}</div>
+          <div className={style.userName}>{backEndUser.username}</div>
           {/* <div className={style.userCity}>{userData.userProfile.city}</div>
           <div className={style.userFriends}>
             I HAVE {userData.userProfile.friends} FRIENDS
@@ -167,3 +166,11 @@ function UserPage({
 }
 
 export default UserPage;
+
+
+// "id": 5,
+// "name": "Steven's Canyon Trail",
+// "short_description": "Gummies wafer marshmallow liquorice chupa chups.",
+// "photos": [
+//     {
+//         "url": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjc1MTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NTIyMDY3MDM&ixlib=rb-1.2.1&q=80&w=1080"
