@@ -19,7 +19,7 @@ import Link from 'next/link';
 
 
 function Leaderboard() {
-  const [leaderboard, setLeaderboard] = useState(dummyTrails);
+  const [leaderboard, setLeaderboard] = useState([]);
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -31,9 +31,15 @@ function Leaderboard() {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
+
+  if (typeof window !== 'undefined') {
+    document.addEventListener('updateTrail', (e) => {
+      const new5 = e.detail;
+      setLeaderboard(new5);
+    });
+  }
 
   return (
     <div>
@@ -92,7 +98,7 @@ function Leaderboard() {
                     display: 'inline', fontFamily: 'inherit', fontWeight: '450', backgroundColor: '#EDC7B7', border: '4px solid #BAB2B5', borderRadius: '15px', padding: '4.5px', color: '#123C69',
                   }}
                   >
-                    No Trails Upvoted, be the First!
+                    No Trails in your Area, no bueno!
                   </Typography>
                 </ClickAwayListener> }
             </Paper>
