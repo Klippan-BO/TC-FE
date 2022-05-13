@@ -52,7 +52,7 @@ export default function MainMap(props) {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => loadTrails(), []);
+  // useEffect(() => loadTrails(), []);
 
   useEffect(() => {
     loadTrails();
@@ -63,10 +63,12 @@ export default function MainMap(props) {
     document.dispatchEvent(event);
   };
 
-  document.addEventListener('newBounds', (e) => {
-    const newBounds = e.detail;
-    setBounds(newBounds);
-  });
+  useEffect(() => {
+    const eventListener = (event) => setBounds(event.detail);
+    document.addEventListener('newBounds', eventListener);
+    return document.removeEventListener('newBounds', eventListener);
+  }, []);
+
   return (
     <div style={containerStyle}>
       <div className={Styles.map} style={{ height: `${height}%`, width: `${width}%` }}>

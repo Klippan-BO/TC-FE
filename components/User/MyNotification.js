@@ -21,7 +21,6 @@ export default function MyNotification({
     closeNotif();
   };
   const handleAccept = (e) => {
-    alert("handle accept");
     let body = { userId: e.friend_id, friendId: e.user_id };
     addfriend(body);
     updateMyNotif();
