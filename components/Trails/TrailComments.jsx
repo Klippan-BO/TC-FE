@@ -7,10 +7,12 @@ import SendIcon from '@mui/icons-material/Send';
 import Moment from 'moment';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
 
-function TrailComments({ comments }) {
+function TrailComments({ comments, id }) {
   const [trailComments, setComments] = useState(comments);
   const [newComment, setNewComment] = useState('');
+  const { currentUser } = useAuth();
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -20,20 +22,34 @@ function TrailComments({ comments }) {
   };
 
   const handleClick = () => {
-    setComments(comments.concat({ username: 'User', body: newComment, timestamp: Date.now()}));
-    setNewComment('');
+    const uploadComment = async (comment) => {
+      // `/api/trails?id=${id}`
+      const results = await fetch(`/api/trails?id=${id}`, {
+        method: 'POST',
+        body: JSON.stringify({ comment }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return results;
+    };
+    console.log(currentUser)
+    const commentUpload = {
+      user_id: currentUser.id,
+      trail_id: id,
+      body: newComment,
+      username: currentUser.displayName,
+    };
+    uploadComment(commentUpload)
+      .then(() => {
+        console.log('client good')
+        setComments(comments.concat({ username: 'User', body: newComment, timestamp: Date.now() }));
+        setNewComment('');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
-  // const uploadComment = async (comment) => {
-  //   const results = await fetch('/api/comments/', {
-  //     method: 'POST',
-  //     body: JSON.stringify({ comment }),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  //   return results;
-  // };
 
   return (
     <Stack

@@ -98,7 +98,7 @@ function Leaderboard() {
                     display: 'inline', fontFamily: 'inherit', fontWeight: '450', backgroundColor: '#EDC7B7', border: '4px solid #BAB2B5', borderRadius: '15px', padding: '4.5px', color: '#123C69',
                   }}
                   >
-                    No Trails Upvoted, be the First!
+                    No Trails in your Area, no bueno!
                   </Typography>
                 </ClickAwayListener> }
             </Paper>

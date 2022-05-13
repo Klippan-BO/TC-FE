@@ -68,10 +68,10 @@ export default function MainMap(props) {
     document.dispatchEvent(event);
   }, [trails]);
 
-  // document.addEventListener('newBounds', (e) => {
-  //   const newBounds = e.detail;
-  //   setBounds(newBounds);
-  // });
+  document.addEventListener('newBounds', (e) => {
+    const newBounds = e.detail;
+    setBounds(newBounds);
+  });
   return (
     <div style={containerStyle}>
       <div className={Styles.map} style={{ height: `${height}%`, width: `${width}%` }}>
