@@ -55,6 +55,7 @@ function TrailDescription({
             alignItems: 'center',
             borderTopLeftRadius: '15px',
             borderTopRightRadius: '15px',
+            marginBottom: '1em',
           }}
         >
           <Stack
@@ -66,7 +67,6 @@ function TrailDescription({
                 fontSize: 30,
                 fontWeight: 500,
                 borderBottom: '2px solid #EDC7B7',
-                ml: '3vh',
                 mt: '3vh',
                 fontFamily: 'inherit',
               }}
@@ -76,22 +76,26 @@ function TrailDescription({
             <Typography
               sx={{
                 fontSize: 16,
-                margin: 1,
+                mt: 1,
+                mb: 3,
                 wordWrap: 'break-word',
-                ml: '2vh',
                 color: '#fff',
-                padding: '8px',
                 fontFamily: 'inherit',
               }}
             >
               {description}
             </Typography>
-            <Stack direction="row" sx={{ alignItems: 'center' }}>
+            <Stack
+              direction="row"
+              sx={{
+                justifyContent: 'flex-end',
+                alignItems: 'flex-end',
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: 16,
-                  margin: 1,
-                  ml: '3vh',
+                  mr: 2,
                 }}
               >
                 {`${length} miles`}
@@ -102,28 +106,22 @@ function TrailDescription({
                 value={length / 2}
                 size="large"
                 precision={0.25}
-                icon={<HikingIcon sx={{ marginTop: '30px', fontSize: '30px' }} />}
-                emptyIcon={<HikingIcon sx={{ marginTop: '30px', fontSize: '30px' }} />}
+                icon={<HikingIcon sx={{ fontSize: '30px' }} />}
+                emptyIcon={<HikingIcon sx={{ fontSize: '30px' }} />}
               />
+              <IconButton
+                onClick={(e) => { e.preventDefault(); setEventModal(true); }}
+              >
+                <InsertInvitationIcon
+                  sx={{
+                    fontSize: '38px',
+                    color: '#fff',
+                    padding: 0,
+                    mb: '-.5',
+                  }}
+                />
+              </IconButton>
             </Stack>
-          </Stack>
-
-          <Stack
-            direction="row"
-            sx={{ justifyContent: 'space-between'}}
-          >
-            <IconButton
-              onClick={(e) => { e.preventDefault(); setEventModal(true); }}
-            >
-              <InsertInvitationIcon
-                sx={{
-                  fontSize: '48px',
-                  color: '#fff',
-                  marginRight: '20px',
-                  marginTop: '15px',
-                }}
-              />
-            </IconButton>
           </Stack>
         </Stack>
         <Accordion
@@ -137,14 +135,13 @@ function TrailDescription({
             aria-controls="panel1a-content"
             id="panel1a-header"
             sx={{
-              padding: 1,
+              paddingTop: 1,
             }}
           >
             <Typography sx={{
               fontSize: '24px',
               color: '#fff',
               fontFamily: 'inherit',
-              ml: '3vh',
             }}
             >
               Show Map

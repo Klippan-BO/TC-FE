@@ -18,7 +18,7 @@ function TrailRatings({ ratings, id, trail }) {
         color: '#fff',
         padding: 3,
       }}
-      justifyContent="center"
+      justifyContent="flex-start"
     >
       {/* Ratings */}
       <Rating
@@ -28,7 +28,8 @@ function TrailRatings({ ratings, id, trail }) {
         sx={{
           color: '#F6CC66',
           fontSize: 48,
-          margin: 1,
+          mb: 1,
+          mt: '1em',
           justifyContent: 'center',
         }}
       />
@@ -45,7 +46,7 @@ function TrailRatings({ ratings, id, trail }) {
       >
         <Typography
           sx={{
-            fontSize: 24,
+            fontSize: 22,
           }}
         >
           Beauty
@@ -75,7 +76,7 @@ function TrailRatings({ ratings, id, trail }) {
       >
         <Typography
           sx={{
-            fontSize: 24,
+            fontSize: 22,
           }}
         >
           Sunlight
@@ -105,7 +106,7 @@ function TrailRatings({ ratings, id, trail }) {
       >
         <Typography
           sx={{
-            fontSize: 24,
+            fontSize: 22,
           }}
         >
           Difficulty
