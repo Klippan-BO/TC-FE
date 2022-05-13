@@ -22,6 +22,8 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState({
     displayName: null,
     email: null,
+    id: null,
+    photo: null,
   });
 
   async function signInUser() {
