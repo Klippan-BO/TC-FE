@@ -90,6 +90,7 @@ function TrailComments({ comments, id }) {
                   color: '#EEE2DC',
                   m: 'auto',
                   padding: '15px',
+                  paddingBottom: '10px',
                   borderTop: '15px solid #AC3B61',
                   transition: '200ms all linear',
                   fontFamily: 'inherit',
@@ -99,12 +100,35 @@ function TrailComments({ comments, id }) {
                 }}
                 key={trailComments.indexOf(comment)}
               >
-                <div>
-                  <span style={{ fontWeight: '450' }}>{comment.username} </span>
-                  <div style={{ position: 'relative', width: '0', height: '0' }}>
-                    <span style={{ position: 'absolute', right: '-1050px', top: '-28px' }}>{Moment(comment.timestamp).format('MMM Do YY')}</span>
+                <div style={{ width: '100%' }}>
+                  <div style={{
+                    wordBreak: 'break-all',
+                    fontSize: '18px',
+                  }}
+                  >
+                    {comment.body }
                   </div>
-                  <div style={{ wordBreak: 'break-all', fontSize: '15px' }}>{comment.body }</div>
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    marginTop: '1em',
+                  }}
+                  >
+                    <span style={{
+                      fontWeight: '300',
+                      fontSize: '14px',
+                    }}
+                    >
+                      {comment.username}
+                    </span>
+                    <span style={{
+                      fontWeight: '300',
+                      fontSize: '14px',
+                    }}
+                    >
+                      {Moment(comment.timestamp).format('MMM Do YY')}
+                    </span>
+                  </div>
                 </div>
               </ListItem>
             ))}
