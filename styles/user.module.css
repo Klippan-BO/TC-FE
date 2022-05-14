@@ -3,7 +3,8 @@
   padding-right: 50px;
   padding-top: 20px !important;
   width: 100vh;
-  height: calc(100vh - 70px);
+  /* height: calc(100vh - 70px); */
+  flex: 1;
   max-width: 1200px;
   background-color: #123c69;
   align-content: center;

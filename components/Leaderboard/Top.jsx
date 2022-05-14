@@ -35,7 +35,7 @@ function Top({ trail }) {
         sx={{
           m: 1,
           backgroundColor: '#123C69',
-          height: '12vh',
+          height: '150px',
           borderRadius: '20px',
           boxShadow: '2px 2px 2px rgba(0,0,0,.55)',
           transition: '200ms all linear',
