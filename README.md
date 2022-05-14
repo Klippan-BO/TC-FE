@@ -1,5 +1,5 @@
 <h1>Overview</h1>
-Trail Companions is a full stack web application consisting of a client, server, database, and API created over a span of 7 days. This application utilizes Google Maps API, Google Calendars API, and AWS EC2 instances. Users can search for trails of any difficulty throughout the continent and find information including descriptions, ratings, and comments for each trail provided by the local community. Users may create their own profile page, bookmark trails, add trail photos, leave comments, and plan events with their friends and family.
+Trail Companions is a full stack web application consisting of a client, server, database, and API created over a span of 7 days. This application utilizes Google Maps API, Google Calendars API, Google Authentication and AWS EC2 instances. Users can search for trails of any difficulty throughout the continent and find information including descriptions, ratings, and comments for each trail provided by the local community. Users may create their own profile page, bookmark trails, add trail photos, leave comments, and plan events with their friends and family.
 <br>
 <br>
 
