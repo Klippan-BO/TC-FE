@@ -12,7 +12,7 @@ Trail Companions is a full stack web and mobile-friendly application created ove
 <li>Seniors</li>
 <li>Event planners</li>
 
-<h2>Features</h2>
+<h2>App Features</h2>
 <li>Google Sign-In</li>
 <li>Google Maps trail finder</li>
 <li>User profiles</li>
@@ -22,12 +22,7 @@ Trail Companions is a full stack web and mobile-friendly application created ove
 <li>Leaderboard for top trails in your area</li>
 <li>Mobile-compatibility</li>
 
-<h2>Main Components</h2>
-
-![Components](https://user-images.githubusercontent.com/97769405/168129826-b5d3b89d-1c41-4863-894d-707108a8ba71.png)
-
-
-<h2>Technologies</h2>
+<h2>Technologies Used</h2>
 
 | Name | Purpose |
 | --- | --- |
@@ -43,6 +38,68 @@ Trail Companions is a full stack web and mobile-friendly application created ove
 | [Material UI](https://mui.com/) | Front-End UI Library |
 | [ESLint](https://eslint.org/) | Code Quality [(Airbnb Style Guide)](https://github.com/airbnb/javascript) |
 | [Figma](https://www.figma.com/) | Wireframe desiging |
+
+<h2>App Architecture</h2>
+
+![Components](https://user-images.githubusercontent.com/97769405/168129826-b5d3b89d-1c41-4863-894d-707108a8ba71.png)
+
+<h2>Components</h2>
+
+<h3>Login</h3>
+<li>Google Sign-in with FireBase</li>
+<br>
+
+![login](https://user-images.githubusercontent.com/97769405/168444587-89c2d9c4-89e5-4303-9ad8-662d3da36370.gif)
+
+<h3>Map</h3>
+<li>Google Maps Integration</li>
+<li>Pop-up modals for each trail</li>
+<br>
+
+![map](https://user-images.githubusercontent.com/97769405/168444660-d497dc8b-705c-42bc-8502-29a7a61aa31d.gif)
+
+<h3>Leaderboard</h3>
+<li>Top 5 Trails in your area</li>
+<br>
+
+
+![leaderboard](https://user-images.githubusercontent.com/97769405/168444592-148f4e5f-4147-4fea-bc1b-cd69e40bb0ce.gif)
+
+<h3>Trail Photos</h3>
+<li>Carousel and gallery</li>
+<li>Auto-play feature</li>
+<li>Photo upload with Cloudinary</li>
+<br>
+
+
+![photos](https://user-images.githubusercontent.com/97769405/168444718-015796f7-f0c2-4f23-aee1-5442362db3a0.gif)
+
+<h3>Ratings</h3>
+<li>Rate a trail based on overall rating, beauty, sunlight and difficulty</li>
+<br>
+
+![ratings](https://user-images.githubusercontent.com/97769405/168444844-12f7d8f6-bf88-427d-8346-9e66a1b078c1.gif)
+
+<h3>Create Event & Minimap</h3>
+<li>Google Calendars and Google Maps API integration</li>
+<br>
+
+![calendar and mini map](https://user-images.githubusercontent.com/97769405/168444853-647724d7-714a-4700-aa90-8647650be133.gif)
+
+<h3>Comments Section</h3>
+<li>Leave comments on a trail</li>
+<br>
+
+![comments](https://user-images.githubusercontent.com/97769405/168446130-fb30dddc-f82a-4403-8b64-02f883e01b9a.gif)
+
+
+<h3>User Profile</h3>
+<li>Recently visted trails</li>
+<li>Friends</li>
+<br>
+
+![user](https://user-images.githubusercontent.com/97769405/168446092-50186d17-8d73-475c-bdca-12644fc520fe.png)
+
 
 <h2>Contributors</h2>
 
