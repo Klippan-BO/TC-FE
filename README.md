@@ -106,7 +106,7 @@ Trail Companions is a full stack web and mobile-friendly application created ove
 
 [**Jerremy Stroman**](https://github.com/jerremy777): Architech Owner, API, server, database
 
-[**Justin Tang**](https://github.com/justintang510): Project Manager, Trail description and ratings, readme
+[**Justin Tang**](https://github.com/justintang510): Project Manager, Trail description and ratings, server routes, readme
 
 [**Kyle Nissley**](https://github.com/knissley): UI Owner, wireframes, global styling, login and authentication, Google Calendar API implementation
 
@@ -114,8 +114,8 @@ Trail Companions is a full stack web and mobile-friendly application created ove
 
 [**Matt Pak**](https://github.com/pakman3590): Maps page, Google Maps API implementation, Geocoding
 
-[**Pascal Bui**](https://github.com/RphPandan): Google Calendar API implementation, Photos carousel
+[**Pascal Bui**](https://github.com/RphPandan): Google Calendar API implementation, Photos carousel, server routes
 
-[**Patrick Lee**](https://github.com/ptriklee): Trail comments, Trail Leaderboard
+[**Patrick Lee**](https://github.com/ptriklee): Trail comments, Trail Leaderboard, and server routes
 
-[**Shanshan Liu**](https://github.com/SHANSHANCODER): User profiles, visited trails, friends, friend requests and invites
+[**Shanshan Liu**](https://github.com/SHANSHANCODER): User profiles, visited trails, friends, friend requests, invites and server routes
