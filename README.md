@@ -47,7 +47,7 @@ Trail Companions is a full stack web and mobile-friendly application created ove
 <h2>Components</h2>
 
 <h3>Login</h3>
-<li>Google Sign-in with FireBase</li>
+<li>Google Authentication with FireBase</li>
 <br>
 
 ![login](https://user-images.githubusercontent.com/97769405/168444587-89c2d9c4-89e5-4303-9ad8-662d3da36370.gif)
