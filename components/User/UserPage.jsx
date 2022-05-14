@@ -1,15 +1,14 @@
 /* eslint-disable react/jsx-filename-extension */
-import { SvgIcon } from '@mui/material';
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Container from '@mui/material/Container';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import MyNotification from './MyNotification';
 import MyTrails from './MyTrails';
-import MyConnections from './myConnections';
+import MyConnections from './MyConnections';
 import style from '../../styles/user.module.css';
-
 
 function UserPage({ backEndUser }) {
   const [openNotif, setOpenNotif] = useState(false);
@@ -118,9 +117,11 @@ function UserPage({ backEndUser }) {
                           query: { id: trail.id },
                         }}
                       >
-                        <div className={style.imgBox} key={index}>
-                          <img className={style.myTrailImg}
+                        <div className={style.imgBox} key={trail.name} alt={trail.name}>
+                          <img
+                            className={style.myTrailImg}
                             src={trail.photos[0].url}
+                            alt={trail}
                           />
                           <span className={style.avatarText}>{trail.name}</span>
                         </div>
@@ -132,6 +133,7 @@ function UserPage({ backEndUser }) {
                 <div
                   className={style.moreTrailBtn}
                   onClick={handleMyTrailsClick}
+                  aria-hidden="true"
                 >
                   <span>See</span>
                   <span>More</span>
@@ -144,15 +146,23 @@ function UserPage({ backEndUser }) {
           </div>
           <div style={{ minHeight: '200px' }}>
             <div className={style.friendsText}>My Friends</div>
-            <div className={style.friendsCont} style={{ paddingLeft: '1em' }}>
+            <div className={style.trailsCont
+              //friendsCont
+              } //style={{ paddingLeft: '1em' }}
+              >
               {myFriends
                 && myFriends.map((friend, index) => {
                   if (index < 4) {
                     return (
-                      <div className={style.nameBox} key={index}>
+                      <div className={style.
+                      //nameBox
+                      imgBox} key={friend.username}>
                         <img
-                          className={style.friendImg}
+                          className={style.
+                            //friendImg
+                          myTrailImg}
                           src={friend.profile_image}
+                          alt="user"
                         />
                         <span className={style.avatarText}>
                           {friend.username}
@@ -165,6 +175,7 @@ function UserPage({ backEndUser }) {
                 <div
                   className={style.moreFriendsBtn}
                   onClick={handleMyFriendsClick}
+                  aria-hidden="true"
                 >
                   <span>See</span>
                   <span>Friends</span>
@@ -186,10 +197,7 @@ function UserPage({ backEndUser }) {
 }
 
 export default UserPage;
-
-// "id": 5,
-// "name": "Steven's Canyon Trail",
-// "short_description": "Gummies wafer marshmallow liquorice chupa chups.",
-// "photos": [
-//     {
-//         "url": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjc1MTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NTIyMDY3MDM&ixlib=rb-1.2.1&q=80&w=1080"
+MyTrails.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  backEndUser: PropTypes.object.isRequired,
+};

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Dialog, DialogTitle, stepLabelClasses } from "@mui/material";
-import CancelIcon from "@mui/icons-material/Cancel";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import style from "../../styles/user.module.css";
-
+import React, { useEffect } from 'react';
+import { Dialog, DialogTitle } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import PropTypes from 'prop-types';
+import style from '../../styles/user.module.css';
 
 export default function MyNotification({
   openNotif,
@@ -12,35 +12,31 @@ export default function MyNotification({
   requesting,
   closeNotif,
   updateMyNotif,
-  value
+  value,
 }) {
-
-  useEffect(()=>{console.log("value update")},[value])
+  useEffect(() => { console.log('value update'); }, [value]);
 
   const closePopUp = () => {
     closeNotif();
   };
-  const handleAccept = (e) => {
-    let body = { userId: e.friend_id, friendId: e.user_id };
-    addfriend(body);
-    updateMyNotif();
-  };
-
-
   const addfriend = (body) => {
-    fetch("api/friends", {
-      method: "POST",
+    fetch('api/friends', {
+      method: 'POST',
       body: JSON.stringify(body),
     });
   };
-
-  const handleReject = (e) => {
-    // fetch('api/users',{
-    //   method:'PATCH',
-    //   body:JSON.stringify({userId:e.userID,friendId:e.friend_id
-    //     action:"deny"
-    //   })
-    // })
+  const handleAccept = (e) => {
+    const body = { userId: e.friend_id, friendId: e.user_id };
+    addfriend(body);
+    updateMyNotif();
+  };
+  const handleReject = (person) => {
+    const friend_Id = person.id;
+    fetch('api/friends', {
+      method: 'DELETE',
+      body: JSON.stringify({ friend_Id }),
+    });
+    updateMyNotif();
   };
 
   return (
@@ -48,13 +44,13 @@ export default function MyNotification({
       open={openNotif}
       PaperProps={{
         sx: {
-          position: "absolute",
+          position: 'absolute',
           top: 50,
           right: 50,
           m: 0,
           width: 500,
           height: 500,
-          backgroundColor: "#eee2dc",
+          backgroundColor: '#eee2dc',
         },
       }}
     >
@@ -67,17 +63,18 @@ export default function MyNotification({
             <CancelIcon className={style.close} onClick={closePopUp} />
           </div>
         </DialogTitle>
-        <div className={style.popUpCont + " removeScrollBar"}>
-          {requests &&
-            requests.map((person) => (
+        <div className={`${style.popUpCont} removeScrollBar`}>
+          {requests
+            && requests.map((person) => (
               <div className={style.popUpRowCont} key={person.username}>
                 <img src={person.profile_image} className={style.popUpImg} />
                 <div className={style.popUpRowMidCont}>
-                  <h4>
-                    <span>{person.username}</span>
+                  <span>
+                    <strong>{person.username}</strong>
                     <br />
                     {person.bio}
-                  </h4>
+
+                  </span>
                 </div>
                 <div className={style.popUpBtnWrap}>
                   <ThumbUpIcon
@@ -85,7 +82,7 @@ export default function MyNotification({
                     onClick={() => {
                       handleAccept(person);
                     }}
-                    receipient={person.id}
+                    recipient={person.id}
                   />
                   <ThumbDownIcon
                     className={style.request}
@@ -103,10 +100,10 @@ export default function MyNotification({
           <div className={style.popUpTitle}>My Requests to Other Hikers</div>
         </DialogTitle>
         <div className={style.imgRow}>
-          {requesting &&
-            requesting.map((person) => (
+          {requesting
+            && requesting.map((person) => (
               <div className={style.darkImgBox} key={person.username}>
-                <img src={person.profile_image} className={style.popUpImg} />
+                <img src={person.profile_image} alt={person.username} className={style.popUpImg} />
                 <span className={style.darkName}>{person.username}</span>
               </div>
             ))}
@@ -115,3 +112,20 @@ export default function MyNotification({
     </Dialog>
   );
 }
+
+MyNotification.propTypes = {
+  openNotif: PropTypes.bool.isRequired,
+  requests: PropTypes.arrayOf(PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    profile_image: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+  })).isRequired,
+  requesting: PropTypes.arrayOf(PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    profile_image: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+  })).isRequired,
+  closeNotif: PropTypes.func.isRequired,
+  updateMyNotif: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
+};

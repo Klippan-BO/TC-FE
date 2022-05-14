@@ -1,6 +1,8 @@
 import React from 'react';
 import { Dialog, DialogTitle } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
+import PropTypes from 'prop-types';
+
 import style from '../../styles/user.module.css';
 
 export default function MyConnections({
@@ -39,9 +41,9 @@ export default function MyConnections({
         {myFriends
           && myFriends.map((friend) => (
             <div className={style.popUpRowCont} key={friend.username}>
-              <img src={friend.profile_image} className={style.popUpImg} />
-              <div>
-                <span className={style.darkName}>
+              <img src={friend.profile_image} className={style.popUpImg} alt={friend.username} />
+              <div className={style.darkNameBox}>
+                <span>
                   <strong>
                     {friend.username}
                   </strong>
@@ -55,3 +57,13 @@ export default function MyConnections({
     </Dialog>
   );
 }
+
+MyConnections.propTypes = {
+  openFriends: PropTypes.func.isRequired,
+  closeFriends: PropTypes.func.isRequired,
+  myFriends: PropTypes.arrayOf(PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    profile_image: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+  })).isRequired,
+};

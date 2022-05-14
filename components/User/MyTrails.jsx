@@ -1,9 +1,12 @@
-import { Dialog, DialogTitle, stepLabelClasses } from '@mui/material';
+import React from 'react';
+import { Dialog, DialogTitle } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import style from '../../styles/user.module.css';
 import StarRatings from './StarRating';
 
+// eslint-disable-next-line camelcase
 export default function MyTrails({ openTrails, closeTrails, my_trails }) {
   const closePopUp = () => {
     closeTrails();
@@ -12,7 +15,6 @@ export default function MyTrails({ openTrails, closeTrails, my_trails }) {
 
   };
   return (
-
     <Dialog
       open={openTrails}
       PaperProps={{
@@ -38,14 +40,13 @@ export default function MyTrails({ openTrails, closeTrails, my_trails }) {
       <div className={`${style.popUpInnerCont} removeScrollBar`}>
         {my_trails && my_trails.map((trail) => (
           <Link href={{ pathname: '/trails/[id]', query: { id: trail.id } }}>
-            <div className={style.popUpRowCont} key={trail.name} onClick={openTrail}>
-              <div><img src={trail.photos[0].url} className={style.popUpImg} /></div>
+            <div className={style.popUpRowCont} key={trail.name} onClick={openTrail} aria-hidden="true">
+              <div>
+                <img src={trail.photos[0].url} className={style.popUpImg} alt={trail.name} />
+              </div>
               <div className={style.rowMidBox}>
-                {' '}
                 <span className={style.darkName}>
                   <strong>{trail.name}</strong>
-                  {' '}
-                  <br />
                   <br />
                   {trail.short_description}
                 </span>
@@ -59,6 +60,15 @@ export default function MyTrails({ openTrails, closeTrails, my_trails }) {
         ))}
       </div>
     </Dialog>
-
   );
 }
+
+MyTrails.propTypes = {
+  openTrails: PropTypes.func.isRequired,
+  closeTrails: PropTypes.func.isRequired,
+  my_trails: PropTypes.arrayOf(PropTypes.shape({
+    photos: PropTypes.arrayOf(PropTypes.shape({ url: PropTypes.string.isRequired })).isRequired,
+    profile_image: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+  })).isRequired,
+};
