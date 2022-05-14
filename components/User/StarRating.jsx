@@ -11,7 +11,6 @@ function StarRatings({ rating }) {
       <Stack
         direction="column"
         >
-        {/* Ratings */}
         <Rating
           defaultValue={rating.average}
           precision={0.25}
@@ -21,8 +20,6 @@ function StarRatings({ rating }) {
             fontSize: 20,
           }}
         />
-
-        {/* Meta */}
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -111,7 +108,7 @@ function StarRatings({ rating }) {
 }
 
 StarRatings.propTypes = {
-  ratings: PropTypes.objectOf(PropTypes.number),
+  rating: PropTypes.objectOf(PropTypes.number),
 };
 
 export default StarRatings;

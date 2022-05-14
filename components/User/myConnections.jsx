@@ -1,7 +1,7 @@
 import React from 'react';
-import { Dialog, DialogTitle, stepLabelClasses } from "@mui/material";
-import style from "../../styles/user.module.css";
-import CancelIcon from "@mui/icons-material/Cancel";
+import { Dialog, DialogTitle } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
+import style from '../../styles/user.module.css';
 
 export default function MyConnections({
   openFriends,
@@ -17,13 +17,13 @@ export default function MyConnections({
       open={openFriends}
       PaperProps={{
         sx: {
-          position: "absolute",
+          position: 'absolute',
           top: 350,
           right: 50,
           m: 0,
           width: 500,
           height: 500,
-          backgroundColor: "#eee2dc",
+          backgroundColor: '#eee2dc',
         },
       }}
     >
@@ -34,16 +34,21 @@ export default function MyConnections({
         </div>
       </DialogTitle>
       <div
-        className={style.popUpInnerCont + " removeScrollBar"}
+        className={`${style.popUpInnerCont} removeScrollBar`}
       >
-        {myFriends &&
-          myFriends.map((friend) => (
+        {myFriends
+          && myFriends.map((friend) => (
             <div className={style.popUpRowCont} key={friend.username}>
               <img src={friend.profile_image} className={style.popUpImg} />
-              <span className={style.darkName}>
-                <strong>{friend.username} </strong><br /> <br/>
-                {friend.bio}
-              </span>
+              <div>
+                <span className={style.darkName}>
+                  <strong>
+                    {friend.username}
+                  </strong>
+                  <br />
+                  {friend.bio}
+                </span>
+              </div>
             </div>
           ))}
       </div>

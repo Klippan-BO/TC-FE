@@ -285,3 +285,6 @@
 .popUpRowCont strong{
     font-weight: 900;
 }
+.popUpRowMidCont {
+  width: 70%;
+}
