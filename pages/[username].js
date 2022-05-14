@@ -11,9 +11,7 @@ function User() {
   const [isLoading, setLoading] = useState(false);
   const { currentUser } = useAuth();
   const [backEndUser, setBackEndUser] = useState();
-  const userId = 
-  //currentUser?.id
-  15
+  const userId = currentUser?.id;
 
   useEffect(() => {
     setLoading(true);
