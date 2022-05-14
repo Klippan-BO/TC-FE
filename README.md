@@ -38,6 +38,7 @@ Trail Companions is a full stack web and mobile-friendly application created ove
 | [Material UI](https://mui.com/) | Front-End UI Library |
 | [ESLint](https://eslint.org/) | Code Quality [(Airbnb Style Guide)](https://github.com/airbnb/javascript) |
 | [Figma](https://www.figma.com/) | Wireframe desiging |
+| [Cloudinary](https://cloudinary.com/) | Image hosting for user uploads |
 
 <h2>App Architecture</h2>
 
