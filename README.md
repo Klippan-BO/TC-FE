@@ -94,12 +94,24 @@ Trail Companions is a full stack web application consisting of a client, server,
 ![comments](https://user-images.githubusercontent.com/97769405/168446130-fb30dddc-f82a-4403-8b64-02f883e01b9a.gif)
 
 
-<h3>User Profile</h3>
-<li>Recently visted trails</li>
-<li>Friends</li>
+<h3>User Profiles</h3>
+<li>Profile pictures and bio</li>
 <br>
 
-![user](https://user-images.githubusercontent.com/97769405/168446092-50186d17-8d73-475c-bdca-12644fc520fe.png)
+![image](https://user-images.githubusercontent.com/97769405/168460116-06b9c1d6-fe33-4118-a639-0f2e9678d862.png)
+
+
+<h3>Notifications</h3>
+<li>Incoming and outgoing friend requests</li>
+<br>
+
+![notifications](https://user-images.githubusercontent.com/97769405/168460130-687fac45-1057-4321-bfa2-3d7e9530cb33.gif)
+
+<h3>Recently Visted Trails & Friends</h3>
+<br>
+<li>Includes trail ratings and user bios</li>
+
+![friends and trials](https://user-images.githubusercontent.com/97769405/168460180-b9c5bfba-63f5-46ec-828c-60ffa6d4d501.gif)
 
 
 <h2>Contributors</h2>
