@@ -116,18 +116,18 @@ Trail Companions is a full stack web application consisting of a client, server,
 
 <h2>Contributors</h2>
 
-[**Jerremy Stroman**](https://github.com/jerremy777): Architech Owner, API, server, database
+[**Jerremy Stroman**](https://github.com/jerremy777): Architech Owner, API, database
 
-[**Justin Tang**](https://github.com/justintang510): Project Manager, Trail description and ratings, server routes, readme
+[**Justin Tang**](https://github.com/justintang510): Project Manager, trails, ratings, readme
 
-[**Kyle Nissley**](https://github.com/knissley): UI Owner, wireframes, global styling, login and authentication, Google Calendar API implementation
+[**Kyle Nissley**](https://github.com/knissley): UI Owner, login, authentication
 
-[**Lawrence Malloy**](https://github.com/lcmalloy): Initial setup and dependencies, nav bar, Google Maps API implementation, Geocoding
+[**Lawrence Malloy**](https://github.com/lcmalloy): dependencies, nav bar, map
 
-[**Matt Pak**](https://github.com/pakman3590): Maps page, Google Maps API implementation, Geocoding
+[**Matt Pak**](https://github.com/pakman3590): map, search function
 
-[**Pascal Bui**](https://github.com/RphPandan): Google Calendar API implementation, Photos carousel, server routes
+[**Pascal Bui**](https://github.com/RphPandan): trails, events, photos
 
-[**Patrick Lee**](https://github.com/ptriklee): Trail comments, Trail Leaderboard, and server routes
+[**Patrick Lee**](https://github.com/ptriklee): trails, comments, leaderboard
 
-[**Shanshan Liu**](https://github.com/SHANSHANCODER): User profiles, visited trails, friends, friend requests, invites and server routes
+[**Shanshan Liu**](https://github.com/SHANSHANCODER): user profiles, notifications
