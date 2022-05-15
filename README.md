@@ -15,7 +15,7 @@ Trail Companions is a full stack web application consisting of a client, server,
 <h2>App Features</h2>
 <li>Firebase Authentication</li>
 <li>Google Maps trail finder</li>
-<li>Search Functionality</li>
+<li>Search functionality</li>
 <li>User profiles: recently visited trails and friends</li>
 <li>Trail Page: description, photos, ratings, comments</li>
 <li>Google Calendar invites</li>
