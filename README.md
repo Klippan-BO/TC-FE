@@ -32,7 +32,7 @@ Trail Companions is a full stack web application consisting of a client, server,
 | [PostgreSQL](https://www.postgresql.org/) | Relational database |
 | [Google Maps API](https://developers.google.com/maps) | In-app map features |
 | [Google Calendars API](https://developers.google.com/calendar/api) | In-app calendar/events features |
-| [FireBase](https://firebase.google.com/) | Google Authentication |
+| [Firebase](https://firebase.google.com/) | Google Authentication |
 | [Next.js](https://nextjs.org/) | Web Development Framework |
 | [React](https://reactjs.org/) | Front-End UI Library |
 | [Material UI](https://mui.com/) | Front-End UI Library |
