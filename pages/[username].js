@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/extensions
-import sampleData from '../components/User/sampleData.js';
 import { useAuth } from '../context/AuthContext';
 // eslint-disable-next-line import/extensions
-import UserPage from '../components/User/UserPage.js';
+import UserPage from '../components/User/UserPage.jsx';
 import LoadingScreen from '../components/LoadingScreen';
 
 // getting userId from useAuth()
@@ -35,7 +34,6 @@ function User() {
     <div>
       { backEndUser && (
         <UserPage
-          userData={sampleData}
           backEndUser={backEndUser}
         />
       )}

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import ParkIcon from '@mui/icons-material/Park';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import LandscapeIcon from '@mui/icons-material/Landscape';
 import style from '../../styles/user.module.css';
 
 function StarRatings({ rating }) {
@@ -10,19 +13,23 @@ function StarRatings({ rating }) {
     <div className={style.starCont}>
       <Stack
         direction="column"
-        >
-        {/* Ratings */}
+        sx={{
+          color: '#fff',
+
+        }}
+        justifyContent="flex-start"
+      >
         <Rating
           defaultValue={rating.average}
           precision={0.25}
           readOnly
           sx={{
-            color: 'gray',
+            color: '#F6CC66',
             fontSize: 20,
+            mb: 1,
+            justifyContent: 'center',
           }}
         />
-
-        {/* Meta */}
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -34,7 +41,7 @@ function StarRatings({ rating }) {
           <Typography
             sx={{
               fontSize: 15,
-              color:"#123c69"
+              color: '#123c69',
             }}
           >
             Beauty
@@ -43,8 +50,10 @@ function StarRatings({ rating }) {
             defaultValue={rating.beauty}
             precision={0.25}
             readOnly
+            icon={<ParkIcon fontSize="inherit" />}
+            emptyIcon={<ParkIcon fontSize="inherit" sx={{ color: '#eee2dc', stroke: '#123c69', strokeWidth: 1 }} />}
             sx={{
-              color: 'gray',
+              color: '#97C1A9',
               fontSize: 15,
             }}
           />
@@ -61,17 +70,19 @@ function StarRatings({ rating }) {
           <Typography
             sx={{
               fontSize: 15,
-              color:"#123c69"
+              color: '#123c69',
             }}
           >
-            Nature
+            Sunlight
           </Typography>
           <Rating
             defaultValue={rating.nature}
             precision={0.25}
             readOnly
+            icon={<WbSunnyIcon fontSize="inherit" />}
+            emptyIcon={<WbSunnyIcon fontSize="inherit" sx={{ color: '#eee2dc', stroke: '#123c69', strokeWidth: 1 }} />}
             sx={{
-              color: 'gray',
+              color: '#FFFFB5',
               fontSize: 15,
             }}
           />
@@ -88,7 +99,7 @@ function StarRatings({ rating }) {
           <Typography
             sx={{
               fontSize: 15,
-              color:"#123c69"
+              color: '#123c69',
             }}
           >
             Difficulty
@@ -98,8 +109,10 @@ function StarRatings({ rating }) {
             size="small"
             precision={0.25}
             readOnly
+            icon={<LandscapeIcon fontSize="inherit" />}
+            emptyIcon={<LandscapeIcon fontSize="inherit" sx={{ color: '#eee2dc', stroke: '#123c69', strokeWidth: 1 }} />}
             sx={{
-              color: 'gray',
+              color: '#FFC7A2',
               fontSize: 15,
             }}
           />
@@ -111,7 +124,9 @@ function StarRatings({ rating }) {
 }
 
 StarRatings.propTypes = {
-  ratings: PropTypes.objectOf(PropTypes.number),
+  rating: PropTypes.objectOf(
+    PropTypes.shape({ difficulty: PropTypes.number.isRequired }),
+  ).isRequired,
 };
 
 export default StarRatings;

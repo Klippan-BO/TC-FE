@@ -70,7 +70,6 @@
   font-size: 18px;
   font-weight: 300;
   color: white;
-  margin-top: -10px;
   min-height: 200px;
 }
 .trailText {
@@ -80,12 +79,14 @@
 }
 .trailsCont {
   display: flex;
+  padding: 0;
 }
 .imgBox {
   margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 125px;
 }
 .myTrailImg {
   border: 2px solid #eee2dc;
@@ -206,6 +207,7 @@
   align-items: center;
   justify-content: space-between;
 
+
 }
 .popUpRowCont span {
   color: #123c69;
@@ -238,6 +240,8 @@
   max-height: 200px;
   display: flex;
   flex-wrap: wrap;
+  padding-left: 10px;
+  padding-right: 20px;
 }
 .darkImgBox {
   margin: 10px;
@@ -247,7 +251,8 @@
 }
 .rowMidBox{
     width: 150px;
-    overflow: scroll;
+    height: 100px;
+    overflow: hidden;
 }
 .popUpInnerCont {
     height: 400px;
@@ -285,4 +290,20 @@
 }
 .popUpRowCont strong{
     font-weight: 900;
+}
+.popUpRowMidCont {
+  width: 70%;
+  height: 100px;
+  overflow: hidden;
+}
+.darkName{
+  width: 75%;
+  text-align: center;
+  color: #123c69;
+  font-weight: 700;
+}
+.darkNameBox{
+  width: 75%;
+  height: 100px;
+  overflow: hidden;
 }

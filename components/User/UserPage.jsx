@@ -1,20 +1,16 @@
 /* eslint-disable react/jsx-filename-extension */
-import { SvgIcon } from "@mui/material";
-import React, { useState } from "react";
-import Head from "next/head";
-import Container from "@mui/material/Container";
-import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
-import Badge from "@mui/material/Badge";
-import Link from "next/link";
-import MyNotification from "./MyNotification";
-import MyTrails from "./MyTrails";
-import MyConnections from "./myConnections";
-import style from "../../styles/user.module.css";
-import sampleData from "./sampleData";
+import React, { useState } from 'react';
+import Head from 'next/head';
+import Container from '@mui/material/Container';
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
+import MyNotification from './MyNotification';
+import MyTrails from './MyTrails';
+import MyConnections from './MyConnections';
+import style from '../../styles/user.module.css';
 
-function UserPage({
-  backEndUser,
-}) {
+function UserPage({ backEndUser }) {
   const [openNotif, setOpenNotif] = useState(false);
   const [openTrails, setOpenTrails] = useState(false);
   const [openFriends, setOpenFriends] = useState(false);
@@ -51,14 +47,16 @@ function UserPage({
     setOpenFriends(false);
   };
 
-  const updateMyNotif= () => {
+  const updateMyNotif = () => {
     fetch(`http://localhost:3000/api/users/me?userId=${updatedUser.id}`)
       .then((res) => res.json())
       .then((data) => {
         data.friends = data.friends || [];
         setUpdatedUser(data);
       })
-      .catch((err) => { console.log(err); });
+      .catch((err) => {
+        console.log(err);
+      });
     setValue(value + 1);
   };
 
@@ -80,7 +78,7 @@ function UserPage({
               style={{ fontSize: 50 }}
               onClick={handleNotificationClick}
               className={
-                (updatedUser.incoming_requests || updatedUser.outgoing_requests)
+                updatedUser.incoming_requests || updatedUser.outgoing_requests
                   ? style.notificationBtnActive
                   : style.notificationBtnNoneActive
               }
@@ -109,20 +107,21 @@ function UserPage({
           <div style={{ minHeight: '200px' }}>
             <div className={style.trailText}>Recently Visited Trails</div>
             <div className={style.trailsCont}>
-              {updatedUser.trails &&
-                updatedUser.trails.map((trail, index) => {
+              {updatedUser.trails
+                && updatedUser.trails.map((trail, index) => {
                   if (index < 4) {
                     return (
                       <Link
                         href={{
-                          pathname: "/trails/[id]",
+                          pathname: '/trails/[id]',
                           query: { id: trail.id },
                         }}
                       >
-                        <div className={style.imgBox} key={index}>
+                        <div className={style.imgBox} key={trail.name} alt={trail.name}>
                           <img
                             className={style.myTrailImg}
                             src={trail.photos[0].url}
+                            alt={trail}
                           />
                           <span className={style.avatarText}>{trail.name}</span>
                         </div>
@@ -131,7 +130,11 @@ function UserPage({
                   }
                 })}
               {updatedUser.trails && updatedUser.trails.length > 4 ? (
-                <div className={style.moreTrailBtn} onClick={handleMyTrailsClick}>
+                <div
+                  className={style.moreTrailBtn}
+                  onClick={handleMyTrailsClick}
+                  aria-hidden="true"
+                >
                   <span>See</span>
                   <span>More</span>
                   <span>Trails</span>
@@ -143,17 +146,27 @@ function UserPage({
           </div>
           <div style={{ minHeight: '200px' }}>
             <div className={style.friendsText}>My Friends</div>
-            <div className={style.friendsCont} style={{ paddingLeft: '1em'}}>
-              {myFriends &&
-                myFriends.map((friend, index) => {
+            <div className={style.trailsCont
+              //friendsCont
+              } //style={{ paddingLeft: '1em' }}
+              >
+              {myFriends
+                && myFriends.map((friend, index) => {
                   if (index < 4) {
                     return (
-                      <div className={style.nameBox} key={index}>
+                      <div className={style.
+                      //nameBox
+                      imgBox} key={friend.username}>
                         <img
-                          className={style.friendImg}
+                          className={style.
+                            //friendImg
+                          myTrailImg}
                           src={friend.profile_image}
+                          alt="user"
                         />
-                        <span className={style.avatarText}>{friend.username}</span>
+                        <span className={style.avatarText}>
+                          {friend.username}
+                        </span>
                       </div>
                     );
                   }
@@ -162,6 +175,7 @@ function UserPage({
                 <div
                   className={style.moreFriendsBtn}
                   onClick={handleMyFriendsClick}
+                  aria-hidden="true"
                 >
                   <span>See</span>
                   <span>Friends</span>
@@ -183,11 +197,7 @@ function UserPage({
 }
 
 export default UserPage;
-
-
-// "id": 5,
-// "name": "Steven's Canyon Trail",
-// "short_description": "Gummies wafer marshmallow liquorice chupa chups.",
-// "photos": [
-//     {
-//         "url": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjc1MTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NTIyMDY3MDM&ixlib=rb-1.2.1&q=80&w=1080"
+MyTrails.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  backEndUser: PropTypes.object.isRequired,
+};
