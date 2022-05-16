@@ -50,7 +50,8 @@ Trail Companions is a full stack web application consisting of a client, server,
 <li>Google Authentication with Firebase</li>
 <br>
 
-![login](https://user-images.githubusercontent.com/97769405/168444587-89c2d9c4-89e5-4303-9ad8-662d3da36370.gif)
+![login](https://user-images.githubusercontent.com/97769405/168492637-c8cd17f2-8a34-4ebc-bdf7-7f6df76db4a5.gif)
+
 
 <h3>Map</h3>
 <li>Google Maps Integration</li>
@@ -63,8 +64,8 @@ Trail Companions is a full stack web application consisting of a client, server,
 <li>Top 5 Trails in your area</li>
 <br>
 
+![leaderboard](https://user-images.githubusercontent.com/97769405/168492645-7d72ab5f-1ac0-4618-b77c-ecf48917c6e2.gif)
 
-![leaderboard](https://user-images.githubusercontent.com/97769405/168444592-148f4e5f-4147-4fea-bc1b-cd69e40bb0ce.gif)
 
 <h3>Trail Photos</h3>
 <li>Carousel and gallery</li>
