@@ -42,7 +42,7 @@ Trail Companions is a full stack web application consisting of a client, server,
 
 <h2>App Architecture</h2>
 
-![Components](https://user-images.githubusercontent.com/97769405/168129826-b5d3b89d-1c41-4863-894d-707108a8ba71.png)
+![Untitled Diagram drawio (11)](https://user-images.githubusercontent.com/97769405/169568270-3000f5d1-6466-4318-886c-ba6836da7a50.png)
 
 <h2>Components</h2>
 
