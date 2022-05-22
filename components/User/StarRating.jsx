@@ -12,6 +12,7 @@ function StarRatings({ rating }) {
   return (
     <div className={style.starCont}>
       <Stack
+        margin={1}
         direction="column"
         sx={{
           color: '#fff',

@@ -5,6 +5,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import PropTypes from 'prop-types';
 import style from '../../styles/user.module.css';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 export default function MyNotification({
   openNotif,
@@ -48,7 +49,7 @@ export default function MyNotification({
           top: 50,
           right: 50,
           m: 0,
-          width: 500,
+          width: 520,
           height: 500,
           backgroundColor: '#eee2dc',
         },
@@ -77,14 +78,14 @@ export default function MyNotification({
                   </span>
                 </div>
                 <div className={style.popUpBtnWrap}>
-                  <ThumbUpIcon
+                  <CheckCircleIcon
                     className={style.request}
                     onClick={() => {
                       handleAccept(person);
                     }}
                     recipient={person.id}
                   />
-                  <ThumbDownIcon
+                  <CancelIcon
                     className={style.request}
                     onClick={() => {
                       handleReject(person);

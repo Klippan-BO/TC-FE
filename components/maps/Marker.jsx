@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Tooltip, Stack, Typography, SvgIcon, Rating, Divider,
+  Tooltip, Stack, Typography, SvgIcon, Rating, Divider, Fade,
 } from '@mui/material';
 
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -32,17 +32,18 @@ export default function Marker({ trail }) {
 
   return (
     <Tooltip
+      TransitionComponent={Fade}
       title={(
-        <Stack spacing={2}>
+        <Stack spacing={2}       margin={2}>
           <Link href={`/trails/${id}`}>
-            <Typography variant="h5" style={{ cursor: 'pointer' }}>{name}</Typography>
+            <Typography variant="h5" style={{ cursor: 'pointer', fontSize: 24 }}>{name}</Typography>
           </Link>
           <Rating
             defaultValue={average}
             precision={0.25}
             readOnly
             sx={{
-              color: 'white',
+              color: 'F6CC66',
               fontSize: 24,
             }}
           />
@@ -53,11 +54,11 @@ export default function Marker({ trail }) {
             spacing={4}
             divider={<Divider orientation="vertical" flexItem />}
           >
-            <Typography>
+            <Typography sx={{fontSize: 12}}>
               {`Length: ${length} mi`}
             </Typography>
-            <Typography>
-              {`Elev: ${elevation} ft`}
+            <Typography sx={{fontSize: 12}}>
+              {`Elevation: ${elevation} ft`}
             </Typography>
           </Stack>
           <Typography sx={{ p: 1 }}>{short_description}</Typography>
