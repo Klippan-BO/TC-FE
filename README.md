@@ -9,7 +9,6 @@ Trail Companions is a full stack web application consisting of a client, server,
 <li>Experienced hikers</li>
 <li>Beginners</li>
 <li>Parents</li>
-<li>Seniors</li>
 <li>Event planners</li>
 
 <h2>App Features</h2>
