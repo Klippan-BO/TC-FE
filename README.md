@@ -116,18 +116,18 @@ Trail Companions is a full stack web application consisting of a client, server,
 
 <h2>Contributors</h2>
 
-[**Jerremy Stroman**](https://github.com/jerremy777): Architech Owner, API, database
+[**Jerremy Stroman**](https://github.com/jerremy777)
 
-[**Justin Tang**](https://github.com/justintang510): Project Manager, trails, ratings, readme
+[**Justin Tang**](https://github.com/justintang510)
 
-[**Kyle Nissley**](https://github.com/knissley): UI Owner, login, authentication
+[**Kyle Nissley**](https://github.com/knissley)
 
-[**Lawrence Malloy**](https://github.com/lcmalloy): dependencies, nav bar, map
+[**Lawrence Malloy**](https://github.com/lcmalloy)
 
-[**Matt Pak**](https://github.com/pakman3590): map, search function
+[**Matt Pak**](https://github.com/pakman3590)
 
-[**Pascal Bui**](https://github.com/RphPandan): trails, events, photos
+[**Pascal Bui**](https://github.com/RphPandan)
 
-[**Patrick Lee**](https://github.com/ptriklee): trails, comments, leaderboard
+[**Patrick Lee**](https://github.com/ptriklee)
 
-[**Shanshan Liu**](https://github.com/SHANSHANCODER): user profiles, notifications
+[**Shanshan Liu**](https://github.com/SHANSHANCODER)
